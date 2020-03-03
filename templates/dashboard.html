@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container bg-dark mt-5 text-warning">
+
+        <div id="topbar"  class="d-flex flex-row">
+            <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
+            <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
+            <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
+        </div>
+
+
+
+
+
+        <div class="container col-xl-4 bg-dark align-top d-inline-block">
+            
+            <hr>
+            <h3>Score: {{ thisUser.current_score }}</h3>
+            <h3>Money: {{ thisUser.current_money }}</h3>
+        </div>
+    
+
+
+        <div class="container bg-dark text-light d-inline-block col-xl-3 align-top">
+            <img class="d-inline-block align-top" id="playershipDashboard" src="../static/img/spaceship.png" alt="spaceship"> 
+            
+            <h2>How To Play</h2>
+            <ul class="d-inline-block float-right mt-2">
+                <li>Move using WASD</li>
+                <li>Fire using Space</li>
+                <li>Use 1-6 for Active Abilities</li>
+                <li>Etc..</li>
+            </ul>
+        </div>
+        
+
+
+
+
+        <div class="container bg-dark text-light d-inline-block col-xl-4 align-bottom mb-2 ml-5">
+            <div class="ml-5 d-inline-block">
+                <a href="equipment.html"><i class="fas fa-2x fa-archive"></i></a>
+                <p class="lead">Equipment</p>
+            </div>
+            <div class="ml-5 d-inline-block">
+                <a href="store.html"><i class="fas fa-2x fa-coins"></i></a>
+                <p class="lead">Store</p>
+            </div>
+            <div class="ml-5 d-inline-block">
+                <a href="map.html"><i class="fas fa-2x fa-map"></i></a>
+                <p class="lead">Map</p>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+</html>
