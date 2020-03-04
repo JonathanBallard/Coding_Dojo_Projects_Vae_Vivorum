@@ -22,6 +22,8 @@
 # Different Player Abilities
 # Equipment Drops
 # Equipment to purchase
+# Difficulty Slider
+# ROG Loot ?
 # 
 # 
 
@@ -29,11 +31,14 @@
 
 # TODO
 # Create Index.html Registration & Login system **DONE**
+# CREATE Form to create abilities, ships, items, etc..
 # Player Ship image
 # Alt ship images
 # enemy ship images
-# Create Models/Relationships **STARTED**
-# Create map to choose levels
+# Create function to quickly add basic equipment & abilities & users to game for testing
+# Create Models/Relationships **DONE**
+# TEST MODELS
+# Create map to choose levels, start with simple list of links
 # Create game.html
 # Create Base Game, single level
 # Create equipment.html
@@ -44,76 +49,33 @@
 # Create Page to Add Items/Abilities/Ships to Database
 # Add Footer to each page with my info
 # Create Manual
-# Implement AJAX
+# Implement AJAX on necessary pages
+# Eventually Set up Bootstrap "cards" system for each map
+# 
+# 
+
+
+# GAME TODO
+# Create movement controls
+# Firing controls
+# Background image
+# enemy spawning
+# scoring
+# income
+# 
+# 
 # 
 # 
 
 
 
-from flask import Flask, render_template, request, redirect, session, flash
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-from flask_migrate import Migrate
+
 import re
-from flask_bcrypt import Bcrypt
-from sqlalchemy import text
 
-
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///$vae_vivorum.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-app.secret_key = "53cr3t5tuff"
-bcrypt = Bcrypt(app)
-
-
-##### ******************** MODELS ******************** #####
-# Users (id, username, email, password, created_at, updated_at, 
-# ships_unlocked, items_owned, current_score, current_money, current_xp, current_level, 
-# ship_equipped, unlocked_passives, unlocked_actives, equipped_actives
-# )
-# Ships(id, name, owner_id, price, max_hit_points, current_hit_points, max_shield_points, current_shield_points, special_ability, special_timer, special_active, passive_1, passive_2, passive_3 slot_1, slot_2, slot_3, slot_4, slot_5, slot_6, slot_7, slot_8 )
-# 
-# 
-
-
-class Users(db.Model):
-    __tablename__ = "Users"
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255))
-    email = db.Column(db.String(255))
-    password = db.Column(db.String(255))
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
-    current_score = db.Column(db.Integer)
-    current_money = db.Column(db.Integer)
-    current_xp = db.Column(db.Integer)
-    current_level = db.Column(db.Integer)
-    character_active_ability_id = db.Column(db.Integer, db.ForeignKey("Character_Active_Abilities.id", ondelete="cascade"))
-    character_passive_abilities_id = db.Column(db.Integer, db.ForeignKey("Character_Passive_Abilities.id", ondelete="cascade"))
-    active_ship = db.Column(db.String(255))
-
-class Character_Active_Abilities(db.Model):
-    __tablename__ = "Character_Active_Abilities"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    description = db.Column(db.String(255))
-    ability_type = db.Column(db.String(45))
-    ability_amount = db.Column(db.Integer)
-    ability_duration = db.Column(db.Integer)
-
-class Character_Passive_Abilities(db.Model):
-    __tablename__ = "Character_Passive_Abilities"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    description = db.Column(db.String(255))
-    passive_ability_type = db.Column(db.String(45))
-    passive_ability_amount = db.Column(db.Integer)
-
-
-
+from config import app, bcrypt, db
+from flask import Flask, flash, redirect, render_template, request, session
+from models import User_Character, Users, Equipment, Loadouts, Active_Abilities, Passive_Abilities, Ships, user_ships
+from sqlalchemy.sql import func
 
 ##### ******************** ROUTES ******************** #####
 
@@ -247,16 +209,66 @@ def login():
 @app.route('/dashboard')
 def dashboard():
 
-    loggedInUser = Users.query.get(session['id'])
+    if 'id' in session:
+        loggedInUser = Users.query.get(session['id'])
+    else:
+        loggedInUser = Users.query.get(1)   #DEFAULT USER, CHANGE THIS LATER
 
     return render_template("dashboard.html", thisUser = loggedInUser)
 
 
 
+# MAP
+@app.route('/map')
+def map():
+    loggedInUser = Users.query.get(session['id'])
+
+
+
+    return render_template("map.html", thisUser = loggedInUser)
+
+
+
+# Equipment
+@app.route('/equipment')
+def equipment():
+    loggedInUser = Users.query.get(session['id'])
+
+
+
+    return render_template("equipment.html", thisUser = loggedInUser)
+
+
+# Store
+@app.route('/store')
+def store():
+    loggedInUser = Users.query.get(session['id'])
+
+
+
+    return render_template("store.html", thisUser = loggedInUser)
 
 
 
 
+# Ships
+@app.route('/ships')
+def ships():
+    loggedInUser = Users.query.get(session['id'])
+
+
+
+    return render_template("ships.html", thisUser = loggedInUser)
+
+
+# Game
+@app.route('/game')
+def game():
+    loggedInUser = Users.query.get(session['id'])
+
+
+
+    return render_template("game.html", thisUser = loggedInUser)
 
 
 
