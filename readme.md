@@ -1,8 +1,8 @@
 
-# Vae Vivorum
+# **Vae Vivorum**
 
-**Twin Stick Shooter  
-Based on the pre-bootcamp fighter jet game**  
+*Twin Stick Shooter  
+Based on the pre-bootcamp fighter jet game*  
 
 # All Features
 
@@ -75,6 +75,10 @@ Based on the pre-bootcamp fighter jet game**
 - Create dashboard.html **DONE**  
 - Player Ship image  
 - Enemy ship images  
+- Background Image  
+- Create game.html  
+- Create Weapon Types  
+- Power-ups to swap weapons  
 
 # Backlog TODO  
 
@@ -83,8 +87,6 @@ Based on the pre-bootcamp fighter jet game**
 - Alt ship images  
 - Create function to quickly add basic equipment & abilities & users to game for testing  
 - Create map to choose levels, start with simple list of links  
-- Create game.html  
-- Create Base Game, single level  
 - Create equipment.html  
 - create ships.html  
 - create store.html  
