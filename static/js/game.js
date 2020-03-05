@@ -5,6 +5,9 @@ var gameHeight = $(document).height() * 0.8;
 var gameWidth = $(document).width() * 0.7;
 var viewportHeight = $(document).height() * 0.8;
 var viewportWidth = $(document).width() * 0.7;
+var map = $('#background');
+var mapOffsetLeft = ($(document).width() - gameWidth) / 2;
+var mapOffsetTop = (($(document).height() - gameHeight) / 2);
 
 
 // OTHER
@@ -23,6 +26,9 @@ var numEscapedEnemies = 0;
 //RATES
 var shieldRechargeRate = 0.25; //How much shields recharge per tick
 var shieldRechargeDelay = 3000;
+var difficultyRate = 1; //Later turn this into a slider
+var enemySpawnRate = 4000;
+var enemySpawnTimer = enemySpawnRate / difficultyRate;
 
 
 //DAMAGE
@@ -74,6 +80,7 @@ class Enemy_1 {
         this.type = "Enemy";
         this.scoreValue = 50;
         this.formation = "line";
+        this.numFormation = 4; //number of ships to spawn at one time
     }
 
 
@@ -185,7 +192,7 @@ function drawPlayer(){
     content = "<div class = 'player' style='left:" + player.left + "px; top:" + player.top + "px;'></div>";
 
     if(player.shields < player.shieldsMax){
-        setTimeout(shieldRecharge(player), shieldRechargeDelay);
+        // shieldRecharge(player);
         // player.shields += shieldRechargeRate;
     }
 
@@ -237,9 +244,9 @@ function moveFires(){
 
         for(var j = 0; j < enemies.length; j++){
             var friendlyHitCheck = collisionDetection(friendly_fires[i], enemies[j])
-            console.log('FRIENDLYHITCHECK: ' + friendlyHitCheck)
+            // console.log('FRIENDLYHITCHECK: ' + friendlyHitCheck)
             if(friendlyHitCheck == true){
-                console.log('FRIENDLYHITCHECK IS TRUE')
+                // console.log('FRIENDLYHITCHECK IS TRUE')
                 enemyDamagedByFire(enemies[j], friendly_fires[i], j, i);
             }
         }
@@ -329,8 +336,58 @@ function rammedPlayer(enemy, enemyIndex){
 
 function spawnEnemyWave(){
     // Spawn wave in random location, travelling in random direction, with class-based movement pattern
+    // Eventually make the wave consist of a single random type of enemy
+
+    //First get random edge of map, 0=top, 1=bottom, 2=left, 3=right
+    var edgeOfMap = Math.floor(Math.random() * 4);
+    var left;
+    var top;
+    //Next Get Direction of Travel (Starting with just the opposite direction)
+    var edgeToTravel;
+    if(edgeOfMap == 1){
+        edgeToTravel = 0;
+        left = gameWidth / 2;
+        top = gameHeight - 160;
+        leftOffset = 15;
+        topOffset = 15;
+    }
+    else if(edgeOfMap == 0){
+        edgeToTravel = 1;
+        left = gameWidth / 2;
+        top = 160;
+        leftOffset = 15;
+        topOffset = 15;
+    }
+    else if(edgeOfMap == 2){
+        edgeToTravel = 3;
+        left = 160;
+        top = gameHeight / 2;
+        leftOffset = 15;
+        topOffset = 15;
+    }
+    else {
+        edgeToTravel = 2;
+        left = gameWidth - 160;
+        top = gameHeight / 2;
+        leftOffset = 15;
+        topOffset = 15;
+    }
+
+    enemy1 = new Enemy_1(left + leftOffset, top - topOffset);
+    enemy2 = new Enemy_1(left - leftOffset, top - topOffset);
+    enemy3 = new Enemy_1(left + leftOffset, top + topOffset);
+    enemy4 = new Enemy_1(left - leftOffset, top + topOffset);
+    
+    enemies.push(enemy1);
+    enemies.push(enemy2);
+    enemies.push(enemy3);
+    enemies.push(enemy4);
+
     console.log("Wave Spawned")
+    setTimeout(spawnEnemyWave, enemySpawnTimer);
 }
+
+
 
 function victory(){
     // VICTORY HERE
@@ -344,6 +401,13 @@ function gameOver(){
 
 function collisionDetection(obj1, obj2){
     var collision = false;
+    // console.log("COLLISION ERROR REPORT")
+    // console.log("obj1.name: " + obj1.name)
+    // console.log("obj1.left: " + obj1.left)
+    // console.log("obj2.name: " + obj2.name)
+    // console.log("obj2.left: " + obj2.left)
+
+
     if(obj1.left < obj2.left + obj2.width &&
         obj1.left + obj1.width > obj2.left &&
         obj1.top < obj2.top + obj2.height &&
@@ -358,13 +422,14 @@ function collisionDetection(obj1, obj2){
 
 function shieldRecharge(obj1){
     obj1.shields += shieldRechargeRate;
+    setTimeout(shieldRecharge, shieldRechargeDelay);
 }
 
 
 function escapedEnemies(){
     for(var i = 0; i < enemies.length; i++){
         if(enemies[i].shields < enemies[i].shieldsMax){
-            setTimeout(shieldRecharge(enemies[i]), shieldRechargeDelay);
+            // shieldRecharge(enemies[i]);
             // enemies[i].shields += shieldRechargeRate;
         }
 
@@ -387,9 +452,41 @@ function writeStats(){
 }
 
 
+//MOUSE EVENTS
+//Mouse Event Listener
+document.addEventListener("mousemove", mouseMove, false);
+document.addEventListener("click", mouseClick, false);
 
+function mouseMove(e) {
+    var relativeX = e.clientX - mapOffsetLeft;
+    if(relativeX > 0 && relativeX < map.width()) {
+        player.left = relativeX + player.width/2;
+    }
+
+    var relativeY = e.clientY - mapOffsetTop;
+    if(relativeY > 0 && relativeY < map.height()) {
+        player.top = relativeY + player.height/2;
+    }
+
+}
+
+function mouseClick(e) {
+
+    //fire weapon
+    if(e.button == 0){
+        var newMissile = new Missile(player.left + (player.width / 2), player.top)
+        friendly_fires.push(newMissile);
+        drawFires();
+    }
+
+
+}
+
+
+
+//Keyboard Controls
 document.onkeydown = document.onkeyup = function(e) {
-    console.log(e.keyCode);
+    // console.log(e.keyCode);
 
 
     
@@ -472,9 +569,10 @@ document.onkeydown = document.onkeyup = function(e) {
     
     drawPlayer();
 }
-
+spawnEnemyWave();
 
 function gameLoop(){
+
     moveFires();
     moveEnemies();
     drawPlayer();
