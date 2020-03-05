@@ -1,7 +1,7 @@
 
 
 import re
-
+import json
 from config import app, bcrypt, db
 from flask import Flask, flash, redirect, render_template, request, session
 from models import User_Character, Users, Equipment, Loadouts, Active_Abilities, Passive_Abilities, Ships, user_ships

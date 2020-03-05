@@ -92,23 +92,30 @@ Based on the pre-bootcamp fighter jet game*
 - When enemy hits you, you take damage, Ramming **DONE**  
 - Make enemies fire at you  
 - When hit by enemy fire lose health/armor **DONE**  
-- Finish spawnEnemyWave()    
+- Finish spawnEnemyWave()  
 - Armor and Health numbers on screen **DONE**  
 - Player can move across the whole map **DONE**  
 - Differentiate between Game and Viewport  
-- Enemies fire AT player, not randomly  
+- Enemies fire AT player or in-line with their formation, not randomly  
 - Convert to OOP **DONE**  
 - Shields recharge **DONE**    
 - Need Victory screen  
 - Need ENDGAME screen  
-- Change movement to use class methods  
+- Change movement to use class methods **CANCELLED**  
 - Finish gameOver() function  
 - Finish victory() function  
 - Look at better hitboxes  
 - Finish adding Score and +kills to player object **DONE**  
 - Fix shieldRechargeDelay (maybe AJAX?) 
 - Multiple kinds of enemies  
-- Should be able to fire and move at the same time  
+- Should be able to fire and move at the same time **DONE**  
+- Player and Enemy objects pass width and height to style.css!  
+- Figure out classes vs database for storing information **DONE**  
+- Make everything smaller (??)  
+- Create .py script to add a bunch of entries to the database  
+- Pass database info using JSON but first need to enter everything into DB  
+- Redo Movement **DONE**  
+
 
 # Backlog TODO  
 

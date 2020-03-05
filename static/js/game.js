@@ -6,6 +6,10 @@ var gameWidth = $(document).width() * 0.7;
 var viewportHeight = $(document).height() * 0.8;
 var viewportWidth = $(document).width() * 0.7;
 
+
+// OTHER
+var keymap = {};
+
 // SPEEDS
 var gameSpeed = 100;
 var playerMoveSpeed = 10;
@@ -45,10 +49,11 @@ class Player {
     }
 
 
-    move(left, top){
+    warp(left, top){
         this.left = left;
         this.top = top;
     }
+
 
 }
 
@@ -72,7 +77,7 @@ class Enemy_1 {
     }
 
 
-    move(left, top){
+    warp(left, top){
         this.left = left;
         this.top = top;
     }
@@ -92,7 +97,7 @@ class Missile {
         this.weaponId = 0;
     }
 
-    move(left, top){
+    warp(left, top){
         this.left = left;
         this.top = top;
     }
@@ -383,29 +388,88 @@ function writeStats(){
 
 
 
-document.onkeydown = function(e) {
+document.onkeydown = document.onkeyup = function(e) {
     console.log(e.keyCode);
 
-    //left = 37, right = 39
-    if(e.keyCode == 65 && player.left > 30){ //left
+
+    
+    keymap[e.keyCode] = e.type == 'keydown';
+
+    //MOVE AND FIRE
+    if(keymap[65] && keymap[32] && player.left > 30){  //left
         player.left -= playerMoveSpeed;
     }
-    if(e.keyCode == 68 && player.left < gameWidth - 70){  //right
+    if(keymap[68] && keymap[32] && player.left < gameWidth - 70){  //right
         player.left += playerMoveSpeed;
     }
-    if(e.keyCode == 83 && player.top <= gameHeight){  //down
+    if(keymap[83] && keymap[32] && player.top <= gameHeight){  //down
         player.top += playerMoveSpeed;
     }
-    if(e.keyCode == 87 && player.top >= 140) {  //up
+    if(keymap[87] && keymap[32] && player.top >= 140) {  //up
         player.top -= playerMoveSpeed;
     }
 
+    //MOVE DIAGONALLY
+    if(keymap[65] && keymap[87] && player.left > 30 && player.top >= 140){  //left up
+        player.left -= playerMoveSpeed;
+    }
+
+    if(keymap[65] && keymap[83] && player.left > 30 && player.top <= gameHeight){  //left down
+        player.left -= playerMoveSpeed;
+    }
+
+    if(keymap[68] && keymap[87] && player.left < gameWidth - 70 && player.top >= 140){  //right up
+        player.left += playerMoveSpeed;
+    }
+
+    if(keymap[68] && keymap[83] && player.left < gameWidth - 70 && player.top <= gameHeight){  //right down
+        player.left += playerMoveSpeed;
+    }
+
+
+    //MOVE
+    if(keymap[65] && player.left > 30){  //left
+        player.left -= playerMoveSpeed;
+    }
+    if(keymap[68] && player.left < gameWidth - 70){  //right
+        player.left += playerMoveSpeed;
+    }
+    if(keymap[83] && player.top <= gameHeight){  //down
+        player.top += playerMoveSpeed;
+    }
+    if(keymap[87] && player.top >= 140) {  //up
+        player.top -= playerMoveSpeed;
+    }
+
+    //left = 37, right = 39 (Whats 37 and 39???)
+    // if(e.keyCode == 65 && player.left > 30){ //left
+    //     player.left -= playerMoveSpeed;
+    // }
+    // if(e.keyCode == 68 && player.left < gameWidth - 70){  //right
+    //     player.left += playerMoveSpeed;
+    // }
+    // if(e.keyCode == 83 && player.top <= gameHeight){  //down
+    //     player.top += playerMoveSpeed;
+    // }
+    // if(e.keyCode == 87 && player.top >= 140) {  //up
+    //     player.top -= playerMoveSpeed;
+    // }
+
     //keycode for spacebar = 32
-    if(e.keyCode == 32){   //fire
+    // if(e.keyCode == 32){   //fire
+    //     var newMissile = new Missile(player.left + (player.width / 2), player.top)
+    //     friendly_fires.push(newMissile);
+    //     drawFires();
+    // }
+
+    //FIRE
+    if(keymap[32]){
         var newMissile = new Missile(player.left + (player.width / 2), player.top)
         friendly_fires.push(newMissile);
         drawFires();
     }
+
+    
     drawPlayer();
 }
 
