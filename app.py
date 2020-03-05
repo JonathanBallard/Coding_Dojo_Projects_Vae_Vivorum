@@ -74,6 +74,11 @@ def register():
         users = Users.query.all()
         print(users)
         flash('Success!')
+        thisUser = Users.query.filter_by(email = email).first()
+
+        if thisUser:
+            session['id'] = thisUser.id
+
         return redirect('/dashboard')
     else:
         return redirect('/')
@@ -138,11 +143,14 @@ def login():
 # DASHBOARD
 @app.route('/dashboard')
 def dashboard():
+    
 
     if 'id' in session:
         loggedInUser = Users.query.get(session['id'])
     else:
         loggedInUser = Users.query.get(1)   #DEFAULT USER, CHANGE THIS LATER
+
+    print('CURRENT SESSION USER: ', session['id'])
 
     return render_template("dashboard.html", thisUser = loggedInUser)
 
@@ -194,7 +202,12 @@ def ships():
 # Game
 @app.route('/game')
 def game():
-    loggedInUser = Users.query.get(session['id'])
+
+    if 'id' in session:
+        loggedInUser = Users.query.get(session['id'])
+    else:
+        print('NO LOGGED IN USER -- GAME ROUTE')
+        loggedInUser = False
 
 
 

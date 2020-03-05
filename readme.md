@@ -71,14 +71,31 @@ Based on the pre-bootcamp fighter jet game*
 - Create Models/Relationships **DONE**  
 - TEST MODELS  
 - Bcrypt everything important in session  
-- Add Footer to each page with my info  
+- Add Footer to each page with my info **DONE**  
 - Create dashboard.html **DONE**  
 - Player Ship image  
 - Enemy ship images  
 - Background Image  
-- Create game.html  
+- Create game.html **DONE**  
+- Create game.js  **DONE**
 - Create Weapon Types  
 - Power-ups to swap weapons  
+- Differentiate between enemy and friendly fires **DONE**  
+- Stop Enemies when they reach bottom of game area **DONE**  
+- Change deleteEnemies() function to delete whenever enemy is out of bounds, not JUST bottom of screen
+- When enemies hit, they die  
+- proper collision detection  
+- Responsive Game Screen  
+- Enemies move left & right & up as well  
+- When enemy hits you, you take damage  
+- Find out why spaceship.png isn't showing up on game.html  
+- Make enemies fire at you  
+- When hit by enemy fire lose health/armor  
+- Enemy Spawners  
+- Armor and Health numbers on screen  
+- Player can move across the whole map  
+- Differentiate between Game and Viewport  
+- Enemies fire AT player, not randomly  
 
 # Backlog TODO  
 
@@ -95,21 +112,17 @@ Based on the pre-bootcamp fighter jet game*
 - Show equipped gear on dashboard.html  
 - Implement AJAX on necessary pages  
 - Eventually Set up Bootstrap "cards" system for each map  
+- Change to fire and aim with mouse  
+- Add Pause Functionality  
+- Create Health and Armor Bars  
+- Have to reload or pause if firing too often  
+- When enemies hit, they take damage instead  
 
+---
 
+# Artist Credits
 
-
-
-
-
-
-
-
-
-
-
-
-
+"[asset name]" by [author name] licensed [license(s)]: [asset url]  
 
 
 

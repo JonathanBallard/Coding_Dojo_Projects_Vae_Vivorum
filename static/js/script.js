@@ -1,0 +1,1 @@
+console.log('SCRIPT.JS LOADED')

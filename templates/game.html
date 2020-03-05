@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,11 +15,38 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script defer type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
     <title>Game</title>
 </head>
 <body>
-    <h1>Game</h1>
-    <h3>Welcome {{username}}</h3>
+
+
+    <div class="container bg-dark col-xl-10">
+        <div id="topbar"  class="d-flex flex-row">
+            <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
+            <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
+            <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
+        </div>
+        
     
+    
+        <div id="gameArea">
+            <div id="background">
+                <div id="players"></div>
+                <div id="enemies"></div>
+                <div id="weapon_fires"></div>
+                <div id="enemy_fires"></div>
+                <div id="friendly_fires"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="bottombar" class="container bg-dark col-xl-10 mt-5 text-light">
+        <h3>Vae Vivorum by Jonathan Ballard</h3>
+        <p class="lead">asgardschosen@gmail.com</p>
+    </div>
+
+
 </body>
 </html>

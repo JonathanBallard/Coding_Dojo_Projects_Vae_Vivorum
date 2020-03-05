@@ -16,6 +16,39 @@
 
 
 
+/* Game Stuff */
+#background {
+    background-image: url("../img/ocean.jpg");
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: auto;
+    /*background-image: url("ocean.jpg"); */
+    width:100%;
+    height: 700px;
+    z-index: -1;
+
+}
+.player {
+    position: absolute;
+    background-image: url("../img/player.png");
+    /*background-image: url("player.png");*/
+    width: 70px;
+    height: 75px;
+    z-index: 1;
+}
+.enemy {
+    position: absolute;
+    background-image: url("../img/enemy.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 75px;
+}
+.weapon_fire {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: green;
+}
 
 
 
