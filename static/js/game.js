@@ -17,7 +17,8 @@ var enemiesKilled = 0;
 var numEscapedEnemies = 0;
 
 //RATES
-var shieldRechargeRate = 1; //How much shields recharge per tick
+var shieldRechargeRate = 0.25; //How much shields recharge per tick
+var shieldRechargeDelay = 3000;
 
 
 //DAMAGE
@@ -34,6 +35,7 @@ class Player {
         this.height = 70;
         this.width = 75;
         this.hp = 100;
+        this.shieldsMax = 50;
         this.shields = 50;
         this.speed = playerMoveSpeed;
         this.name = "Player";
@@ -60,11 +62,13 @@ class Enemy_1 {
         this.width = 75;
         this.hp = 100;
         this.shields = 0;
+        this.shieldsMax = 0;
         this.speed = enemyMoveSpeed;
         this.rammingDamage = rammingDamage;
         this.name = "Enemy One";
         this.type = "Enemy";
         this.scoreValue = 50;
+        this.formation = "line";
     }
 
 
@@ -174,6 +178,11 @@ var friendly_fires = [
 function drawPlayer(){
     content = "";
     content = "<div class = 'player' style='left:" + player.left + "px; top:" + player.top + "px;'></div>";
+
+    if(player.shields < player.shieldsMax){
+        setTimeout(shieldRecharge(player), shieldRechargeDelay);
+        // player.shields += shieldRechargeRate;
+    }
 
     document.getElementById("players").innerHTML = content;
 }
@@ -313,6 +322,11 @@ function rammedPlayer(enemy, enemyIndex){
     }
 }
 
+function spawnEnemyWave(){
+    // Spawn wave in random location, travelling in random direction, with class-based movement pattern
+    console.log("Wave Spawned")
+}
+
 function victory(){
     // VICTORY HERE
     console.log("You Win!")
@@ -332,20 +346,23 @@ function collisionDetection(obj1, obj2){
             collision = true;
             console.log("Collision between: " + obj1.name + " and " + obj2.name )
         }
-    // if(obj1.left > obj2.left + obj2.width &&
-    //     obj1.left + obj1.width < obj2.left &&
-    //     obj1.top > obj2.top + obj2.height &&
-    //     obj1.top + obj1.height < obj2.top){
-    //         collision = true;
-    //         console.log("Collision between: " + obj1.name + " and " + obj2.name )
-    //     }
+
 
     return collision;
+}
+
+function shieldRecharge(obj1){
+    obj1.shields += shieldRechargeRate;
 }
 
 
 function escapedEnemies(){
     for(var i = 0; i < enemies.length; i++){
+        if(enemies[i].shields < enemies[i].shieldsMax){
+            setTimeout(shieldRecharge(enemies[i]), shieldRechargeDelay);
+            // enemies[i].shields += shieldRechargeRate;
+        }
+
         if(enemies[i].top > gameHeight + 70 || 
             enemies[i].top < -70 || 
             enemies[i].left < -70 || 
@@ -353,6 +370,7 @@ function escapedEnemies(){
                 enemies.splice(i,1)  // Remove only the enemy in question
                 numEscapedEnemies++;
             }
+        
     }
 }
 
@@ -369,16 +387,16 @@ document.onkeydown = function(e) {
     console.log(e.keyCode);
 
     //left = 37, right = 39
-    if(e.keyCode == 65 && player.left > 300){ //left
+    if(e.keyCode == 65 && player.left > 30){ //left
         player.left -= playerMoveSpeed;
     }
-    if(e.keyCode == 68 && player.left < 600){  //right
+    if(e.keyCode == 68 && player.left < gameWidth - 70){  //right
         player.left += playerMoveSpeed;
     }
-    if(e.keyCode == 83 && player.top <= 620){  //down
+    if(e.keyCode == 83 && player.top <= gameHeight){  //down
         player.top += playerMoveSpeed;
     }
-    if(e.keyCode == 87 && player.top >= 450) {  //up
+    if(e.keyCode == 87 && player.top >= 140) {  //up
         player.top -= playerMoveSpeed;
     }
 
@@ -405,6 +423,7 @@ function gameLoop(){
 
 
 gameLoop();
+
 
 
 

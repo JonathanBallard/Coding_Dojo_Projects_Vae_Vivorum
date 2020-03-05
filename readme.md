@@ -92,23 +92,28 @@ Based on the pre-bootcamp fighter jet game*
 - When enemy hits you, you take damage, Ramming **DONE**  
 - Make enemies fire at you  
 - When hit by enemy fire lose health/armor **DONE**  
-- Enemy Spawners  
+- Finish spawnEnemyWave()    
 - Armor and Health numbers on screen **DONE**  
-- Player can move across the whole map  
+- Player can move across the whole map **DONE**  
 - Differentiate between Game and Viewport  
 - Enemies fire AT player, not randomly  
 - Convert to OOP **DONE**  
-- Shields recharge  
+- Shields recharge **DONE**    
+- Need Victory screen  
 - Need ENDGAME screen  
 - Change movement to use class methods  
 - Finish gameOver() function  
 - Finish victory() function  
 - Look at better hitboxes  
 - Finish adding Score and +kills to player object **DONE**  
+- Fix shieldRechargeDelay (maybe AJAX?) 
+- Multiple kinds of enemies  
+- Should be able to fire and move at the same time  
 
 # Backlog TODO  
 
 - CREATE Page & Form to create abilities, ships, items, etc..  
+- Control with mouse and keyboard  
 - SOUNDS  
 - player.html to level-up  
 - Alt ship images  
