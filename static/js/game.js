@@ -16,9 +16,12 @@ var weaponFireMoveSpeed = 15;
 var enemiesKilled = 0;
 var numEscapedEnemies = 0;
 
+//RATES
+var shieldRechargeRate = 1; //How much shields recharge per tick
+
 
 //DAMAGE
-var impactDamage = 1000000;  //should 1shot everything for the moment, change to do partial damage later
+var rammingDamage = 1000000;  //should 1shot everything for the moment, change to do partial damage later
 var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later
 
 
@@ -34,6 +37,9 @@ class Player {
         this.shields = 50;
         this.speed = playerMoveSpeed;
         this.name = "Player";
+        this.type = "Player";
+        this.score = 0;
+        this.kills = 0;
     }
 
 
@@ -55,8 +61,10 @@ class Enemy_1 {
         this.hp = 100;
         this.shields = 0;
         this.speed = enemyMoveSpeed;
-        this.impactDamage = impactDamage;
+        this.rammingDamage = rammingDamage;
         this.name = "Enemy One";
+        this.type = "Enemy";
+        this.scoreValue = 50;
     }
 
 
@@ -76,6 +84,8 @@ class Missile {
         this.width = 2;
         this.damage = missileDamage;
         this.name = "Missile";
+        this.type = "WeaponFire";
+        this.weaponId = 0;
     }
 
     move(left, top){
@@ -197,6 +207,12 @@ function drawFires(){
 function moveEnemies(){
     for(var i = 0; i < enemies.length; i++){
         enemies[i].top = enemies[i].top + enemyMoveSpeed;  //Do movement
+
+        var rammingCheck = collisionDetection(enemies[i], player);
+
+        if(rammingCheck == true){
+            rammedPlayer(enemies[i],i);
+        }
     }
 }
 
@@ -204,12 +220,107 @@ function moveFires(){
     //Move friendly fires
     for(var i = 0; i < friendly_fires.length; i++){
         friendly_fires[i].top = friendly_fires[i].top - weaponFireMoveSpeed;
+
+        for(var j = 0; j < enemies.length; j++){
+            var friendlyHitCheck = collisionDetection(friendly_fires[i], enemies[j])
+            console.log('FRIENDLYHITCHECK: ' + friendlyHitCheck)
+            if(friendlyHitCheck == true){
+                console.log('FRIENDLYHITCHECK IS TRUE')
+                enemyDamagedByFire(enemies[j], friendly_fires[i], j, i);
+            }
+        }
     }
 
     //Move enemy fires
     for(var i = 0; i < enemy_fires.length; i++){
-        enemy_fires[i].top = enemy_fires[i].top + weaponFireMoveSpeed; //currently only move down
+        enemy_fires[i].top = enemy_fires[i].top + weaponFireMoveSpeed;
+        var enemyHitCheck = collisionDetection(enemy_fires[i], player);
+        
+        if(enemyHitCheck == true){
+            playerDamagedByFire(enemy_fires[i], i);
+        }
     }
+}
+
+function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
+
+
+    if(enemy.shields > fire.damage){
+        enemy.shields -= fire.damage;
+    }
+    else if(enemy.shields > 0 && enemy.shields < fire.damage){
+        enemy.shields -= fire.damage;
+        enemy.hp += enemy.shields;
+        enemy.shields = 0;
+    }
+    else {
+        enemy.hp -= fire.damage;
+    }
+
+
+    friendly_fires.splice(fireIndex,1);
+
+    //If out of hp and shields, delete
+    if(enemy.hp <= 0 && enemy.shields <= 0){
+        enemies.splice(enemyIndex, 1);
+        enemiesKilled++;
+        player.kills++;
+        player.score += enemy.scoreValue;
+    }
+}
+
+function playerDamagedByFire(fire, fireIndex){
+    if(player.shields > fire.damage){
+        player.shields -= fire.damage;
+    }
+    else if(player.shields > 0 && player.shields < fire.damage){
+        player.shields -= fire.damage;
+        player.hp += player.shields;
+        player.shields = 0;
+    }
+    else {
+        player.hp -= fire.damage;
+    }
+    friendly_fires.splice(fireIndex,1);
+
+
+    //If out of hp and shields, delete
+    if(player.hp <= 0){
+        gameOver();
+    }
+}
+
+function rammedPlayer(enemy, enemyIndex){
+    if(player.shields > rammingDamage){
+        player.shields -= rammingDamage;
+    }
+    else if(player.shields > 0 && player.shields < rammingDamage){
+        player.shields -= rammingDamage;
+        player.hp += player.shields;
+        player.shields = 0;
+    }
+    else {
+        player.hp -= rammingDamage;
+    }
+
+    player.kills++;
+    player.score += enemy.scoreValue;
+    enemies.splice(enemyIndex,1);
+
+    //If out of hp, delete
+    if(player.hp <= 0){
+        gameOver();
+    }
+}
+
+function victory(){
+    // VICTORY HERE
+    console.log("You Win!")
+}
+
+function gameOver(){
+    // END GAME HERE
+    console.log("You Lose!")
 }
 
 function collisionDetection(obj1, obj2){
@@ -221,20 +332,36 @@ function collisionDetection(obj1, obj2){
             collision = true;
             console.log("Collision between: " + obj1.name + " and " + obj2.name )
         }
+    // if(obj1.left > obj2.left + obj2.width &&
+    //     obj1.left + obj1.width < obj2.left &&
+    //     obj1.top > obj2.top + obj2.height &&
+    //     obj1.top + obj1.height < obj2.top){
+    //         collision = true;
+    //         console.log("Collision between: " + obj1.name + " and " + obj2.name )
+    //     }
+
+    return collision;
 }
 
 
 function escapedEnemies(){
     for(var i = 0; i < enemies.length; i++){
-        if(enemies[i].top > gameHeight + 70){  //if out of bounds
-            enemies.splice(i,1)  // Remove only the enemy in question
-            numEscapedEnemies++;
-        }
+        if(enemies[i].top > gameHeight + 70 || 
+            enemies[i].top < -70 || 
+            enemies[i].left < -70 || 
+            enemies[i].left > gameWidth + 70){  //if out of bounds
+                enemies.splice(i,1)  // Remove only the enemy in question
+                numEscapedEnemies++;
+            }
     }
-
-
 }
 
+function writeStats(){
+    $('#playerShields').text(player.shields);
+    $('#playerHP').text(player.hp);
+    $('#playerKills').text(player.kills);
+    $('#playerScore').text(player.score);
+}
 
 
 
@@ -257,7 +384,8 @@ document.onkeydown = function(e) {
 
     //keycode for spacebar = 32
     if(e.keyCode == 32){   //fire
-        friendly_fires.push({left: (player.left + 34), top: (player.top - 8)});
+        var newMissile = new Missile(player.left + (player.width / 2), player.top)
+        friendly_fires.push(newMissile);
         drawFires();
     }
     drawPlayer();
@@ -271,6 +399,7 @@ function gameLoop(){
     drawEnemies();
     drawFires();
     escapedEnemies();
+    writeStats();
     setTimeout(gameLoop, gameSpeed);
 }
 

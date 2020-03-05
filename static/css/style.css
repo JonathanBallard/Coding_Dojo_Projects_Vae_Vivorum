@@ -20,7 +20,7 @@
 #background {
     background-image: url("../img/ocean.jpg");
     background-attachment: scroll;
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-size: auto;
     /*background-image: url("ocean.jpg"); */
     width:100%;

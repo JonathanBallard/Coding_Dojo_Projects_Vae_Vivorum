@@ -76,32 +76,40 @@ Based on the pre-bootcamp fighter jet game*
 - Player Ship image  
 - Enemy ship images  
 - Background Image  
+- Find out why spaceship.png isn't showing up on game.html  
 - Create game.html **DONE**  
 - Create game.js  **DONE**
 - Create Weapon Types  
 - Power-ups to swap weapons  
 - Differentiate between enemy and friendly fires **DONE**  
 - Stop Enemies when they reach bottom of game area **DONE**  
-- Change deleteEnemies() function to delete whenever enemy is out of bounds, not JUST bottom of screen
-- When enemies hit, they die  
-- proper collision detection  
+- Change deleteEnemies() function to delete whenever enemy is out of bounds, not JUST bottom of screen **DONE**  
+- When enemies hit, they die **DONE**  
+- proper collision detection **DONE**  
+- TEST COLLISION DETECTION, Also known as, FIX COLLISION DETECTION **DONE**  
 - Responsive Game Screen  
 - Enemies move left & right & up as well  
-- When enemy hits you, you take damage  
-- Find out why spaceship.png isn't showing up on game.html  
+- When enemy hits you, you take damage, Ramming **DONE**  
 - Make enemies fire at you  
-- When hit by enemy fire lose health/armor  
+- When hit by enemy fire lose health/armor **DONE**  
 - Enemy Spawners  
-- Armor and Health numbers on screen  
+- Armor and Health numbers on screen **DONE**  
 - Player can move across the whole map  
 - Differentiate between Game and Viewport  
 - Enemies fire AT player, not randomly  
-- Convert to OOP  
+- Convert to OOP **DONE**  
 - Shields recharge  
+- Need ENDGAME screen  
+- Change movement to use class methods  
+- Finish gameOver() function  
+- Finish victory() function  
+- Look at better hitboxes  
+- Finish adding Score and +kills to player object **DONE**  
 
 # Backlog TODO  
 
 - CREATE Page & Form to create abilities, ships, items, etc..  
+- SOUNDS  
 - player.html to level-up  
 - Alt ship images  
 - Create function to quickly add basic equipment & abilities & users to game for testing  
