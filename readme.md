@@ -96,6 +96,8 @@ Based on the pre-bootcamp fighter jet game*
 - Player can move across the whole map  
 - Differentiate between Game and Viewport  
 - Enemies fire AT player, not randomly  
+- Convert to OOP  
+- Shields recharge  
 
 # Backlog TODO  
 

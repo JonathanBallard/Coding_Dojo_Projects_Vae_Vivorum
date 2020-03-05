@@ -1,9 +1,104 @@
+// ----------GAME VARIABLES----------
+
+// GAME MAP SIZE
+var gameHeight = $(document).height() * 0.8;
+var gameWidth = $(document).width() * 0.7;
+var viewportHeight = $(document).height() * 0.8;
+var viewportWidth = $(document).width() * 0.7;
+
+// SPEEDS
+var gameSpeed = 100;
+var playerMoveSpeed = 10;
+var enemyMoveSpeed = 10;
+var weaponFireMoveSpeed = 15;
+
+//ENEMIES
+var enemiesKilled = 0;
+var numEscapedEnemies = 0;
+
+
+//DAMAGE
+var impactDamage = 1000000;  //should 1shot everything for the moment, change to do partial damage later
+var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later
 
 
 
-// IMPORTS
-import { Player, Enemy_1, Missile } from '/modules/ships.js'
-import * as gamevariables from '/modules/gamevariables.js'
+//----------CLASSES----------
+class Player {
+    constructor(left, top){
+        this.left = left;
+        this.top = top;
+        this.height = 70;
+        this.width = 75;
+        this.hp = 100;
+        this.shields = 50;
+        this.speed = playerMoveSpeed;
+        this.name = "Player";
+    }
+
+
+    move(left, top){
+        this.left = left;
+        this.top = top;
+    }
+
+}
+
+
+
+class Enemy_1 {
+    constructor(left, top){
+        this.left = left;
+        this.top = top;
+        this.height = 70;
+        this.width = 75;
+        this.hp = 100;
+        this.shields = 0;
+        this.speed = enemyMoveSpeed;
+        this.impactDamage = impactDamage;
+        this.name = "Enemy One";
+    }
+
+
+    move(left, top){
+        this.left = left;
+        this.top = top;
+    }
+    
+}
+
+
+class Missile {
+    constructor(left, top){
+        this.left = left;
+        this.top = top;
+        this.height = 10;
+        this.width = 2;
+        this.damage = missileDamage;
+        this.name = "Missile";
+    }
+
+    move(left, top){
+        this.left = left;
+        this.top = top;
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//**************************************************************************************************************************************/
+
 
 
 
@@ -25,28 +120,29 @@ $(document).ready(function(){
 
 
 //Create Game World Size
-$('#background').width(gamevariables.gameWidth);
-$('#background').height(gamevariables.gameHeight);
+$('#background').width(gameWidth);
+$('#background').height(gameHeight);
 
 
 
 console.log('GAME.JS LOADED');
 
+var player = new Player((gameWidth / 2), (gameHeight * 0.95))
 
-//REPLACE WITH CLASS OBJECTS
-var player = {
-    left: gamevariables.gameWidth / 2,
-    top: gamevariables.gameHeight / 4,
-}
 
-//REPLACE WITH LIST OF CLASS OBJECTS
+startingEnemy1 = new Enemy_1(350, 200);
+startingEnemy2 = new Enemy_1(450, 250);
+startingEnemy3 = new Enemy_1(550, 450);
+startingEnemy4 = new Enemy_1(650, 350);
+
 var enemies = [
-    {left: 350, top: 200},
-    {left: 450, top: 250},
-    {left: 550, top: 450},
-    {left: 650, top: 350},
+    startingEnemy1,
+    startingEnemy2,
+    startingEnemy3,
+    startingEnemy4,
 
 ]
+
 
 var weapon_fires = [
 
@@ -100,35 +196,39 @@ function drawFires(){
 
 function moveEnemies(){
     for(var i = 0; i < enemies.length; i++){
-        enemies[i].top = enemies[i].top + gamevariables.enemyMoveSpeed;  //Do movement
+        enemies[i].top = enemies[i].top + enemyMoveSpeed;  //Do movement
     }
 }
 
 function moveFires(){
     //Move friendly fires
     for(var i = 0; i < friendly_fires.length; i++){
-        friendly_fires[i].top = friendly_fires[i].top - gamevariables.weaponFireMoveSpeed;
+        friendly_fires[i].top = friendly_fires[i].top - weaponFireMoveSpeed;
     }
 
     //Move enemy fires
     for(var i = 0; i < enemy_fires.length; i++){
-        enemy_fires[i].top = enemy_fires[i].top + gamevariables.weaponFireMoveSpeed; //currently only move down
+        enemy_fires[i].top = enemy_fires[i].top + weaponFireMoveSpeed; //currently only move down
     }
 }
 
 function collisionDetection(obj1, obj2){
-
-    
-
-
+    var collision = false;
+    if(obj1.left < obj2.left + obj2.width &&
+        obj1.left + obj1.width > obj2.left &&
+        obj1.top < obj2.top + obj2.height &&
+        obj1.top + obj1.height > obj2.top){
+            collision = true;
+            console.log("Collision between: " + obj1.name + " and " + obj2.name )
+        }
 }
 
 
 function escapedEnemies(){
     for(var i = 0; i < enemies.length; i++){
-        if(enemies[i].top > gamevariables.gameHeight + 70){  //if out of bounds
+        if(enemies[i].top > gameHeight + 70){  //if out of bounds
             enemies.splice(i,1)  // Remove only the enemy in question
-            gamevariables.numEscapedEnemies++;
+            numEscapedEnemies++;
         }
     }
 
@@ -143,16 +243,16 @@ document.onkeydown = function(e) {
 
     //left = 37, right = 39
     if(e.keyCode == 65 && player.left > 300){ //left
-        player.left -= gamevariables.playerMoveSpeed;
+        player.left -= playerMoveSpeed;
     }
     if(e.keyCode == 68 && player.left < 600){  //right
-        player.left += gamevariables.playerMoveSpeed;
+        player.left += playerMoveSpeed;
     }
     if(e.keyCode == 83 && player.top <= 620){  //down
-        player.top += gamevariables.playerMoveSpeed;
+        player.top += playerMoveSpeed;
     }
     if(e.keyCode == 87 && player.top >= 450) {  //up
-        player.top -= gamevariables.playerMoveSpeed;
+        player.top -= playerMoveSpeed;
     }
 
     //keycode for spacebar = 32
@@ -171,7 +271,7 @@ function gameLoop(){
     drawEnemies();
     drawFires();
     escapedEnemies();
-    setTimeout(gameLoop, gamevariables.gameSpeed);
+    setTimeout(gameLoop, gameSpeed);
 }
 
 
