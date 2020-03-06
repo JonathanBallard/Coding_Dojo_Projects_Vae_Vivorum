@@ -42,7 +42,40 @@
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 75px;
+    transform: rotate(0deg);
 }
+
+.enemyLeftFace {
+    position: absolute;
+    background-image: url("../img/enemy.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 75px;
+    transform: rotate(90deg);
+}
+
+.enemyRightFace {
+    position: absolute;
+    background-image: url("../img/enemy.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 75px;
+    transform: rotate(-90deg);
+}
+
+
+.enemyUpFace {
+    position: absolute;
+    background-image: url("../img/enemy.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 75px;
+    transform: rotate(180deg);
+}
+
+
+
+
 .weapon_fire {
     position: absolute;
     width: 2px;
@@ -52,10 +85,25 @@
 
 
 
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 
+#missileCount {
+    color: red;
+}
 
-
-
-
+#messages {
+    color: red;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 40%;
+}
 

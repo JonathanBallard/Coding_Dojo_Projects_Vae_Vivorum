@@ -96,10 +96,7 @@ Based on the pre-bootcamp fighter jet game*
 - Armor and Health numbers on screen **DONE**  
 - Player can move across the whole map **DONE**  
 - Differentiate between Game and Viewport  
-- Enemies fire AT player or in-line with their formation, not randomly  
-- Slow down mouse movement  
 - Fix mouse movement top of screen  
-- offsetX and offsetY for targeting fire with mouse  
 - Convert to OOP **DONE**  
 - Shields recharge **DONE**    
 - Need Victory screen  
@@ -114,12 +111,28 @@ Based on the pre-bootcamp fighter jet game*
 - Should be able to fire and move at the same time **DONE**  
 - Player and Enemy objects pass width and height to style.css!  
 - Figure out classes vs database for storing information **DONE**  
-- Make everything smaller (??)  
+- Make all ships smaller (??)  
 - Create .py script to add a bunch of entries to the database  
 - Pass database info using JSON but first need to enter everything into DB  
 - Redo Movement **DONE**  
 - Fix undefined object.left in collision detection (ITS A MISSILE, SPAWNED BY MOUSE) **DONE**  
+- Move statistics text off of game area **CANCELLED**
+- Make statistics unselectable **DONE**    
+- Make spawnEnemyWave() take parameter of enemy to spawn & spawn NumFormation number of enemies in the correct formation  
+- Make spawnEnemyWave() have enemies move the correct way **DONE**  
+- Delay between firing missiles  
+- Reload after x number of missiles fired  
+- Make an iteration counter **DONE**  
+- Change enemy facing when moving **DONE**  
+- Change HP and Shields to Progress bars  
+- Finish missileReload() function  
+- Add Missile Magazine Progress Bar  
 
+### Sandbox
+
+- offsetX and offsetY for targeting fire with mouse  
+- Slow down mouse movement  
+- Enemies fire AT player or in-line with their formation, not randomly  
 
 # Backlog TODO  
 
