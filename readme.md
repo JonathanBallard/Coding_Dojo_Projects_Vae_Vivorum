@@ -76,7 +76,7 @@ Based on the pre-bootcamp fighter jet game*
 - Player Ship image **DONE**  
 - Enemy ship images **DONE**  
 - Background Image  
-- Find out why spaceship.png isn't showing up on game.html  
+- Find out why spaceship.png isn't showing up on game.html **DONE**  
 - Create game.html **DONE**  
 - Create game.js  **DONE**
 - Create Weapon Types  
@@ -139,6 +139,9 @@ Based on the pre-bootcamp fighter jet game*
 - Break apart munitions images  
 - Finish Resizing ships **DONE**  
 - Add numFormation=2 Spawner **DONE**  
+- Player ship not showing up on dashboard **DONE**  
+- Resize player ship for dashboard/index  
+- Fix enemy spawn formations  
 
 ### Sandbox
 

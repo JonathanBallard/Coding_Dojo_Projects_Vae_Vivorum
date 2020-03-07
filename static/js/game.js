@@ -426,23 +426,22 @@ function spawnEnemyWave(){
     var enemySpawner = Math.floor(Math.random() * 11);
     var typeOfEnemy = "Enemy_1";
     
-    if(enemySpawner <= 6){
+    if(enemySpawner <= 5){
+        typeOfEnemy = "Enemy_1";
+    }
+    else if(enemySpawner == 6){
         typeOfEnemy = "Enemy_2";
     }
-    
-    if(enemySpawner == 7){
+    else if(enemySpawner == 7){
         typeOfEnemy = "Enemy_3";
     }
-
-    if(enemySpawner == 8){
+    else if(enemySpawner == 8){
         typeOfEnemy = "Enemy_4";
     }
-
-    if(enemySpawner == 9){
+    else if(enemySpawner == 9){
         typeOfEnemy = "Enemy_5";
     }
-
-    if(enemySpawner == 10){
+    else if(enemySpawner == 10){
         typeOfEnemy = "Enemy_6";
     }
 
@@ -450,24 +449,24 @@ function spawnEnemyWave(){
     if(typeOfEnemy == "Enemy_1"){
         spawnEnemy(Enemy_1,left,leftOffset,top,topOffset,direction);
     }
-    if(typeOfEnemy == "Enemy_2"){
+    else if(typeOfEnemy == "Enemy_2"){
         spawnEnemy(Enemy_2,left,leftOffset,top,topOffset,direction);
     }
-    if(typeOfEnemy == "Enemy_3"){
+    else if(typeOfEnemy == "Enemy_3"){
         spawnEnemy(Enemy_3,left,leftOffset,top,topOffset,direction);
     }
-    if(typeOfEnemy == "Enemy_4"){
+    else if(typeOfEnemy == "Enemy_4"){
         spawnEnemy(Enemy_4,left,leftOffset,top,topOffset,direction);
     }
-    if(typeOfEnemy == "Enemy_5"){
+    else if(typeOfEnemy == "Enemy_5"){
         spawnEnemy(Enemy_5,left,leftOffset,top,topOffset,direction);
     }
-    if(typeOfEnemy == "Enemy_6"){
+    else if(typeOfEnemy == "Enemy_6"){
         spawnEnemy(Enemy_6,left,leftOffset,top,topOffset,direction);
     }
 
 
-    console.log("Wave Spawned")
+    console.log("Wave Spawned: " + typeOfEnemy);
     setTimeout(spawnEnemyWave, enemySpawnTimer);
 }
 
@@ -617,6 +616,29 @@ function writeStats(){
 
 }
 
+function playerFires(){
+    var newMissile = new Missile(player.left + (player.width / 2), player.top, "up");
+    friendly_fires.push(newMissile);
+    numFired++;
+    drawFires();
+}
+
+function missileReload(){
+    //print to the screen "reloading"
+    $('#messages').text('Reloading...');
+    setTimeout(finishReload, missileReloadSpeed);
+}
+
+function finishReload(){
+    numFired = 0;
+    clearMessages();
+}
+
+function clearMessages(){
+    $('#messages').text('');
+}
+
+
 
 //MOUSE EVENTS
 //Mouse Event Listener
@@ -746,28 +768,8 @@ document.onkeydown = document.onkeyup = function(e) {
     drawPlayer();
 }
 
-function playerFires(){
-    var newMissile = new Missile(player.left + (player.width / 2), player.top, "up");
-    friendly_fires.push(newMissile);
-    numFired++;
-    drawFires();
-}
 
-function missileReload(){
-    //print to the screen "reloading"
-    $('#messages').text('Reloading...');
-    setTimeout(finishReload, missileReloadSpeed);
-}
-
-function finishReload(){
-    numFired = 0;
-    clearMessages();
-}
-
-function clearMessages(){
-    $('#messages').text('');
-}
-
+//Play Game
 spawnEnemyWave();
 
 function gameLoop(){

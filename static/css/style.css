@@ -3,12 +3,14 @@
 
 
 #playership {
-    max-width: 20%;
+    width: 70px;
+    height: 69px;
 
 }
 
 #playershipDashboard {
-    max-width: 60%;
+    width: 70px;
+    height: 69px;
 }
 
 
@@ -17,7 +19,7 @@
 
 /* Game Stuff */
 #background {
-    background-image: url("../img/ocean.jpg");
+    background-image: url("../img/backgrounds/ocean.jpg");
     background-attachment: scroll;
     /* background-repeat: no-repeat; */
     background-size: auto;
@@ -80,7 +82,7 @@
 
 .player {
     position: absolute;
-    background-image: url("../img/player.png");
+    background-image: url("../img/ships/player.png");
     /*background-image: url("player.png");*/
     width: 70px;
     height: 69px;
@@ -90,7 +92,7 @@
 
 .enemy {
     position: absolute;
-    background-image: url("../img/enemy.png");
+    background-image: url("../img/enemies/enemy.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 60px;
@@ -99,7 +101,7 @@
 
 .enemy2 {
     position: absolute;
-    background-image: url("../img/enemy2.png");
+    background-image: url("../img/enemies/enemy2.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 93px;
@@ -107,7 +109,7 @@
 
 .enemy3 {
     position: absolute;
-    background-image: url("../img/enemy3.png");
+    background-image: url("../img/enemies/enemy3.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 76px;
@@ -115,7 +117,7 @@
 
 .enemy4 {
     position: absolute;
-    background-image: url("../img/enemy4.png");
+    background-image: url("../img/enemies/enemy4.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 107px;
@@ -123,7 +125,7 @@
 
 .enemy5 {
     position: absolute;
-    background-image: url("../img/enemy5Sm.png");
+    background-image: url("../img/enemies/enemy5.png");
     /*background-image: url("enemy.png");*/
     width: 50px;
     height: 44px;
@@ -131,7 +133,7 @@
 
 .enemy6 {
     position: absolute;
-    background-image: url("../img/enemy6.png");
+    background-image: url("../img/enemies/enemy6.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 88px;
