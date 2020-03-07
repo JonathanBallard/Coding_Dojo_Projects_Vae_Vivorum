@@ -6,148 +6,6 @@ console.log('GAME.JS LOADED');
 
 
 
-// ----------GAME VARIABLES----------
-
-// GAME MAP SIZE
-var gameHeight = $(document).height() * 0.8;
-var gameWidth = $(document).width() * 0.7;
-var viewportHeight = $(document).height() * 0.8;
-var viewportWidth = $(document).width() * 0.7;
-var map = $('#background');
-var mapOffsetLeft = ($(document).width() - gameWidth) / 2;
-var mapOffsetTop = (($(document).height() - gameHeight) / 2);
-
-//COUNTER
-var loopCounter = 0;
-
-
-// OTHER
-var keymap = {};
-
-// SPEEDS
-var gameSpeed = 100;
-var playerMoveSpeed = 10;
-var enemyMoveSpeed = 10;
-var weaponFireMoveSpeed = 15;
-
-//ENEMIES
-var enemiesKilled = 0;
-var numEscapedEnemies = 0;
-
-//RATES
-var shieldRechargeRate = 0.25; //How much shields recharge per tick
-var shieldRechargeDelay = 3000;
-var difficultyRate = 1; //Later turn this into a slider
-var enemySpawnRate = 4000;
-var enemySpawnTimer = enemySpawnRate / difficultyRate;
-
-//WEAPONS
-var numFired = 0;
-var missileMagazineSize = 25;
-var missileReloadSpeed = 1100;
-var missileFireDelay = 50;
-
-
-//DAMAGE
-var rammingDamage = 1000000;  //should 1shot everything for the moment, change to do partial damage later
-var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later
-
-
-
-//----------CLASSES----------
-class Player {
-    constructor(left, top){
-        this.left = left;
-        this.top = top;
-        this.height = 70;
-        this.width = 75;
-        this.hp = 100;
-        this.hpMax = 100;
-        this.shieldsMax = 50;
-        this.shields = 50;
-        this.speed = playerMoveSpeed;
-        this.name = "Player";
-        this.type = "Player";
-        this.score = 0;
-        this.kills = 0;
-    }
-
-
-    warp(left, top){
-        this.left = left;
-        this.top = top;
-    }
-
-
-}
-
-
-
-class Enemy_1 {
-
-    static numFormation = 4;
-    static formation = "line";
-
-    constructor(left, top, direction, facing){
-        this.left = left;
-        this.top = top;
-        this.height = 70;
-        this.width = 75;
-        this.hp = 100;
-        this.shields = 0;
-        this.shieldsMax = 0;
-        this.speed = enemyMoveSpeed;
-        this.rammingDamage = rammingDamage;
-        this.name = "Enemy One";
-        this.type = "Enemy";
-        this.scoreValue = 50;
-        // this.formation = "line";
-        // this.numFormation = 4; //number of ships to spawn at one time
-        this.direction = direction;
-        this.facing = facing || "enemy";  //options are:  enemy, enemyLeftFace, enemyRightFace, enemyUpFace
-    }
-
-    warp(left, top){
-        this.left = left;
-        this.top = top;
-    }
-    
-}
-
-
-class Missile {
-    constructor(left, top, direction){
-        this.left = left;
-        this.top = top;
-        this.height = 10;
-        this.width = 2;
-        this.damage = missileDamage;
-        this.name = "Missile";
-        this.type = "WeaponFire";
-        this.weaponId = 0;
-        this.fireDelay = 50;
-        this.reloadSpeed = 500;
-        this.magazineSize = 15;
-        this.direction = direction || "up";
-        this.speed = 20;
-    }
-
-    warp(left, top){
-        this.left = left;
-        this.top = top;
-    }
-    
-    
-}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -184,10 +42,17 @@ $('#background').height(gameHeight);
 var player = new Player((gameWidth / 2), (gameHeight * 0.95))
 
 
-startingEnemy1 = new Enemy_1(350, 200, "down");
-startingEnemy2 = new Enemy_1(450, 250, "down");
-startingEnemy3 = new Enemy_1(550, 450, "down");
-startingEnemy4 = new Enemy_1(650, 350, "down");
+startingEnemy1 = new Enemy_1(350, 20, "down");
+startingEnemy2 = new Enemy_1(450, 50, "down");
+startingEnemy3 = new Enemy_1(550, 50, "down");
+startingEnemy4 = new Enemy_1(650, 50, "down");
+
+
+// startingEnemy1 = new Enemy_1(350, 200, "downright");
+// startingEnemy2 = new Enemy_1(450, 250, "downleft");
+// startingEnemy3 = new Enemy_1(550, 450, "upright");
+// startingEnemy4 = new Enemy_1(650, 350, "upleft");
+
 
 var enemies = [
     startingEnemy1,
@@ -232,13 +97,28 @@ function drawEnemies(){
         }
         else if(enemies[i].direction == "up"){
             enemies[i].facing = "enemyUpFace";
+        }        
+        else if(enemies[i].direction == "down"){
+            enemies[i].facing = "enemyDownFace";
+        }
+        else if(enemies[i].direction == "upright"){
+            enemies[i].facing = "enemyUpRightFace";
+        }
+        else if(enemies[i].direction == "downright"){
+            enemies[i].facing = "enemyDownRightFace";
+        }
+        else if(enemies[i].direction == "upleft"){
+            enemies[i].facing = "enemyUpLeftFace";
+        }
+        else if(enemies[i].direction == "downleft"){
+            enemies[i].facing = "enemyDownLeftFace";
         }
         else {
             enemies[i].facing = "enemy";
         }
 
         // content += "<div class = 'enemy' style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
-        content += "<div class = " + enemies[i].facing + " style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
+        content += "<div class = " + enemies[i].type + ' ' + enemies[i].facing + " style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
 
     }
     document.getElementById("enemies").innerHTML = content;
@@ -281,6 +161,32 @@ function moveEnemies(){
             //console.log("MOVE RIGHT");
             enemies[i].left = enemies[i].left + enemies[i].speed;  //move right
         }
+        if(enemies[i].direction == "downright"){
+            //console.log("MOVE down RIGHT");
+            enemies[i].left = enemies[i].left + (enemies[i].speed / 2);  //move right
+            enemies[i].top = enemies[i].top + (enemies[i].speed / 2);  //move down
+        }
+
+        if(enemies[i].direction == "upright"){
+            //console.log("MOVE up RIGHT");
+            enemies[i].left = enemies[i].left + (enemies[i].speed / 2);  //move right
+            enemies[i].top = enemies[i].top - (enemies[i].speed / 2);  //move up
+        }
+
+        if(enemies[i].direction == "downleft"){
+            //console.log("MOVE down LEFT");
+            enemies[i].top = enemies[i].top + (enemies[i].speed / 2);  //move down
+            enemies[i].left = enemies[i].left - (enemies[i].speed / 2);  //move left
+        }
+
+        if(enemies[i].direction == "upleft"){
+            //console.log("MOVE up LEFT");
+            enemies[i].top = enemies[i].top - (enemies[i].speed / 2);  //move up
+            enemies[i].left = enemies[i].left - (enemies[i].speed / 2);  //move left
+        }
+
+
+
 
 
         var rammingCheck = collisionDetection(enemies[i], player);
@@ -428,7 +334,7 @@ function spawnEnemyWave(){
     // Eventually make the wave consist of a single random type of enemy
 
     //First get random edge of map, 0=top, 1=top, 2=left, 3=right, 4=top, 5=top
-    var edgeOfMap = Math.floor(Math.random() * 6);
+    var edgeOfMap = Math.floor(Math.random() * 8);
     var left;
     var top;
     var direction;
@@ -499,8 +405,67 @@ function spawnEnemyWave(){
         leftOffset = 15;
         topOffset = 15;
     }
+    else if(edgeOfMap == 6){
+        edgeToTravel = 1;
+        direction = "downright";
+        left = gameWidth * 0.05;
+        top = 120;
+        leftOffset = 15;
+        topOffset = 15;
+    }
+    else if(edgeOfMap == 7){
+        edgeToTravel = 1;
+        direction = "downleft";
+        left = gameWidth * 0.95;
+        top = 130;
+        leftOffset = 15;
+        topOffset = 15;
+    }
 
-    spawnEnemy(Enemy_1,left,leftOffset,top,topOffset,direction);
+    //Decide here what to spawn
+    var enemySpawner = Math.floor(Math.random() * 11);
+    var typeOfEnemy = "Enemy_1";
+    
+    if(enemySpawner <= 6){
+        typeOfEnemy = "Enemy_2";
+    }
+    
+    if(enemySpawner == 7){
+        typeOfEnemy = "Enemy_3";
+    }
+
+    if(enemySpawner == 8){
+        typeOfEnemy = "Enemy_4";
+    }
+
+    if(enemySpawner == 9){
+        typeOfEnemy = "Enemy_5";
+    }
+
+    if(enemySpawner == 10){
+        typeOfEnemy = "Enemy_6";
+    }
+
+
+    if(typeOfEnemy == "Enemy_1"){
+        spawnEnemy(Enemy_1,left,leftOffset,top,topOffset,direction);
+    }
+    if(typeOfEnemy == "Enemy_2"){
+        spawnEnemy(Enemy_2,left,leftOffset,top,topOffset,direction);
+    }
+    if(typeOfEnemy == "Enemy_3"){
+        spawnEnemy(Enemy_3,left,leftOffset,top,topOffset,direction);
+    }
+    if(typeOfEnemy == "Enemy_4"){
+        spawnEnemy(Enemy_4,left,leftOffset,top,topOffset,direction);
+    }
+    if(typeOfEnemy == "Enemy_5"){
+        spawnEnemy(Enemy_5,left,leftOffset,top,topOffset,direction);
+    }
+    if(typeOfEnemy == "Enemy_6"){
+        spawnEnemy(Enemy_6,left,leftOffset,top,topOffset,direction);
+    }
+
 
     console.log("Wave Spawned")
     setTimeout(spawnEnemyWave, enemySpawnTimer);
@@ -508,6 +473,13 @@ function spawnEnemyWave(){
 
 function spawnEnemy(enemyType, left, leftOffset,top,topOffset,direction){
 
+
+    if(enemyType.numFormation == 2){
+        enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
+        enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
+        enemies.push(enemy1);
+        enemies.push(enemy2);
+    }
 
     if(enemyType.numFormation == 4){
         enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);

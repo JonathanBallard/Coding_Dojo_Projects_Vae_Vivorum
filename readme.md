@@ -73,8 +73,8 @@ Based on the pre-bootcamp fighter jet game*
 - Bcrypt everything important in session  
 - Add Footer to each page with my info **DONE**  
 - Create dashboard.html **DONE**  
-- Player Ship image  
-- Enemy ship images  
+- Player Ship image **DONE**  
+- Enemy ship images **DONE**  
 - Background Image  
 - Find out why spaceship.png isn't showing up on game.html  
 - Create game.html **DONE**  
@@ -92,7 +92,7 @@ Based on the pre-bootcamp fighter jet game*
 - When enemy hits you, you take damage, Ramming **DONE**  
 - Make enemies fire at you  
 - When hit by enemy fire lose health/armor **DONE**  
-- Finish spawnEnemyWave()  
+- Finish spawnEnemyWave(), decide what type of enemy to spawn **DONE**  
 - Armor and Health numbers on screen **DONE**  
 - Player can move across the whole map **DONE**  
 - Differentiate between Game and Viewport  
@@ -133,7 +133,12 @@ Based on the pre-bootcamp fighter jet game*
 - Remove ability to shoot with the mouse (??)  
 - Reduce the height of the screen  
 - Ensure it works on all screen sizes  
-- Enemies can move diagonally  
+- Enemies can move diagonally **DONE**  
+- Illusion of map motion  
+- Enemies spawn in correct pattern (eg line/cluster/circle)  
+- Break apart munitions images  
+- Finish Resizing ships **DONE**  
+- Add numFormation=2 Spawner **DONE**  
 
 ### Sandbox
 
@@ -164,13 +169,17 @@ Based on the pre-bootcamp fighter jet game*
 - Create Health and Armor Bars for each enemy on screen  
 - Have to reload or pause if firing too often **DONE**  
 - When enemies hit, they take damage instead  
-- Explosions when enemies destroyed  
+- Explosions when enemies hit/destroyed  
+- Add movement patterns to enemies  
+
 
 ---
 
 # Artist Credits
 
 "[asset name]" by [author name] licensed [license(s)]: [asset url]  
+"Spaceship Tut" by Skorpio licensed CC-BY 3.0 and GPL 3.0: https://opengameart.org/content/spaceship-tutorial-0  
+"Bullet Effects" by Master484 licensed Public Domain: https://opengameart.org/content/bullet-collection-2-m484-games  
 
 
 

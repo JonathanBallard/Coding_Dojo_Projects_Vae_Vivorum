@@ -9,7 +9,6 @@
 
 #playershipDashboard {
     max-width: 60%;
-
 }
 
 
@@ -28,53 +27,6 @@
     z-index: -1;
 
 }
-.player {
-    position: absolute;
-    background-image: url("../img/player.png");
-    /*background-image: url("player.png");*/
-    width: 70px;
-    height: 75px;
-    z-index: 1;
-}
-.enemy {
-    position: absolute;
-    background-image: url("../img/enemy.png");
-    /*background-image: url("enemy.png");*/
-    width: 70px;
-    height: 75px;
-    transform: rotate(0deg);
-}
-
-.enemyLeftFace {
-    position: absolute;
-    background-image: url("../img/enemy.png");
-    /*background-image: url("enemy.png");*/
-    width: 70px;
-    height: 75px;
-    transform: rotate(90deg);
-}
-
-.enemyRightFace {
-    position: absolute;
-    background-image: url("../img/enemy.png");
-    /*background-image: url("enemy.png");*/
-    width: 70px;
-    height: 75px;
-    transform: rotate(-90deg);
-}
-
-
-.enemyUpFace {
-    position: absolute;
-    background-image: url("../img/enemy.png");
-    /*background-image: url("enemy.png");*/
-    width: 70px;
-    height: 75px;
-    transform: rotate(180deg);
-}
-
-
-
 
 .weapon_fire {
     position: absolute;
@@ -122,6 +74,112 @@
     color: white;
     /* background-color: blue; */
 }
+
+
+
+
+.player {
+    position: absolute;
+    background-image: url("../img/player.png");
+    /*background-image: url("player.png");*/
+    width: 70px;
+    height: 69px;
+    z-index: 1;
+}
+
+
+.enemy {
+    position: absolute;
+    background-image: url("../img/enemy.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 60px;
+
+}
+
+.enemy2 {
+    position: absolute;
+    background-image: url("../img/enemy2.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 93px;
+}
+
+.enemy3 {
+    position: absolute;
+    background-image: url("../img/enemy3.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 76px;
+}
+
+.enemy4 {
+    position: absolute;
+    background-image: url("../img/enemy4.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 107px;
+}
+
+.enemy5 {
+    position: absolute;
+    background-image: url("../img/enemy5Sm.png");
+    /*background-image: url("enemy.png");*/
+    width: 50px;
+    height: 44px;
+}
+
+.enemy6 {
+    position: absolute;
+    background-image: url("../img/enemy6.png");
+    /*background-image: url("enemy.png");*/
+    width: 70px;
+    height: 88px;
+}
+
+
+.enemyDownFace {
+    transform: rotate(0deg);
+}
+
+.enemyDownLeftFace {
+    transform: rotate(45deg);
+}
+
+.enemyDownRightFace {
+    transform: rotate(-45deg);
+}
+
+
+
+.enemyLeftFace {
+    transform: rotate(90deg);
+}
+
+.enemyRightFace {
+    transform: rotate(-90deg);
+}
+
+.enemyUpRightFace {
+    transform: rotate(-135deg);
+}
+
+.enemyUpLeftFace {
+    transform: rotate(135deg);
+}
+
+
+.enemyUpFace {
+    transform: rotate(180deg);
+}
+
+
+
+
+
+
+
+
 
 
 
