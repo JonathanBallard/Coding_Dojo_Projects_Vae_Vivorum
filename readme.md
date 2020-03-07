@@ -88,7 +88,7 @@ Based on the pre-bootcamp fighter jet game*
 - proper collision detection **DONE**  
 - TEST COLLISION DETECTION, Also known as, FIX COLLISION DETECTION **DONE**  
 - Responsive Game Screen  
-- Enemies move left & right & up as well  
+- Enemies move left & right & up as well **DONE, EXCEPT THEY DON'T MOVE UP**  
 - When enemy hits you, you take damage, Ramming **DONE**  
 - Make enemies fire at you  
 - When hit by enemy fire lose health/armor **DONE**  
@@ -106,7 +106,7 @@ Based on the pre-bootcamp fighter jet game*
 - Finish victory() function  
 - Look at better hitboxes  
 - Finish adding Score and +kills to player object **DONE**  
-- Fix shieldRechargeDelay (maybe AJAX?)  
+- Fix shieldRechargeDelay (maybe AJAX?) **DONE**  
 - Multiple kinds of enemies  
 - Should be able to fire and move at the same time **DONE**  
 - Player and Enemy objects pass width and height to style.css!  
@@ -118,15 +118,22 @@ Based on the pre-bootcamp fighter jet game*
 - Fix undefined object.left in collision detection (ITS A MISSILE, SPAWNED BY MOUSE) **DONE**  
 - Move statistics text off of game area **CANCELLED**
 - Make statistics unselectable **DONE**    
-- Make spawnEnemyWave() take parameter of enemy to spawn & spawn NumFormation number of enemies in the correct formation  
+- Make spawnEnemyWave() take parameter of enemy to spawn & spawn NumFormation number of enemies in the correct formation **DONE**  
+- Create SpawnEnemy(enemyType) which is passed to spawnEnemyWave **DONE**
 - Make spawnEnemyWave() have enemies move the correct way **DONE**  
-- Delay between firing missiles  
-- Reload after x number of missiles fired  
+- Delay between firing missiles **DONE THROUGH RELOAD FUNCTION**  
+- Reload after x number of missiles fired **DONE**  
 - Make an iteration counter **DONE**  
 - Change enemy facing when moving **DONE**  
-- Change HP and Shields to Progress bars  
-- Finish missileReload() function  
-- Add Missile Magazine Progress Bar  
+- Change HP and Shields to Progress bars **DONE**  
+- Finish missileReload() function **DONE**  
+- Add Missile Magazine Progress Bar **DONE**  
+- Add image to missile  
+- Add gradients to make progress bars look nice  
+- Remove ability to shoot with the mouse (??)  
+- Reduce the height of the screen  
+- Ensure it works on all screen sizes  
+- Enemies can move diagonally  
 
 ### Sandbox
 
@@ -154,9 +161,10 @@ Based on the pre-bootcamp fighter jet game*
 - Eventually Set up Bootstrap "cards" system for each map  
 - Change to fire and aim with mouse  
 - Add Pause Functionality  
-- Create Health and Armor Bars  
-- Have to reload or pause if firing too often  
+- Create Health and Armor Bars for each enemy on screen  
+- Have to reload or pause if firing too often **DONE**  
 - When enemies hit, they take damage instead  
+- Explosions when enemies destroyed  
 
 ---
 

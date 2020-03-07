@@ -23,8 +23,8 @@
 
     <div class="container bg-dark col-xl-10">
         <div id="topbar"  class="d-flex flex-row">
-            <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
-            <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
+            <h1 class="unselectable display-2 d-inline-flex text-success">Vae Vivorum</h1>
+            <h4 class="unselectable ml-auto align-bottom d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
             <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
         </div>
 
@@ -38,11 +38,28 @@
                 <div id="enemy_fires"></div>
                 <div id="friendly_fires"></div>
                 <div id="stats" class="unselectable">
-                    <h1 class="display-4">Shields: <span id="playerShields"></span></h1>
-                    <h1 class="display-4">Health: <span id="playerHP"></span></h1>
-                    <h1 class="display-6">Kills: <span id="playerKills"></span></h1>
-                    <h1 class="display-6">Score: <span id="playerScore"></span></h1>
-                    <h1 class="display-6">Missiles: <span id="missileCount"></span></h1>
+                    
+                    <!-- <div class="progress">
+                        <div id="shieldProgressBar" style="width: 25%" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> -->
+                    
+                    <div class="d-block">
+                        <label class="h3 text-dark" for="shieldProgressBar">Shields:</label>
+                        <progress id="shieldProgressBar" value="100" max="100">100%</progress>
+                    </div>
+
+                    <div class="d-block">
+                        <label class="h3 text-dark" for="healthProgressBar">Armor:</label>
+                        <progress id="healthProgressBar" value="100" max="100">100%</progress>
+                    </div>
+
+
+                    <h1 class="h3 text-dark">Kills: <span id="playerKills"></span></h1>
+                    <h1 class="h3 text-dark">Score: <span id="playerScore"></span></h1>
+                    
+                    <label class="h3 text-dark" for="missileProgressBar">Missiles:</label>
+                    <progress id="missileProgressBar" value="100" max="100">100%</progress>
+
                 </div>
                 <h1 class="display-3 unselectable" id="messages"></h1>
             </div>
@@ -52,7 +69,7 @@
 
     </div>
 
-    <div id="bottombar" class="container bg-dark col-xl-10 mt-5 text-light">
+    <div id="bottombar" class="unselectable container bg-dark col-xl-10 mt-5 text-light">
         <h3>Vae Vivorum by Jonathan Ballard</h3>
         <p class="lead">asgardschosen@gmail.com</p>
     </div>

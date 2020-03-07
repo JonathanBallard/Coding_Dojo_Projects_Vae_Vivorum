@@ -107,3 +107,27 @@
     left: 40%;
 }
 
+#missileProgressBar {
+    color: white;
+    background-color: green;
+}
+
+
+#healthProgressBar {
+    color: white;
+    background-color: red;
+}
+
+#shieldProgressBar {
+    color: white;
+    /* background-color: blue; */
+}
+
+
+
+
+
+
+
+
+
