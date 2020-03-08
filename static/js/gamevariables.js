@@ -21,7 +21,7 @@ var keymap = {};
 var gameSpeed = 100;
 var playerMoveSpeed = 10;
 var enemyMoveSpeed = 10;
-var weaponFireMoveSpeed = 15;
+var weaponFireMoveSpeed = 25;
 
 //ENEMIES
 var enemiesKilled = 0;
@@ -35,12 +35,9 @@ var enemySpawnRate = 4000;
 var enemySpawnTimer = enemySpawnRate / difficultyRate;
 
 //WEAPONS
-var numFired = 0;
-var missileMagazineSize = 25;
-var missileReloadSpeed = 1100;
-var missileFireDelay = 50;
+
 
 
 //DAMAGE
-var rammingDamage = 1000000;  //should 1shot everything for the moment, change to do partial damage later
-var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later
+var rammingDamage = 50;  //should 1shot everything for the moment, change to do partial damage later
+// var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later

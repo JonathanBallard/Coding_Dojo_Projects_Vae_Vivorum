@@ -114,7 +114,7 @@ function drawEnemies(){
             enemies[i].facing = "enemyDownLeftFace";
         }
         else {
-            enemies[i].facing = "enemy";
+            enemies[i].facing = "enemyDownFace";
         }
 
         // content += "<div class = 'enemy' style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
@@ -128,13 +128,13 @@ function drawEnemies(){
 function drawFires(){
     content = "";
     for(var i = 0; i < friendly_fires.length; i++){
-        content += "<div class = 'weapon_fire' style = 'left: " + friendly_fires[i].left + "px; top: " + friendly_fires[i].top + "px;'></div>";
+        content += "<div class = '" + friendly_fires[i].type + "' style = 'left: " + friendly_fires[i].left + "px; top: " + friendly_fires[i].top + "px;'></div>";
     }
     document.getElementById("friendly_fires").innerHTML = content;
 
     content = "";
     for(var i = 0; i < enemy_fires.length; i++){
-        content += "<div class = 'weapon_fire' style = 'left: " + enemy_fires[i].left + "px; top: " + enemy_fires[i].top + "px;'></div>";
+        content += "<div class = '" + enemy_fires[i].type + "' style = 'left: " + enemy_fires[i].left + "px; top: " + enemy_fires[i].top + "px;'></div>";
     }
     document.getElementById("enemy_fires").innerHTML = content;
 
@@ -273,8 +273,9 @@ function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
         enemy.hp -= fire.damage;
     }
 
-
-    friendly_fires.splice(fireIndex,1);
+    if(fire.piercing == false){
+        friendly_fires.splice(fireIndex,1);
+    }
 
     //If out of hp and shields, delete
     if(enemy.hp <= 0 && enemy.shields <= 0){
@@ -349,7 +350,8 @@ function spawnEnemyWave(){
     //     leftOffset = 15;
     //     topOffset = 15;
     // }
-
+    leftOffset = 15;
+    topOffset = 15;
 
     //Start from Top
     if(edgeOfMap == 1){
@@ -357,16 +359,12 @@ function spawnEnemyWave(){
         direction = "down";
         left = gameWidth / 4;
         top = 160;
-        leftOffset = 15;
-        topOffset = 15;
     }
     else if(edgeOfMap == 0){
         edgeToTravel = 1;
         direction = "down";
         left = gameWidth / 4;
         top = 160;
-        leftOffset = 15;
-        topOffset = 15;
     }
 
     //Start from Left
@@ -375,8 +373,6 @@ function spawnEnemyWave(){
         direction = "right";
         left = 160;
         top = gameHeight / 2;
-        leftOffset = 15;
-        topOffset = 15;
     }
 
     //Start from Right
@@ -385,8 +381,6 @@ function spawnEnemyWave(){
         direction = "left";
         left = gameWidth - 160;
         top = gameHeight / 2;
-        leftOffset = 15;
-        topOffset = 15;
     }
 
     else if(edgeOfMap == 4){
@@ -394,32 +388,24 @@ function spawnEnemyWave(){
         direction = "down";
         left = gameWidth * 0.75;
         top = 160;
-        leftOffset = 15;
-        topOffset = 15;
     }
     else if(edgeOfMap == 5){
         edgeToTravel = 1;
         direction = "down";
         left = gameWidth * 0.75;
         top = 160;
-        leftOffset = 15;
-        topOffset = 15;
     }
     else if(edgeOfMap == 6){
         edgeToTravel = 1;
         direction = "downright";
         left = gameWidth * 0.05;
         top = 120;
-        leftOffset = 15;
-        topOffset = 15;
     }
     else if(edgeOfMap == 7){
         edgeToTravel = 1;
         direction = "downleft";
         left = gameWidth * 0.95;
         top = 130;
-        leftOffset = 15;
-        topOffset = 15;
     }
 
     //Decide here what to spawn
@@ -447,22 +433,22 @@ function spawnEnemyWave(){
 
 
     if(typeOfEnemy == "Enemy_1"){
-        spawnEnemy(Enemy_1,left,leftOffset,top,topOffset,direction);
+        spawnEnemy(Enemy_1,left,leftOffset+10,top,topOffset+15,direction);
     }
     else if(typeOfEnemy == "Enemy_2"){
-        spawnEnemy(Enemy_2,left,leftOffset,top,topOffset,direction);
+        spawnEnemy(Enemy_2,left,leftOffset+30,top,topOffset+30,direction);
     }
     else if(typeOfEnemy == "Enemy_3"){
-        spawnEnemy(Enemy_3,left,leftOffset,top,topOffset,direction);
+        spawnEnemy(Enemy_3,left,leftOffset+15,top,topOffset+15,direction);
     }
     else if(typeOfEnemy == "Enemy_4"){
-        spawnEnemy(Enemy_4,left,leftOffset,top,topOffset,direction);
+        spawnEnemy(Enemy_4,left,leftOffset+35,top,topOffset+20,direction);
     }
     else if(typeOfEnemy == "Enemy_5"){
-        spawnEnemy(Enemy_5,left,leftOffset,top,topOffset,direction);
+        spawnEnemy(Enemy_5,left,leftOffset+15,top,topOffset+10,direction);
     }
     else if(typeOfEnemy == "Enemy_6"){
-        spawnEnemy(Enemy_6,left,leftOffset,top,topOffset,direction);
+        spawnEnemy(Enemy_6,left,leftOffset+25,top,topOffset+25,direction);
     }
 
 
@@ -609,28 +595,44 @@ function writeStats(){
 
     $('#playerKills').text(player.kills);
     $('#playerScore').text(player.score);
-    // $('#missileCount').text(missileMagazineSize - numFired);
-    $('#missileProgressBar').attr('max', missileMagazineSize);
-    $('#missileProgressBar').val(missileMagazineSize-numFired);
-    $('#missileProgressBar').text(missileMagazineSize-numFired);
+    // $('#missileCount').text(Missile.magazineSize-player.numFired);
+    // $('#missileProgressBar').attr('max', Missile.magazineSize);
+    // $('#missileProgressBar').val(Missile.magazineSize-player.numFired);
+    // $('#missileProgressBar').text(Missile.magazineSize-player.numFired);
+
+    $('#chaingunProgressBar').attr('max', ChaingunRound.magazineSize);
+    $('#chaingunProgressBar').val(ChaingunRound.magazineSize-player.numFired);
+    $('#chaingunProgressBar').text(ChaingunRound.magazineSize-player.numFired);
 
 }
 
 function playerFires(){
-    var newMissile = new Missile(player.left + (player.width / 2), player.top, "up");
-    friendly_fires.push(newMissile);
-    numFired++;
+    if(player.currentWeapon == "missile"){
+        var newFire = new Missile(player.left + (player.width / 2), player.top, "up");
+    }
+    else if(player.currentWeapon == "chaingun"){
+        var newFire = new ChaingunRound(player.left + (player.width / 2), player.top, "up");
+    }
+
+    friendly_fires.push(newFire);
+    player.numFired++;
     drawFires();
 }
 
 function missileReload(){
     //print to the screen "reloading"
     $('#messages').text('Reloading...');
-    setTimeout(finishReload, missileReloadSpeed);
+    setTimeout(finishReload, Missile.reloadSpeed);
+}
+
+function chaingunReload(){
+    //print to the screen "reloading"
+    $('#messages').text('Reloading Chaingun...');
+    setTimeout(finishReload, ChaingunRound.reloadSpeed);
 }
 
 function finishReload(){
-    numFired = 0;
+    player.numFired = 0;
     clearMessages();
 }
 
@@ -638,12 +640,16 @@ function clearMessages(){
     $('#messages').text('');
 }
 
+function clearAbilityMessages(){
+    $('#abilityMessages').text('');
+}
+
 
 
 //MOUSE EVENTS
 //Mouse Event Listener
 document.addEventListener("mousemove", mouseMove, false);
-document.addEventListener("click", mouseClick, false);
+// document.addEventListener("click", mouseClick, false);
 
 function mouseMove(e) {
     var relativeX = e.clientX - mapOffsetLeft;
@@ -658,18 +664,19 @@ function mouseMove(e) {
 
 }
 
-function mouseClick(e) {
-    //fire weapon
-    if(e.button == 0){
-        playerFires();
-    }
-}
+// DISABLED MOUSE FIRING WEAPONS
+// function mouseClick(e) {
+//     //fire weapon
+//     if(e.button == 0){
+//         playerFires();
+//     }
+// }
 
 
 
 //Keyboard Controls
 document.onkeydown = document.onkeyup = function(e) {
-    // console.log(e.keyCode);
+    console.log(e.keyCode);
 
 
     
@@ -742,30 +749,86 @@ document.onkeydown = document.onkeyup = function(e) {
     //     drawFires();
     // }
 
-    //FIRE
+    //FIRE 'spacebar'
     if(keymap[32]){
-        //MOVED TO playerFires()
-        // var newMissile = new Missile(player.left + (player.width / 2), player.top)
-        // friendly_fires.push(newMissile);
-        // drawFires();
 
-        if(numFired >= missileMagazineSize - 1){
-            $('#messages').text('Reload Missiles');
-            // setTimeout(playerFires, missileReloadSpeed);
+        if(player.numFired >= ChaingunRound.magazineSize - 1){
+            $('#messages').text('Reload Chaingun');
+            // setTimeout(playerFires, Missile.reloadSpeed);
         }
         else{
-            setTimeout(playerFires, missileFireDelay);
+            setTimeout(playerFires, ChaingunRound.fireDelay);
         }
         //else fire
         //playerFires();
     }
 
+    // 'r'
     if(keymap[82]){
-        missileReload();
+        chaingunReload();
     }
 
-    // console.log(e.keyCode);
+    // '1' ability-1 MissileVolley
+    if(keymap[49]){
+        if(player.ability1OnCooldown){
+            $('#abilityMessages').text('Ability Not Ready...');
+            setTimeout(clearAbilityMessages,2500);
+        }
+        else {
+            missileVolley();
+            player.ability1OnCooldown = true;
+            abilityCooldown("missileVolley");
+        }
+    }
+
     drawPlayer();
+}
+
+function missileVolley(){
+    for(var i = 0; i < Player.missileVolleyNumMissiles; i++){
+        offsetTop = Math.floor(Math.random() * 15) + 10;
+        offsetLeft = Math.floor(Math.random() * 45);
+        if(i % 2 == 0){
+            var newFire = new Missile(player.left + (player.width / 2) + offsetLeft, player.top + offsetTop, "up");
+        }
+        else{
+            var newFire = new Missile(player.left + (player.width / 2) - offsetLeft, player.top - offsetTop, "up");
+        }
+
+        friendly_fires.push(newFire);
+
+    }
+}
+
+function abilityCooldown(ability){
+    if(ability == "missileVolley"){
+        setTimeout(clearCooldown,player.ability1CooldownTime,1);
+    }
+}
+
+function clearCooldown(abilityNum){
+    if(abilityNum == 1){
+        player.ability1OnCooldown = false;
+    }
+    if(abilityNum == 2){
+        player.ability2OnCooldown = false;
+    }
+    if(abilityNum == 3){
+        player.ability3OnCooldown = false;
+    }
+    if(abilityNum == 4){
+        player.ability4OnCooldown = false;
+    }
+    if(abilityNum == 5){
+        player.ability5OnCooldown = false;
+    }
+    if(abilityNum == 6){
+        player.ability6OnCooldown = false;
+    }
+
+    clearAbilityMessages();
+
+
 }
 
 

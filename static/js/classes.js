@@ -1,5 +1,8 @@
 //----------CLASSES----------
 class Player {
+
+    static missileVolleyNumMissiles = 8;
+
     constructor(left, top){
         this.left = left;
         this.top = top;
@@ -14,6 +17,20 @@ class Player {
         this.type = "Player";
         this.score = 0;
         this.kills = 0;
+        this.currentWeapon = "chaingun";
+        this.numFired = 0;
+        this.ability1OnCooldown = false;
+        this.ability2OnCooldown = false;
+        this.ability3OnCooldown = false;
+        this.ability4OnCooldown = false;
+        this.ability5OnCooldown = false;
+        this.ability6OnCooldown = false;
+        this.ability1CooldownTime = 10000;
+        this.ability2CooldownTime = 10000;
+        this.ability3CooldownTime = 10000;
+        this.ability4CooldownTime = 10000;
+        this.ability5CooldownTime = 10000;
+        this.ability6CooldownTime = 10000;
     }
 
 
@@ -64,8 +81,8 @@ class Enemy_2 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
-        this.speed = enemyMoveSpeed;
-        this.rammingDamage = rammingDamage;
+        this.speed = enemyMoveSpeed * 0.8;
+        this.rammingDamage = rammingDamage * 1.2;
         this.name = "Enemy Two";
         this.type = "enemy2";
         this.scoreValue = 50;
@@ -90,8 +107,8 @@ class Enemy_3 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.speed = enemyMoveSpeed;
-        this.rammingDamage = rammingDamage;
-        this.name = "Enemy Three";
+        this.rammingDamage = rammingDamage * 0.8;
+        this.name = "Enemy Three"; //bomber?
         this.type = "enemy3";
         this.scoreValue = 50;
         // this.formation = "line";
@@ -139,8 +156,8 @@ class Enemy_5 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
-        this.speed = enemyMoveSpeed;
-        this.rammingDamage = rammingDamage;
+        this.speed = enemyMoveSpeed * 1.2;
+        this.rammingDamage = rammingDamage * 0.5;
         this.name = "Enemy Five";
         this.type = "enemy5";
         this.scoreValue = 50;
@@ -164,8 +181,8 @@ class Enemy_6 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
-        this.speed = enemyMoveSpeed;
-        this.rammingDamage = rammingDamage;
+        this.speed = enemyMoveSpeed / 2;
+        this.rammingDamage = rammingDamage * 2;
         this.name = "Enemy Six";
         this.type = "enemy6";
         this.scoreValue = 90;
@@ -177,28 +194,87 @@ class Enemy_6 {
     
 }
 
-
+// WEAPONS
 class Missile {
+
+    static magazineSize = 24;
+    static fireDelay = 50;
+    static reloadSpeed = 1600;
+
     constructor(left, top, direction){
         this.left = left;
         this.top = top;
         this.height = 10;
         this.width = 2;
-        this.damage = missileDamage;
+        this.damage = 125;
         this.name = "Missile";
-        this.type = "WeaponFire";
+        this.type = "missile";
         this.weaponId = 0;
-        this.fireDelay = 50;
-        this.reloadSpeed = 500;
-        this.magazineSize = 15;
         this.direction = direction || "up";
         this.speed = 20;
-    }
-
-    warp(left, top){
-        this.left = left;
-        this.top = top;
+        this.piercing = false;
     }
     
     
 }
+
+
+class ChaingunRound {
+
+    static magazineSize = 200;
+    static fireDelay = 50;
+    static reloadSpeed = 600;
+
+    constructor(left, top, direction){
+        this.left = left;
+        this.top = top;
+        this.height = 5;
+        this.width = 2;
+        this.damage = 35;
+        this.name = "Chaingun";
+        this.type = "chaingunRound";
+        this.weaponId = 1;
+        this.direction = direction || "up";
+        this.speed = 35;
+        this.piercing = false;
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -80,7 +80,7 @@ Based on the pre-bootcamp fighter jet game*
 - Create game.html **DONE**  
 - Create game.js  **DONE**
 - Create Weapon Types  
-- Power-ups to swap weapons  
+- Power-ups to swap weapons (???)  
 - Differentiate between enemy and friendly fires **DONE**  
 - Stop Enemies when they reach bottom of game area **DONE**  
 - Change deleteEnemies() function to delete whenever enemy is out of bounds, not JUST bottom of screen **DONE**  
@@ -107,7 +107,7 @@ Based on the pre-bootcamp fighter jet game*
 - Look at better hitboxes  
 - Finish adding Score and +kills to player object **DONE**  
 - Fix shieldRechargeDelay (maybe AJAX?) **DONE**  
-- Multiple kinds of enemies  
+- Multiple kinds of enemies **DONE**  
 - Should be able to fire and move at the same time **DONE**  
 - Player and Enemy objects pass width and height to style.css!  
 - Figure out classes vs database for storing information **DONE**  
@@ -128,9 +128,9 @@ Based on the pre-bootcamp fighter jet game*
 - Change HP and Shields to Progress bars **DONE**  
 - Finish missileReload() function **DONE**  
 - Add Missile Magazine Progress Bar **DONE**  
-- Add image to missile  
+- Add image to missile **DONE**  
 - Add gradients to make progress bars look nice  
-- Remove ability to shoot with the mouse (??)  
+- Remove ability to shoot with the mouse (??) **DONE**  
 - Reduce the height of the screen  
 - Ensure it works on all screen sizes  
 - Enemies can move diagonally **DONE**  
@@ -142,6 +142,10 @@ Based on the pre-bootcamp fighter jet game*
 - Player ship not showing up on dashboard **DONE**  
 - Resize player ship for dashboard/index  
 - Fix enemy spawn formations  
+- Chaingun fires on Spacebar, Missile fires burst of 6 on '1' (keycode 49) or should swap to missile on 'lalt' (keycode 18)  (???) **DONE**  
+- Enemies gain health based on level & difficulty  
+- Ability Icons that turn red when unavailable  
+- Fix enemy rotations  
 
 ### Sandbox
 
