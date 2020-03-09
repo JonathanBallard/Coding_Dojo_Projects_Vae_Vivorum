@@ -1,7 +1,12 @@
 
+#### Current As Of 3/8/20
+
+[My GitHub](https://github.com/JonathanBallard/)
+[My Repo](https://github.com/JonathanBallard/Coding_Dojo_Projects_Vae_Vivorum.git)
+
 # **Vae Vivorum**
 
-*Twin Stick Shooter  
+*Shmup  
 Based on the pre-bootcamp fighter jet game*  
 
 # All Features
@@ -76,6 +81,9 @@ Based on the pre-bootcamp fighter jet game*
 - Player Ship image **DONE**  
 - Enemy ship images **DONE**  
 - Background Image  
+- Player gains XP **DONE**  
+- Add XP component  
+- Upgrades based on xp  
 - Find out why spaceship.png isn't showing up on game.html **DONE**  
 - Create game.html **DONE**  
 - Create game.js  **DONE**
@@ -129,7 +137,7 @@ Based on the pre-bootcamp fighter jet game*
 - Finish missileReload() function **DONE**  
 - Add Missile Magazine Progress Bar **DONE**  
 - Add image to missile **DONE**  
-- Add gradients to make progress bars look nice  
+- Add gradients to make progress bars look nice **DONE**  
 - Remove ability to shoot with the mouse (??) **DONE**  
 - Reduce the height of the screen  
 - Ensure it works on all screen sizes  
@@ -138,14 +146,21 @@ Based on the pre-bootcamp fighter jet game*
 - Enemies spawn in correct pattern (eg line/cluster/circle)  
 - Break apart munitions images  
 - Finish Resizing ships **DONE**  
-- Add numFormation=2 Spawner **DONE**  
+- Add numFormation==2 Spawner **DONE**  
 - Player ship not showing up on dashboard **DONE**  
 - Resize player ship for dashboard/index  
-- Fix enemy spawn formations  
+- Fix enemy spawn formations for enemy2 and enemy5 **DONE**  
 - Chaingun fires on Spacebar, Missile fires burst of 6 on '1' (keycode 49) or should swap to missile on 'lalt' (keycode 18)  (???) **DONE**  
 - Enemies gain health based on level & difficulty  
-- Ability Icons that turn red when unavailable  
-- Fix enemy rotations  
+- Ability Icons/Indicators that turn red when unavailable  
+- Fix enemy rotations **DONE**  
+- Change stats for each enemy type  
+- Make progress bars line up nicely **DONE**  
+- Shields sometimes go NaN **DONE**
+- SHields recharge way too fast    
+- Enemy5 spawn more often **DONE**  
+- Change shieldRechargeRate to be based on percentage of max shields  
+- Center "equipment" under icon on dashboard.html  
 
 ### Sandbox
 
@@ -175,9 +190,12 @@ Based on the pre-bootcamp fighter jet game*
 - Add Pause Functionality  
 - Create Health and Armor Bars for each enemy on screen  
 - Have to reload or pause if firing too often **DONE**  
-- When enemies hit, they take damage instead  
+- When enemies hit, they take damage instead **DONE**  
 - Explosions when enemies hit/destroyed  
 - Add movement patterns to enemies  
+- Add damaged enemy images  
+- Missiles do area damage  
+
 
 
 ---
@@ -185,8 +203,23 @@ Based on the pre-bootcamp fighter jet game*
 # Artist Credits
 
 "[asset name]" by [author name] licensed [license(s)]: [asset url]  
-"Spaceship Tut" by Skorpio licensed CC-BY 3.0 and GPL 3.0: https://opengameart.org/content/spaceship-tutorial-0  
+"Enemy Artwork" by Skorpio licensed CC-BY 3.0 and GPL 3.0: https://opengameart.org/content/spaceship-tutorial-0  
 "Bullet Effects" by Master484 licensed Public Domain: https://opengameart.org/content/bullet-collection-2-m484-games  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

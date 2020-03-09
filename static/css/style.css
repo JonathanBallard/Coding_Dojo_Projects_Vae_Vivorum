@@ -88,7 +88,51 @@
 
 #chaingunProgressBar {
     color: white;
-    background-color: green;
+    background: linear-gradient(left, #3d0000 0%,#ff0000 100%);
+    background: -webkit-linear-gradient(left, #3d0000 0%,#ff0000 100%);
+    /* background-color: green; */
+}
+
+.chaingunProgressBar {
+    color: white;
+    /* background: linear-gradient(left, #3d0000 0%,#ff0000 100%);
+    background: -webkit-linear-gradient(left, #3d0000 0%,#ff0000 100%); */
+    width:100%;
+    
+    /* background-color: green; */
+}
+
+.chaingunProgressDiv {
+    width: 200px;
+    height: 20px;
+    position: relative;
+    left: 10px;
+}
+
+.healthProgressDiv {
+    width: 200px;
+    height: 20px;
+    position: relative;
+    left: 40px;
+}
+
+.healthProgressBar {
+    color: white;
+    width: 100%;
+
+}
+
+.shieldProgressDiv {
+    width: 200px;
+    height: 20px;
+    position: relative;
+    left: 2px;
+}
+
+.shieldProgressBar {
+    color: white;
+    width: 100%;
+
 }
 
 
@@ -130,6 +174,7 @@
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 93px;
+    transform: rotate(180deg);
 }
 
 .enemy3 {

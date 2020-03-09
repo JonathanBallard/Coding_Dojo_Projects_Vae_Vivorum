@@ -66,8 +66,7 @@ var enemies = [
 var weapon_fires = []
 var enemy_fires = []
 var friendly_fires = []
-
-
+var ammoPercent = 100;
 
 
 
@@ -87,38 +86,10 @@ function drawPlayer(){
 function drawEnemies(){
     content = "";
     for(var i = 0; i < enemies.length; i++){
-
-        if(enemies[i].direction == "left"){
-            enemies[i].facing = "enemyLeftFace";
-            // $('.enemy').css('transform', '90deg')
-        }
-        else if(enemies[i].direction == "right"){
-            enemies[i].facing = "enemyRightFace";
-        }
-        else if(enemies[i].direction == "up"){
-            enemies[i].facing = "enemyUpFace";
-        }        
-        else if(enemies[i].direction == "down"){
-            enemies[i].facing = "enemyDownFace";
-        }
-        else if(enemies[i].direction == "upright"){
-            enemies[i].facing = "enemyUpRightFace";
-        }
-        else if(enemies[i].direction == "downright"){
-            enemies[i].facing = "enemyDownRightFace";
-        }
-        else if(enemies[i].direction == "upleft"){
-            enemies[i].facing = "enemyUpLeftFace";
-        }
-        else if(enemies[i].direction == "downleft"){
-            enemies[i].facing = "enemyDownLeftFace";
-        }
-        else {
-            enemies[i].facing = "enemyDownFace";
-        }
-
+        var enemyClass = "";
+        enemyClass += enemies[i].type, enemies[i].facing;
         // content += "<div class = 'enemy' style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
-        content += "<div class = " + enemies[i].type + ' ' + enemies[i].facing + " style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
+        content += "<div class = '" + enemies[i].type + " " + enemies[i].facing + "' style='left:" + enemies[i].left + "px; top:" + enemies[i].top + "px;'></div>";
 
     }
     document.getElementById("enemies").innerHTML = content;
@@ -147,40 +118,48 @@ function moveEnemies(){
 
         if(enemies[i].direction == "down"){
             //console.log("MOVE DOWN");
+            enemies[i].facing = "enemyDownFace";
             enemies[i].top = enemies[i].top + enemies[i].speed;  //move down
         }
         if(enemies[i].direction == "up"){
             //console.log("MOVE UP");
+            enemies[i].facing = "enemyUpFace";
             enemies[i].top = enemies[i].top - enemies[i].speed;  //move up
         }
         if(enemies[i].direction == "left"){
             //console.log("MOVE LEFT");
+            enemies[i].facing = "enemyLeftFace";
             enemies[i].left = enemies[i].left - enemies[i].speed;  //move left
         }
         if(enemies[i].direction == "right"){
             //console.log("MOVE RIGHT");
+            enemies[i].facing = "enemyRightFace";
             enemies[i].left = enemies[i].left + enemies[i].speed;  //move right
         }
         if(enemies[i].direction == "downright"){
             //console.log("MOVE down RIGHT");
+            enemies[i].facing = "enemyDownRightFace";
             enemies[i].left = enemies[i].left + (enemies[i].speed / 2);  //move right
             enemies[i].top = enemies[i].top + (enemies[i].speed / 2);  //move down
         }
 
         if(enemies[i].direction == "upright"){
             //console.log("MOVE up RIGHT");
+            enemies[i].facing = "enemyUpRightFace";
             enemies[i].left = enemies[i].left + (enemies[i].speed / 2);  //move right
             enemies[i].top = enemies[i].top - (enemies[i].speed / 2);  //move up
         }
 
         if(enemies[i].direction == "downleft"){
             //console.log("MOVE down LEFT");
+            enemies[i].facing = "enemyDownLeftFace";
             enemies[i].top = enemies[i].top + (enemies[i].speed / 2);  //move down
             enemies[i].left = enemies[i].left - (enemies[i].speed / 2);  //move left
         }
 
         if(enemies[i].direction == "upleft"){
             //console.log("MOVE up LEFT");
+            enemies[i].facing = "enemyUpLeftFace";
             enemies[i].top = enemies[i].top - (enemies[i].speed / 2);  //move up
             enemies[i].left = enemies[i].left - (enemies[i].speed / 2);  //move left
         }
@@ -210,6 +189,15 @@ function moveFires(){
         if(friendly_fires[i].direction == "up"){
             //console.log("MOVE UP");
             friendly_fires[i].top = friendly_fires[i].top - friendly_fires[i].speed;  //move up
+        }
+        if(friendly_fires[i].direction == "upleft"){
+            friendly_fires[i].top = friendly_fires[i].top - friendly_fires[i].speed;  //move up
+            friendly_fires[i].left = friendly_fires[i].left - friendly_fires[i].speed;  //move left
+        }
+        if(friendly_fires[i].direction == "upright"){
+            //console.log("MOVE UP");
+            friendly_fires[i].top = friendly_fires[i].top - friendly_fires[i].speed;  //move up
+            friendly_fires[i].left = friendly_fires[i].left + friendly_fires[i].speed;  //move right
         }
         if(friendly_fires[i].direction == "left"){
             //console.log("MOVE LEFT");
@@ -242,6 +230,14 @@ function moveFires(){
         if(enemy_fires[i].direction == "up"){
             //console.log("MOVE UP");
             enemy_fires[i].top = enemy_fires[i].top - enemy_fires[i].speed;  //move up
+        }
+        if(enemy_fires[i].direction == "upleft"){
+            enemy_fires[i].top = enemy_fires[i].top - enemy_fires[i].speed;  //move up
+            enemy_fires[i].left = enemy_fires[i].left - enemy_fires[i].speed;  //move left
+        }
+        if(enemy_fires[i].direction == "upright"){
+            enemy_fires[i].top = enemy_fires[i].top - enemy_fires[i].speed;  //move up
+            enemy_fires[i].left = enemy_fires[i].left + enemy_fires[i].speed;  //move right
         }
         if(enemy_fires[i].direction == "left"){
             //console.log("MOVE LEFT");
@@ -281,8 +277,9 @@ function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
     if(enemy.hp <= 0 && enemy.shields <= 0){
         enemies.splice(enemyIndex, 1);
         enemiesKilled++;
+        player.xp += enemy.xpValue * rammingModifier;
         player.kills++;
-        player.score += enemy.scoreValue;
+        player.score += enemy.scoreValue * rammingModifier;
     }
 }
 
@@ -308,20 +305,22 @@ function playerDamagedByFire(fire, fireIndex){
 }
 
 function rammedPlayer(enemy, enemyIndex){
-    if(player.shields > rammingDamage){
-        player.shields -= rammingDamage;
+    var rammingDamageFormula = (rammingDamage + (enemy.speed / 2))
+    if(player.shields >= rammingDamageFormula){
+        player.shields -= rammingDamageFormula;
     }
-    else if(player.shields > 0 && player.shields < rammingDamage){
-        player.shields -= rammingDamage;
+    else if(player.shields > 0 && player.shields < rammingDamageFormula){
+        player.shields -= rammingDamageFormula;
         player.hp += player.shields;
         player.shields = 0;
     }
     else {
-        player.hp -= rammingDamage;
+        player.hp -= rammingDamageFormula;
     }
 
     player.kills++;
     player.score += enemy.scoreValue;
+    player.xp += enemy.xpValue;
     enemies.splice(enemyIndex,1);
 
     //If out of hp, delete
@@ -409,7 +408,7 @@ function spawnEnemyWave(){
     }
 
     //Decide here what to spawn
-    var enemySpawner = Math.floor(Math.random() * 11);
+    var enemySpawner = Math.floor(Math.random() * 13);
     var typeOfEnemy = "Enemy_1";
     
     if(enemySpawner <= 5){
@@ -424,28 +423,29 @@ function spawnEnemyWave(){
     else if(enemySpawner == 8){
         typeOfEnemy = "Enemy_4";
     }
-    else if(enemySpawner == 9){
+    else if(enemySpawner >= 9 && enemySpawner < 13){
         typeOfEnemy = "Enemy_5";
     }
-    else if(enemySpawner == 10){
+    else if(enemySpawner == 13){
         typeOfEnemy = "Enemy_6";
     }
+    
 
 
     if(typeOfEnemy == "Enemy_1"){
-        spawnEnemy(Enemy_1,left,leftOffset+10,top,topOffset+15,direction);
+        spawnEnemy(Enemy_1,left,leftOffset+15,top,topOffset+15,direction);
     }
     else if(typeOfEnemy == "Enemy_2"){
         spawnEnemy(Enemy_2,left,leftOffset+30,top,topOffset+30,direction);
     }
     else if(typeOfEnemy == "Enemy_3"){
-        spawnEnemy(Enemy_3,left,leftOffset+15,top,topOffset+15,direction);
+        spawnEnemy(Enemy_3,left,leftOffset+25,top,topOffset+25,direction);
     }
     else if(typeOfEnemy == "Enemy_4"){
-        spawnEnemy(Enemy_4,left,leftOffset+35,top,topOffset+20,direction);
+        spawnEnemy(Enemy_4,left,leftOffset+35,top,topOffset+35,direction);
     }
     else if(typeOfEnemy == "Enemy_5"){
-        spawnEnemy(Enemy_5,left,leftOffset+15,top,topOffset+10,direction);
+        spawnEnemy(Enemy_5,left,leftOffset+15,top,topOffset+15,direction);
     }
     else if(typeOfEnemy == "Enemy_6"){
         spawnEnemy(Enemy_6,left,leftOffset+25,top,topOffset+25,direction);
@@ -459,58 +459,64 @@ function spawnEnemyWave(){
 function spawnEnemy(enemyType, left, leftOffset,top,topOffset,direction){
 
 
-    if(enemyType.numFormation == 2){
-        enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
-        enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
-        enemies.push(enemy1);
-        enemies.push(enemy2);
+    if(enemyType.formation == "line"){
+        console.log('enemyType.formation == LINE')
+        for(var i = 0; i < enemyType.numFormation; i++){
+            enemy = new enemyType(left + (leftOffset * i), top, direction)
+            enemies.push(enemy);
+        }
     }
-
-    if(enemyType.numFormation == 4){
-        enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
-        enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
-        enemy3 = new enemyType(left + leftOffset, top + topOffset, direction);
-        enemy4 = new enemyType(left - leftOffset, top + topOffset, direction);
-        enemies.push(enemy1);
-        enemies.push(enemy2);
-        enemies.push(enemy3);
-        enemies.push(enemy4);
-    }
-    else if(enemyType.numFormation == 6){
-        enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
-        enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
-        enemy3 = new enemyType(left + leftOffset, top + topOffset, direction);
-        enemy4 = new enemyType(left - leftOffset, top + topOffset, direction);
-        enemy5 = new enemyType(left - (leftOffset * 2), top - topOffset, direction);
-        enemy6 = new enemyType(left - (leftOffset * 2), top + topOffset, direction);
-        enemies.push(enemy1);
-        enemies.push(enemy2);
-        enemies.push(enemy3);
-        enemies.push(enemy4);
-        enemies.push(enemy5);
-        enemies.push(enemy6);
-    }
-    else if(enemyType.numFormation == 8){
+    else if(enemyType.formation == "cluster"){
+        if(enemyType.numFormation == 2){
+            enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
+            enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
+            enemies.push(enemy1);
+            enemies.push(enemy2);
+        }
+    
+        if(enemyType.numFormation == 4){
             enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
             enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
             enemy3 = new enemyType(left + leftOffset, top + topOffset, direction);
             enemy4 = new enemyType(left - leftOffset, top + topOffset, direction);
-            enemy5 = new enemyType(left - (leftOffset * 2), top - topOffset, direction);
-            enemy6 = new enemyType(left - (leftOffset * 2), top + topOffset, direction);
-            enemy7 = new enemyType(left - leftOffset, top + (topOffset * 2), direction);
-            enemy8 = new enemyType(left - leftOffset, top + (topOffset * 2), direction);
+            enemies.push(enemy1);
+            enemies.push(enemy2);
+            enemies.push(enemy3);
+            enemies.push(enemy4);
+        }
+        else if(enemyType.numFormation == 6){
+            enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
+            enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
+            enemy3 = new enemyType(left + leftOffset, top + topOffset, direction);
+            enemy4 = new enemyType(left - leftOffset, top + topOffset, direction);
+            enemy5 = new enemyType(left - (leftOffset * 3), top - topOffset, direction);
+            enemy6 = new enemyType(left - (leftOffset * 3), top + topOffset, direction);
             enemies.push(enemy1);
             enemies.push(enemy2);
             enemies.push(enemy3);
             enemies.push(enemy4);
             enemies.push(enemy5);
             enemies.push(enemy6);
-            enemies.push(enemy7);
-            enemies.push(enemy8);
         }
-
-
-
+        else if(enemyType.numFormation == 8){
+                enemy1 = new enemyType(left + leftOffset, top - topOffset, direction);
+                enemy2 = new enemyType(left - leftOffset, top - topOffset, direction);
+                enemy3 = new enemyType(left + leftOffset, top + topOffset, direction);
+                enemy4 = new enemyType(left - leftOffset, top + topOffset, direction);
+                enemy5 = new enemyType(left - (leftOffset * 3), top - topOffset, direction);
+                enemy6 = new enemyType(left - (leftOffset * 3), top + topOffset, direction);
+                enemy7 = new enemyType(left - leftOffset, top + (topOffset * 3), direction);
+                enemy8 = new enemyType(left - leftOffset, top - (topOffset * 3), direction);
+                enemies.push(enemy1);
+                enemies.push(enemy2);
+                enemies.push(enemy3);
+                enemies.push(enemy4);
+                enemies.push(enemy5);
+                enemies.push(enemy6);
+                enemies.push(enemy7);
+                enemies.push(enemy8);
+            }
+    }
 
 
 
@@ -546,7 +552,7 @@ function collisionDetection(obj1, obj2){
             obj1.top < obj2.top + obj2.height &&
             obj1.top + obj1.height > obj2.top){
                 collision = true;
-                console.log("Collision between: " + obj1.name + " and " + obj2.name )
+                // console.log("Collision between: " + obj1.name + " and " + obj2.name )
             }
     }
 
@@ -558,7 +564,11 @@ function shieldDelay(obj1){
     setTimeout(shieldRecharge, shieldRechargeDelay, obj1);
 }
 function shieldRecharge(obj1){
+    if(obj1.shields < obj1.shieldsMax){
         obj1.shields += shieldRechargeRate;
+        // setTimeout(shieldRecharge,200,obj1);
+    }
+
 }
 
 
@@ -583,12 +593,23 @@ function escapedEnemies(){
 function writeStats(){
     // $('#playerShields').text(player.shields);
     // $('#playerHP').text(player.hp);
-    $('#healthProgressBar').val(player.hp);
-    $('#healthProgressBar').text(player.hp);
-    $('#healthProgressBar').attr('max', player.hpMax);
-    $('#shieldProgressBar').val(player.shields);
-    $('#shieldProgressBar').text(player.shields);
-    $('#shieldProgressBar').attr('max', player.shieldsMax);
+    // $('#healthProgressBar').val(player.hp);
+    // $('#healthProgressBar').text(player.hp);
+    // $('#healthProgressBar').attr('max', player.hpMax);
+
+    // $('#healthProgressBar').attr('aria-valuemax',player.hpMax);
+    $('.healthProgressBar').text(player.hp);
+    $('.healthProgressBar').attr('aria-valuenow', 100 * (player.hp / player.hpMax));
+    $('.healthProgressBar').css('width',(100 * (player.hp / player.hpMax)) + '%');
+
+
+    $('.shieldProgressBar').text(player.shields);
+    $('.shieldProgressBar').attr('aria-valuenow', 100 * (player.shields / player.shieldsMax));
+    $('.shieldProgressBar').css('width',(100 * (player.shields / player.shieldsMax)) + '%');
+
+    // $('#shieldProgressBar').val(player.shields);
+    // $('#shieldProgressBar').text(player.shields);
+    // $('#shieldProgressBar').attr('max', player.shieldsMax);
 
     // $('#shieldProgressBar').attr('aria-valuenow',player.shields);
 
@@ -600,9 +621,12 @@ function writeStats(){
     // $('#missileProgressBar').val(Missile.magazineSize-player.numFired);
     // $('#missileProgressBar').text(Missile.magazineSize-player.numFired);
 
-    $('#chaingunProgressBar').attr('max', ChaingunRound.magazineSize);
-    $('#chaingunProgressBar').val(ChaingunRound.magazineSize-player.numFired);
-    $('#chaingunProgressBar').text(ChaingunRound.magazineSize-player.numFired);
+    // $('#chaingunProgressBar').attr('max', ChaingunRound.magazineSize);
+    // $('#chaingunProgressBar').val(ChaingunRound.magazineSize-player.numFired);
+    // $('#chaingunProgressBar').text(ChaingunRound.magazineSize-player.numFired);
+    $('.chaingunProgressBar').text(ChaingunRound.magazineSize - player.numFired);
+    $('.chaingunProgressBar').attr('aria-valuenow', ammoPercent);
+    $('.chaingunProgressBar').css('width',ammoPercent + '%');
 
 }
 
@@ -612,6 +636,7 @@ function playerFires(){
     }
     else if(player.currentWeapon == "chaingun"){
         var newFire = new ChaingunRound(player.left + (player.width / 2), player.top, "up");
+        ammoPercent -= 100 / ChaingunRound.magazineSize;
     }
 
     friendly_fires.push(newFire);
@@ -633,6 +658,7 @@ function chaingunReload(){
 
 function finishReload(){
     player.numFired = 0;
+    ammoPercent = 100;
     clearMessages();
 }
 
@@ -728,26 +754,6 @@ document.onkeydown = document.onkeyup = function(e) {
         player.top -= playerMoveSpeed;
     }
 
-    //left = 37, right = 39 (Whats 37 and 39???)
-    // if(e.keyCode == 65 && player.left > 30){ //left
-    //     player.left -= playerMoveSpeed;
-    // }
-    // if(e.keyCode == 68 && player.left < gameWidth - 70){  //right
-    //     player.left += playerMoveSpeed;
-    // }
-    // if(e.keyCode == 83 && player.top <= gameHeight){  //down
-    //     player.top += playerMoveSpeed;
-    // }
-    // if(e.keyCode == 87 && player.top >= 140) {  //up
-    //     player.top -= playerMoveSpeed;
-    // }
-
-    //keycode for spacebar = 32
-    // if(e.keyCode == 32){   //fire
-    //     var newMissile = new Missile(player.left + (player.width / 2), player.top)
-    //     friendly_fires.push(newMissile);
-    //     drawFires();
-    // }
 
     //FIRE 'spacebar'
     if(keymap[32]){
@@ -759,8 +765,6 @@ document.onkeydown = document.onkeyup = function(e) {
         else{
             setTimeout(playerFires, ChaingunRound.fireDelay);
         }
-        //else fire
-        //playerFires();
     }
 
     // 'r'
@@ -794,9 +798,7 @@ function missileVolley(){
         else{
             var newFire = new Missile(player.left + (player.width / 2) - offsetLeft, player.top - offsetTop, "up");
         }
-
         friendly_fires.push(newFire);
-
     }
 }
 
@@ -827,8 +829,6 @@ function clearCooldown(abilityNum){
     }
 
     clearAbilityMessages();
-
-
 }
 
 

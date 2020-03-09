@@ -28,16 +28,18 @@ var enemiesKilled = 0;
 var numEscapedEnemies = 0;
 
 //RATES
-var shieldRechargeRate = 0.25; //How much shields recharge per tick
-var shieldRechargeDelay = 3000;
 var difficultyRate = 1; //Later turn this into a slider on dashboard, pass it through JSON to here
 var enemySpawnRate = 4000;
 var enemySpawnTimer = enemySpawnRate / difficultyRate;
+var shieldRechargeRate = 0.25 / (difficultyRate / 2); //How much shields recharge per tick
+var shieldRechargeDelay = 3000;
+
 
 //WEAPONS
 
 
 
 //DAMAGE
-var rammingDamage = 50;  //should 1shot everything for the moment, change to do partial damage later
+var rammingDamage = 25;  //Base ramming damage, actual formula: rammingDamage + (enemy.speed / 2)
+var rammingModifier = 0.5; //modifies xp and score gained for enemies killed with ramming
 // var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later
