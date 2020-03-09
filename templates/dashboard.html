@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -36,6 +35,8 @@
             <hr>
             <h3>Score: {{ thisUser.current_score }}</h3>
             <h3>Money: {{ thisUser.current_money }}</h3>
+            <h3>Level: {{ thisUser.current_level }}</h3>
+            <h3>XP: {{ thisUser.current_xp }}</h3>
         </div>
     
 
@@ -60,7 +61,7 @@
 
         <div class="container bg-dark text-light d-inline-block col-xl-4 align-bottom mb-2 ml-5">
             <div class="ml-5 d-inline-block">
-                <a href="/equipment"><i class="fas fa-2x fa-archive"></i></a>
+                <a href="/equipment"><i class="ml-4 fas fa-2x fa-archive"></i></a>
                 <p class="lead">Equipment</p>
             </div>
             <div class="ml-5 d-inline-block">

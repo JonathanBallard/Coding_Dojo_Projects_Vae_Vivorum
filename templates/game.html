@@ -12,6 +12,7 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -26,6 +27,10 @@
     <div class="container bg-dark col-xl-10">
         <div id="topbar"  class="d-flex flex-row">
             <h1 class="unselectable display-2 d-inline-flex text-success">Vae Vivorum</h1>
+            <audio id="backgroundMusic" class="ml-5 mt-5" controls autoplay loop>
+                <source src="../static/sounds/background-music.mp3" type="audio/mpeg">
+                Your Browser does not support the background music
+            </audio>
             <h4 class="unselectable ml-auto align-bottom d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
             <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
         </div>
@@ -87,13 +92,23 @@
                         </div>
                     </div>
 
+
                     <h1 class="h3 text-dark">Kills: <span id="playerKills"></span></h1>
                     <h1 class="h3 text-dark">Score: <span id="playerScore"></span></h1>
+
 
 
                 </div>
                 <h3 class="display-5 unselectable" id="abilityMessages"></h3>
                 <h1 class="display-5 unselectable" id="messages"></h1>
+
+
+                <div id="abilityOne" class="ml-1 abilityBox abilityOne">
+                    <i class="fas fa-4x fa-rocket"></i>
+                </div>
+
+
+
             </div>
         </div>
 
@@ -101,9 +116,54 @@
 
     </div>
 
+    
+
     <div id="bottombar" class="unselectable container bg-dark col-xl-10 mt-5 text-light">
         <h3>Vae Vivorum by Jonathan Ballard</h3>
         <p class="lead">asgardschosen@gmail.com</p>
+    </div>
+
+
+    <div class="audio">
+        <audio id="missileVolleySound" class="ml-5 mt-5">
+            <source src="../static/sounds/abilities/missileVolley.wav" type="audio/wav">
+        </audio>
+        <audio id="slowDownTimeSound">
+            <source src="../static/sounds/abilities/slowDownTime.wav" type="audio/wav">
+        </audio>        
+        <audio id="warp">
+            <source src="../static/sounds/abilities/warp.ogg" type="audio/ogg">
+        </audio>
+        <audio id="explosion1">
+            <source src="../static/sounds/explosions/1.wav" type="audio/wav">
+        </audio>
+        <audio id="explosion2">
+            <source src="../static/sounds/explosions/2.wav" type="audio/wav">
+        </audio>
+        <audio id="explosion3">
+            <source src="../static/sounds/explosions/3.wav" type="audio/wav">
+        </audio>
+        <audio id="explosion4">
+            <source src="../static/sounds/explosions/4.wav" type="audio/wav">
+        </audio>
+        <audio id="explosion5">
+            <source src="../static/sounds/explosions/5.wav" type="audio/wav">
+        </audio>
+        <audio id="explosion6">
+            <source src="../static/sounds/explosions/6.wav" type="audio/wav">
+        </audio>
+        <audio id="explosion7">
+            <source src="../static/sounds/explosions/7.wav" type="audio/wav">
+        </audio>
+        <audio id="playerDeathSound">
+            <source src="../static/sounds/explosions/playerDeath.ogg" type="audio/ogg">
+        </audio>
+        <audio id="chaingunEmptySound">
+            <source src="../static/sounds/weapons/chaingunEmpty.wav" type="audio/wav">
+        </audio>
+
+
+
     </div>
 
 

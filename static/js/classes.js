@@ -2,6 +2,7 @@
 class Player {
 
     static missileVolleyNumMissiles = 8;
+    static width = 75;
 
     constructor(left, top){
         this.left = left;
@@ -12,6 +13,8 @@ class Player {
         this.hpMax = 100;
         this.shieldsMax = 50;
         this.shields = 50;
+        this.armor = 5;
+        this.shieldsRecharging = false;
         this.speed = playerMoveSpeed;
         this.name = "Player";
         this.type = "Player";
@@ -47,6 +50,7 @@ class Enemy_1 {
 
     static numFormation = 4;
     static formation = "cluster";
+    static width = 60;
 
     constructor(left, top, direction, facing){
         this.left = left;
@@ -56,12 +60,16 @@ class Enemy_1 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
+        this.shieldsRecharging = false;
         this.speed = enemyMoveSpeed;
+        this.weapon = "fireball";
+        this.fireDelay = 2500;
         this.rammingDamage = rammingDamage;
         this.name = "Enemy One";
         this.type = "enemy";
         this.scoreValue = 50;
         this.xpValue = 10;
+        this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
         this.direction = direction;
@@ -73,7 +81,8 @@ class Enemy_1 {
 class Enemy_2 {
 
     static numFormation = 6;
-    static formation = "line";
+    static formation = "echelon";
+    static width = 93;
 
     constructor(left, top, direction, facing){
         this.left = left;
@@ -83,12 +92,16 @@ class Enemy_2 {
         this.hp = 200;
         this.shields = 0;
         this.shieldsMax = 0;
+        this.shieldsRecharging = false;
         this.speed = enemyMoveSpeed * 0.8;
+        this.weapon = "fireball";
+        this.fireDelay = 3500;
         this.rammingDamage = rammingDamage * 1.2;
         this.name = "Enemy Two";
         this.type = "enemy2";
         this.scoreValue = 50;
         this.xpValue = 25;
+        this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
         this.direction = direction;
@@ -100,6 +113,7 @@ class Enemy_3 {
 
     static numFormation = 4;
     static formation = "line";
+    static width = 76;
 
     constructor(left, top, direction, facing){
         this.left = left;
@@ -109,12 +123,16 @@ class Enemy_3 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
+        this.shieldsRecharging = false;
         this.speed = enemyMoveSpeed;
+        this.weapon = "fireball";
+        this.fireDelay = 5000;
         this.rammingDamage = rammingDamage * 0.8;
         this.name = "Enemy Three"; //bomber?
         this.type = "enemy3";
         this.scoreValue = 50;
         this.xpValue = 12;
+        this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
         this.direction = direction;
@@ -126,6 +144,7 @@ class Enemy_4 {
 
     static numFormation = 4;
     static formation = "line";
+    static width = 107;
 
     constructor(left, top, direction, facing){
         this.left = left;
@@ -135,12 +154,16 @@ class Enemy_4 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
+        this.shieldsRecharging = false;
         this.speed = enemyMoveSpeed;
+        this.weapon = "fireball";
+        this.fireDelay = 1000;
         this.rammingDamage = rammingDamage;
         this.name = "Enemy Four";
         this.type = "enemy4";
         this.scoreValue = 50;
         this.xpValue = 10;
+        this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
         this.direction = direction;
@@ -151,7 +174,8 @@ class Enemy_4 {
 class Enemy_5 {
 
     static numFormation = 8;
-    static formation = "cluster";
+    static formation = "hollowX";
+    static width = 44;
 
     constructor(left, top, direction, facing){
         this.left = left;
@@ -161,12 +185,16 @@ class Enemy_5 {
         this.hp = 100;
         this.shields = 0;
         this.shieldsMax = 0;
+        this.shieldsRecharging = false;
         this.speed = enemyMoveSpeed * 1.2;
+        this.weapon = "fireball";
+        this.fireDelay = 3500;
         this.rammingDamage = rammingDamage * 0.5;
         this.name = "Enemy Five";
         this.type = "enemy5";
         this.scoreValue = 50;
         this.xpValue = 6;
+        this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
         this.direction = direction;
@@ -178,6 +206,7 @@ class Enemy_6 {
 
     static numFormation = 2;
     static formation = "line";
+    static width = 88;
 
     constructor(left, top, direction, facing){
         this.left = left;
@@ -187,12 +216,16 @@ class Enemy_6 {
         this.hp = 350;
         this.shields = 0;
         this.shieldsMax = 0;
+        this.shieldsRecharging = false;
         this.speed = enemyMoveSpeed / 4;
+        this.weapon = "fireball";
+        this.fireDelay = 500;
         this.rammingDamage = rammingDamage * 2;
         this.name = "Enemy Six";
         this.type = "enemy6";
         this.scoreValue = 90;
         this.xpValue = 40;
+        this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
         this.direction = direction;
@@ -211,8 +244,8 @@ class Missile {
     constructor(left, top, direction){
         this.left = left;
         this.top = top;
-        this.height = 10;
-        this.width = 2;
+        this.height = 13;
+        this.width = 7;
         this.damage = 125;
         this.name = "Missile";
         this.type = "missile";
@@ -235,14 +268,32 @@ class ChaingunRound {
     constructor(left, top, direction){
         this.left = left;
         this.top = top;
-        this.height = 5;
-        this.width = 2;
+        this.height = 15;
+        this.width = 7;
         this.damage = 35;
         this.name = "Chaingun";
         this.type = "chaingunRound";
         this.weaponId = 1;
         this.direction = direction || "up";
         this.speed = 35;
+        this.piercing = false;
+    }
+    
+    
+}
+class Fireball {
+
+    constructor(left, top, direction){
+        this.left = left;
+        this.top = top;
+        this.height = 8;
+        this.width = 7;
+        this.damage = 35;
+        this.name = "Fireball";
+        this.type = "fireball";
+        this.weaponId = 2;
+        this.direction = direction || "down";
+        this.speed = 25;
         this.piercing = false;
     }
     

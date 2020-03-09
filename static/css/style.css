@@ -19,13 +19,14 @@
 
 /* Game Stuff */
 #background {
-    background-image: url("../img/backgrounds/ocean.jpg");
+    background-image: url("../img/backgrounds/space1.png");
     background-attachment: scroll;
-    /* background-repeat: no-repeat; */
-    background-size: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
     /*background-image: url("ocean.jpg"); */
-    width: 100%;
-    height: 670px;
+    /* max-width: 150%; */
+    /* width: 100%;
+    height: 670px; */
     z-index: -1;
 
 }
@@ -37,7 +38,18 @@
     width: 7px; 
     height: 15px;
     /* background-color: green; */
-    background-image: url("../img/munitions/fireball.png");
+    background-image: url("../img/munitions/greenMissile.png");
+    background-repeat: no-repeat;
+}
+
+.fireball {
+    position: absolute;
+    /* height: 10px;
+    width: 6px; */
+    width: 7px; 
+    height: 15px;
+    /* background-color: green; */
+    background-image: url("../img/munitions/redFireball.png");
     background-repeat: no-repeat;
 }
 
@@ -45,9 +57,16 @@
     position: absolute;
     /* height: 10px;
     width: 6px; */
-    width: 1px; 
+    /* width: 1px; 
     height: 2px;
-    background-color: white;
+    background-color: white; */
+
+    width: 7px; 
+    height: 15px;
+
+    background-image: url("../img/munitions/fireball.png");
+    background-repeat: no-repeat;
+
     /* background-image: url("../img/munitions/fireball.png");
     background-repeat: no-repeat; */
 }
@@ -106,7 +125,7 @@
     width: 200px;
     height: 20px;
     position: relative;
-    left: 10px;
+    left: 8px;
 }
 
 .healthProgressDiv {
@@ -146,7 +165,30 @@
     /* background-color: blue; */
 }
 
+.abilityBox{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
 
+#abilityOne  {
+    background-color: green;
+}
+.abilityTwo  {
+    background-color: green;
+}
+.abilityThree  {
+    background-color: green;
+}
+.abilityFour  {
+    background-color: green;
+}
+.abilityFive  {
+    background-color: green;
+}
+.abilitySix  {
+    background-color: green;
+}
 
 
 .player {
@@ -170,7 +212,7 @@
 
 .enemy2 {
     position: absolute;
-    background-image: url("../img/enemies/enemy2.png");
+    background-image: url("../img/enemies/enemy2b.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 93px;
