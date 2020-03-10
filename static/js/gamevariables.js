@@ -1,6 +1,6 @@
 
 // ----------GAME VARIABLES----------
-
+var difficultyRate = 1; //Later turn this into a slider on dashboard, pass it through JSON to here
 // GAME MAP SIZE
 var gameHeight = $(document).height() * 0.8;
 var gameWidth = $(document).width() * 0.7;
@@ -31,9 +31,9 @@ var enemiesKilled = 0;
 var numEscapedEnemies = 0;
 
 //RATES
+
 var enemyHealthMultiplier = difficultyRate + 0.5;
 var enemyDamageMultiplier = difficultyRate + 0.5;
-var difficultyRate = 1; //Later turn this into a slider on dashboard, pass it through JSON to here
 var enemySpawnRate = 4000;
 var enemySpawnTimer = enemySpawnRate / difficultyRate; //how often waves spawn
 var shieldRechargeRate = 0.25 / (difficultyRate / 2); //How much shields recharge per tick
@@ -52,7 +52,7 @@ var rammingModifier = 0.5; //modifies xp and score gained for enemies killed wit
 
 
 //AUDIO
-document.getElementById("backgroundMusic").volume = 0.4;
+document.getElementById("backgroundMusic").volume = 0.3;
 document.getElementById("explosion7").volume = 0.3;
 document.getElementById("explosion6").volume = 0.3;
 document.getElementById("explosion2").volume = 0.3;

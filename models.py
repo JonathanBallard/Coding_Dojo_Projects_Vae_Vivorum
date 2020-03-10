@@ -49,6 +49,8 @@ class Users(db.Model):
     # active_ability_id = db.Column(db.Integer)
     # passive_abilities_id = db.Column(db.Integer)
     active_ship = db.Column(db.Integer, default=0)
+    abilityPointsEarned = db.Column(db.Integer, default=0)
+    abilityPointsSpent = db.Column(db.Integer, default = 0)
     passive1 = db.Column(db.Integer, default=0)
     passive2 = db.Column(db.Integer, default=0)
     passive3 = db.Column(db.Integer, default=0)

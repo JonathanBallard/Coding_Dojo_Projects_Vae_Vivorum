@@ -849,21 +849,28 @@ function playerFires(){
 }
 
 function enemyFires(enemy, direction){
+    var random = Math.floor(Math.random() * 3) + 1;
+    if(random == 1){
+        randomDirection = direction; //fire the direction enemy is moving
+    }
+    else {
+        randomDirection = "down";
+    }
     if(enemy.weapon == "fireball"){
         //Make sure enemy is still alive
         if(enemies.includes(enemy)){
 
             if(enemy.numShots > 1){
                 for(var i = 0; i < enemy.numShots / 2; i++){
-                    var newFire = new Fireball(enemy.left + (enemy.width / 2) - ((i + 1) * 10), enemy.top + (enemy.height / 2), direction);
-                    var newFire2 = new Fireball(enemy.left + (enemy.width / 2) + ((i + 1) * 10), enemy.top + (enemy.height / 2), direction);
+                    var newFire = new Fireball(enemy.left + (enemy.width / 2) - ((i + 1) * 10), enemy.top + (enemy.height / 2), randomDirection);
+                    var newFire2 = new Fireball(enemy.left + (enemy.width / 2) + ((i + 1) * 10), enemy.top + (enemy.height / 2), randomDirection);
                     enemy_fires.push(newFire);
                     enemy_fires.push(newFire2);
                 }
             }
 
             else if(enemy.numShots == 1){
-                var newFire = new Fireball(enemy.left + (enemy.width / 2), enemy.top + (enemy.height / 2), direction);
+                var newFire = new Fireball(enemy.left + (enemy.width / 2), enemy.top + (enemy.height / 2), randomDirection);
                 enemy_fires.push(newFire);
             }
 
@@ -1134,7 +1141,7 @@ $('#muteToggle').click(function(){
         $('#muteToggle').html(content);
 
         //now volume goes on
-        document.getElementById("backgroundMusic").volume = 0.4;
+        document.getElementById("backgroundMusic").volume = 0.3;
         document.getElementById("explosion7").volume = 0.3;
         document.getElementById("explosion6").volume = 0.3;
         document.getElementById("explosion2").volume = 0.3;

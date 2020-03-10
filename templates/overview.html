@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -30,11 +30,128 @@
             <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
         </div>
 
-
-
         <h1 class="display-3 text-center text-warning">Mission Overview</h1>
 
-        <div class="stats mt-5 ml-5 d-inline-block">
+
+        <!-- Buy Passives -->
+        <div class="container col-xl-8 passiveArea bg-light d-inline-block p-4 vertical-align-top">
+            <h1 class="display-5 text-danger d-inline-block">Purchase Passives</h1>
+            <!-- Set up points later -->
+            <h2>Points Left: <span class="abilPoints"> {{ thisUser.abilityPointsEarned - thisUser.abilityPointsSpent }} </span></h2>
+
+
+
+            <div class="card-deck passiveRow">
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 1 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil1">{{ thisUser.passive1 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive1Buy">Buy</div>
+                    </div>
+                </div>
+
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 2 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil2">{{ thisUser.passive2 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive2Buy">Buy</div>
+                    </div>
+                </div>
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 3 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil3">{{ thisUser.passive3 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, fuga?</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive3Buy">Buy</div>
+                    </div>
+                </div>
+
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 4 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil4">{{ thisUser.passive4 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive4Buy">Buy</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="card-deck passiveRow mt-3">
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 5 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil5">{{ thisUser.passive5 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive5Buy">Buy</div>
+                    </div>
+                </div>
+
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 6 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil6">{{ thisUser.passive6 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive6Buy">Buy</div>
+                    </div>
+                </div>
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 7 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil7">{{ thisUser.passive7 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive7Buy">Buy</div>
+                    </div>
+                </div>
+
+
+                <div class="card abilCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Ability 8 Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil8">{{ thisUser.passive8 }}</span></h6>
+                        <p class="card-text text-dark">Description of ability</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive8Buy">Buy</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <!-- Stats -->
+        <div class="stats mt-5 ml-5 d-inline-block  col-xl-3">
+            <div id="getStats" class="btn btn-success mb-2">Update Statistics</div>
             <h4>Statistics:</h4>
             <h6 id="score">Score: {{ score }}</h6>
             <h6 id="kills">Kills: {{ kills }}</h6>
@@ -45,7 +162,7 @@
 
         <div class="bg-dark text-light d-inline-block col-xl-4 align-bottom mt-4 mb-2 ml-5 vertical-align-top">
             <div class="d-inline-block">
-                <a href="/dashboard"><i class="ml-5 fas fa-2x fa-anchor"></i></a>
+                <a href="/outputPassives"><i class="ml-5 fas fa-2x fa-anchor"></i></a>
                 <p class="lead">Return To Space Dock</p>
             </div>
         </div>
@@ -57,7 +174,6 @@
 
 
     </div>
-
 
 </body>
 </html>

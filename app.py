@@ -217,18 +217,20 @@ def getjson(jsondata):
 
 @app.route('/output', methods=['POST'])
 def output():
-
+    
     # add to database
     # if request.is_json():
     # print("*&********************************REQUEST.IS_JSON*****************************************")
     data = request.get_json()
     print('data*******************************', data)
     thisUser = Users.query.get(session['id'])
+    previousXp = thisUser.current_xp
     thisUser.current_score += data['score']
     thisUser.current_kills += data['kills']
     thisUser.current_xp += data['xp']
     thisUser.current_money += data['money']
     db.session.commit()
+
 
     session['endScore'] = data['score']
     session['endKills'] = data['kills']
@@ -254,18 +256,18 @@ def outputPassives():
     thisUser.passive6 = data['p6']
     thisUser.passive7 = data['p7']
     thisUser.passive8 = data['p8']
-    thisUser.passive9 = data['p9']
-    thisUser.passive10 = data['p10']
-    thisUser.passive11 = data['p11']
-    thisUser.passive12 = data['p12']
-    thisUser.passive13 = data['p13']
-    thisUser.passive14 = data['p14']
-    thisUser.passive15 = data['p15']
-    thisUser.passive16 = data['p16']
-    thisUser.passive17 = data['p17']
-    thisUser.passive18 = data['p18']
-    thisUser.passive19 = data['p19']
-    thisUser.passive20 = data['p20']
+    # thisUser.passive9 = data['p9']
+    # thisUser.passive10 = data['p10']
+    # thisUser.passive11 = data['p11']
+    # thisUser.passive12 = data['p12']
+    # thisUser.passive13 = data['p13']
+    # thisUser.passive14 = data['p14']
+    # thisUser.passive15 = data['p15']
+    # thisUser.passive16 = data['p16']
+    # thisUser.passive17 = data['p17']
+    # thisUser.passive18 = data['p18']
+    # thisUser.passive19 = data['p19']
+    # thisUser.passive20 = data['p20']
     db.session.commit()
 
     return redirect('/dashboard')

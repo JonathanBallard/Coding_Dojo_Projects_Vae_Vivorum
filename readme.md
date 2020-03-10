@@ -1,5 +1,5 @@
 
-#### Current As Of 3/8/20
+#### Current As Of 3/10/20
 
 [My GitHub](https://github.com/JonathanBallard/)
 [My Repo](https://github.com/JonathanBallard/Coding_Dojo_Projects_Vae_Vivorum.git)
@@ -77,16 +77,12 @@ Based on the pre-bootcamp fighter jet game*
 - Responsive Game Screen  
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
-- Need Victory screen  
-- Finish victory() function  
 - Look at better hitboxes  
 - Make all ships smaller (??)  
 - Create .py script to add a bunch of entries to the database    
 - Reduce the height of the screen  
 - Ensure it works on all screen sizes  
 - Resize player ship for dashboard/index  
-- Enemies gain health based on level & difficulty  
-- Change stats for each enemy type  
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
 - Shields should stop recharging when you take damage  
 - Performance loss around 100 kills  
@@ -96,9 +92,14 @@ Based on the pre-bootcamp fighter jet game*
 - Create overview.html  
 - Ensure all instances of the word 'dashboard' are replaced with 'Space Dock' and all use correct anchor image  
 - Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
-- More enemies shoot down  
-- Implement player levels and abilities  
-- Implement player victory  
+- Implement player levels and passive abilities  
+- Add in 2 more enemy weapon types  
+- Change stats for each enemy type **DONE**  
+- Enemies gain health based on level & difficulty **DONE**  
+- More enemies shoot down **DONE**  
+- Implement player victory **DONE**  
+- Need Victory screen **DONE**  
+- Finish victory() function **DONE**  
 - Need ENDGAME screen **DONE**  
 - Finish gameOver() function **DONE**  
 - Pass database info using JSON but first need to enter everything into DB **CANCELLED**
@@ -268,10 +269,23 @@ Based on the pre-bootcamp fighter jet game*
 
 
 
+# Player Levels and Passive Abilities
 
+### Levels  
 
+### Abilities  
 
+1) JavaScript checks XP against XP required for Level to see how many points are available  
+2) Python templates through Jinja the current level of each ability to see how many points have been spent already  
+3) JavaScript gets number of ability points for that level minus the number already spent (sent from python)  
+4) Number of available points listed  
+5) On "buy" click, number of available points subtracted in JavaScript  
+6) On return to Space Dock, database is updated with new ability and points info  
 
+### Abilities in Game  
+
+1) Python templates through Jinja current level of each ability, d-none  
+2) JavaScript reads in and uses  
 
 
 
