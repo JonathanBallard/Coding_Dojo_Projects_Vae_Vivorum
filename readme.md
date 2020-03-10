@@ -74,7 +74,6 @@ Based on the pre-bootcamp fighter jet game*
 
 - TEST MODELS  
 - Bcrypt everything important in session  
-- Background Image  
 - Responsive Game Screen  
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
@@ -87,19 +86,25 @@ Based on the pre-bootcamp fighter jet game*
 - Create .py script to add a bunch of entries to the database  
 - Pass database info using JSON but first need to enter everything into DB  
 - Reduce the height of the screen  
-- Ensure it works on all screen sizes      
+- Ensure it works on all screen sizes  
 - Resize player ship for dashboard/index  
 - Enemies gain health based on level & difficulty  
 - Change stats for each enemy type  
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
-- Pass info from JavaScript to Python using a hidden form  
 - Shields should stop recharging when you take damage  
-- Performance loss around 200 kills  
-- Find sounds for chaingun firing  
-- Add random element to chaingun's LEFT axis (inaccuracy)  
+- Performance loss around 100 kills  
 - Fix line formation Spawning  
-- Make some enemies fire multiple times  
-- Dead enemies are still shooting  
+- Missiles hitbox too small  
+- Change Background Image Randomly (??)  
+- Pass info from JavaScript to Python using JSON  
+- Create overview.html  
+- Pass info from JavaScript to Python using a hidden form **CANCELLED**  
+- Background Image **DONE**  
+- Change img for torpedo **DONE**  
+- Find sounds for chaingun firing & empty **DONE**  
+- Add random element to chaingun's LEFT axis (inaccuracy) **DONE**  
+- Make some enemies fire multiple times **DONE**  
+- Dead enemies are still shooting **DONE**  
 - Make enemies fire at you **DONE**  
 - Take Armor into account in damage calculations **DONE**  
 - Break apart munitions images **DONE**
@@ -232,7 +237,23 @@ Based on the pre-bootcamp fighter jet game*
 
 
 
+# Pass Info Between Python & JavaScript  
 
+### To Python  
+
+1) On victory() or gameover() window.location.replace("/post_results/<json_data>"); or if that fails, a button to continue to "/post_results/<json_data>"  
+2) /post_results/<json_data> will pass json_data, which is a JSON dictionary, to python  
+3) update the database  
+4) Redirect back to /overview  
+5) Button on /overview takes you back to /dashboard  
+
+### To JavaScript  
+
+1)   
+
+
+- Player/User stats (current_score, current_money, current_xp, current_level)  
+- Player passives  
 
 
 

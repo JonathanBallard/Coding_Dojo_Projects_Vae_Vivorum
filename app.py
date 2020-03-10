@@ -3,7 +3,7 @@
 import re
 import json
 from config import app, bcrypt, db
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from models import User_Character, Users, Equipment, Loadouts, Active_Abilities, Passive_Abilities, Ships, user_ships
 from sqlalchemy.sql import func
 
@@ -148,7 +148,7 @@ def dashboard():
     if 'id' in session:
         loggedInUser = Users.query.get(session['id'])
     else:
-        loggedInUser = Users.query.get(1)   #DEFAULT USER, CHANGE THIS LATER
+        return redirect('/')
 
     print('CURRENT SESSION USER: ', session['id'])
 
@@ -209,11 +209,11 @@ def game():
         print('NO LOGGED IN USER -- GAME ROUTE')
         loggedInUser = False
 
-
-
     return render_template("game.html", thisUser = loggedInUser)
 
-
+@app.route('/getjson/<jsondata>')
+def getjson(jsondata):
+    return jsondata
 
 
 

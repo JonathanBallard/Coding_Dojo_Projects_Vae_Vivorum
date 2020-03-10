@@ -13,14 +13,15 @@ class Player {
         this.hpMax = 100;
         this.shieldsMax = 50;
         this.shields = 50;
-        this.armor = 5;
         this.shieldsRecharging = false;
+        this.armor = 5;
         this.speed = playerMoveSpeed;
         this.name = "Player";
         this.type = "Player";
         this.score = 0;
         this.kills = 0;
         this.xp = 0;
+        this.level = 0;
         this.currentWeapon = "chaingun";
         this.numFired = 0;
         this.ability1OnCooldown = false;
@@ -61,9 +62,12 @@ class Enemy_1 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
+        this.armor = 0;
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
         this.fireDelay = 2500;
+        this.numShots = 1;
+        this.keepFiring = true;
         this.rammingDamage = rammingDamage;
         this.name = "Enemy One";
         this.type = "enemy";
@@ -93,9 +97,12 @@ class Enemy_2 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
+        this.armor = 5;
         this.speed = enemyMoveSpeed * 0.8;
         this.weapon = "fireball";
-        this.fireDelay = 3500;
+        this.fireDelay = 3000;
+        this.numShots = 8;
+        this.keepFiring = false;
         this.rammingDamage = rammingDamage * 1.2;
         this.name = "Enemy Two";
         this.type = "enemy2";
@@ -124,9 +131,12 @@ class Enemy_3 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
+        this.armor = 0;
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
-        this.fireDelay = 5000;
+        this.fireDelay = 4000;
+        this.numShots = 1;
+        this.keepFiring = true;
         this.rammingDamage = rammingDamage * 0.8;
         this.name = "Enemy Three"; //bomber?
         this.type = "enemy3";
@@ -155,9 +165,12 @@ class Enemy_4 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
+        this.armor = 0;
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
         this.fireDelay = 1000;
+        this.numShots = 2;
+        this.keepFiring = true;
         this.rammingDamage = rammingDamage;
         this.name = "Enemy Four";
         this.type = "enemy4";
@@ -186,9 +199,12 @@ class Enemy_5 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
+        this.armor = 0;
         this.speed = enemyMoveSpeed * 1.2;
         this.weapon = "fireball";
-        this.fireDelay = 3500;
+        this.numShots = 1;
+        this.fireDelay = 2500;
+        this.keepFiring = false;
         this.rammingDamage = rammingDamage * 0.5;
         this.name = "Enemy Five";
         this.type = "enemy5";
@@ -217,9 +233,12 @@ class Enemy_6 {
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
+        this.armor = 5;
         this.speed = enemyMoveSpeed / 4;
         this.weapon = "fireball";
         this.fireDelay = 500;
+        this.numShots = 4;
+        this.keepFiring = true;
         this.rammingDamage = rammingDamage * 2;
         this.name = "Enemy Six";
         this.type = "enemy6";
@@ -281,6 +300,7 @@ class ChaingunRound {
     
     
 }
+
 class Fireball {
 
     constructor(left, top, direction){
@@ -288,7 +308,7 @@ class Fireball {
         this.top = top;
         this.height = 8;
         this.width = 7;
-        this.damage = 35;
+        this.damage = 25;
         this.name = "Fireball";
         this.type = "fireball";
         this.weaponId = 2;
@@ -299,7 +319,24 @@ class Fireball {
     
     
 }
+class Torpedo {
 
+    constructor(left, top, direction){
+        this.left = left;
+        this.top = top;
+        this.height = 13;
+        this.width = 7;
+        this.damage = 650;
+        this.name = "Torpedo";
+        this.type = "torpedo";
+        this.weaponId = 3;
+        this.direction = direction || "up";
+        this.speed = 10;
+        this.piercing = false;
+    }
+    
+    
+}
 
 
 

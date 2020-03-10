@@ -36,7 +36,7 @@
     /* height: 10px;
     width: 6px; */
     width: 7px; 
-    height: 15px;
+    height: 13px;
     /* background-color: green; */
     background-image: url("../img/munitions/greenMissile.png");
     background-repeat: no-repeat;
@@ -47,9 +47,20 @@
     /* height: 10px;
     width: 6px; */
     width: 7px; 
-    height: 15px;
+    height: 8px;
     /* background-color: green; */
     background-image: url("../img/munitions/redFireball.png");
+    background-repeat: no-repeat;
+}
+
+.torpedo {
+    position: absolute;
+    /* height: 10px;
+    width: 6px; */
+    width: 7px; 
+    height: 8px;
+    /* background-color: green; */
+    background-image: url("../img/munitions/torpedo.png");
     background-repeat: no-repeat;
 }
 
@@ -67,8 +78,6 @@
     background-image: url("../img/munitions/fireball.png");
     background-repeat: no-repeat;
 
-    /* background-image: url("../img/munitions/fireball.png");
-    background-repeat: no-repeat; */
 }
 
 
@@ -203,7 +212,7 @@
 
 .enemy {
     position: absolute;
-    background-image: url("../img/enemies/enemy.png");
+    background-image: url("../img/enemies/enemyb.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 60px;
@@ -221,7 +230,7 @@
 
 .enemy3 {
     position: absolute;
-    background-image: url("../img/enemies/enemy3.png");
+    background-image: url("../img/enemies/enemy3b.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 76px;
@@ -229,7 +238,7 @@
 
 .enemy4 {
     position: absolute;
-    background-image: url("../img/enemies/enemy4.png");
+    background-image: url("../img/enemies/enemy4b.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 107px;
@@ -237,7 +246,7 @@
 
 .enemy5 {
     position: absolute;
-    background-image: url("../img/enemies/enemy5.png");
+    background-image: url("../img/enemies/enemy5b.png");
     /*background-image: url("enemy.png");*/
     width: 50px;
     height: 44px;
@@ -245,7 +254,7 @@
 
 .enemy6 {
     position: absolute;
-    background-image: url("../img/enemies/enemy6.png");
+    background-image: url("../img/enemies/enemy6b.png");
     /*background-image: url("enemy.png");*/
     width: 70px;
     height: 88px;

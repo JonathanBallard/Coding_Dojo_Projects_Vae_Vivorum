@@ -109,7 +109,7 @@ function drawFires(){
 
     content = "";
     for(var i = 0; i < enemy_fires.length; i++){
-        console.log('enemy_fires[i] ' + enemy_fires[i])
+        // console.log('enemy_fires[i] ' + enemy_fires[i])
         content += "<div class = '" + enemy_fires[i].type + "' style = 'left: " + enemy_fires[i].left + "px; top: " + enemy_fires[i].top + "px;'></div>";
     }
     document.getElementById("enemy_fires").innerHTML = content;
@@ -351,7 +351,7 @@ function rammedPlayer(enemy, enemyIndex){
         var remainingDamage = player.shields;
         player.shields = 0;
         if((remainingDamage * -1) > player.armor){
-            player.hp += (remainingDamage + armor );
+            player.hp += (remainingDamage + player.armor );
         }
     }
     else {
@@ -457,13 +457,13 @@ function spawnEnemyWave(){
     var enemySpawner = Math.floor(Math.random() * 13);
     var typeOfEnemy = "Enemy_1";
     
-    if(enemySpawner <= 5){
+    if(enemySpawner <= 4){
         typeOfEnemy = "Enemy_1";
     }
-    else if(enemySpawner == 6){
+    else if(enemySpawner == 5){
         typeOfEnemy = "Enemy_2";
     }
-    else if(enemySpawner == 7){
+    else if(enemySpawner == 6 || enemySpawner == 7){
         typeOfEnemy = "Enemy_3";
     }
     else if(enemySpawner == 8){
@@ -685,12 +685,31 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
 
 }
 
+function endGame(){
+    var data = {
+        "Score":player.score,
+        "Kills":player.kills,
+        "XP":player.xp,
+        "Level":player.level,
+    }
+
+    jsondata = JSON.stringify(data);
+
+    //pass javascript_data to Python
+    $.get( "/getjson/<jsondata>" );
+
+    // Soon Replace With window.location.replace("/overview");
+    location.reload();
+}
+
 
 function victory(){
     // VICTORY HERE
+    document.getElementById("playerWinSound").volume = 0.3;
+    document.getElementById("playerWinSound").play();
     console.log("You Win!")
     alert('Victory');
-    location.reload();
+    endGame();
 }
 
 function gameOver(){
@@ -699,7 +718,7 @@ function gameOver(){
     document.getElementById("playerDeathSound").play();
     console.log("You Lose!")
     alert('You Lose!');
-    location.reload();
+    endGame();
 }
 
 function collisionDetection(obj1, obj2){
@@ -804,10 +823,17 @@ function writeStats(){
 function playerFires(){
     if(player.currentWeapon == "missile"){
         var newFire = new Missile(player.left + (player.width / 2), player.top, "up");
+        document.getElementById("missileVolleySound").volume = 0.3;
+        document.getElementById("missileVolleySound").play();
     }
     else if(player.currentWeapon == "chaingun"){
-        var newFire = new ChaingunRound(player.left + (player.width / 2), player.top, "up");
+        var inaccuracy = Math.floor(Math.random() * 20) - 10;
+        var newFire = new ChaingunRound(player.left + inaccuracy + (player.width / 2), player.top, "up");
         ammoPercent -= 100 / ChaingunRound.magazineSize;
+        document.getElementById("chaingunSound").volume = 0.05;
+        document.getElementById("chaingunSound").play();
+
+
     }
 
     friendly_fires.push(newFire);
@@ -817,11 +843,29 @@ function playerFires(){
 
 function enemyFires(enemy, direction){
     if(enemy.weapon == "fireball"){
-        var newFire = new Fireball(enemy.left + (enemy.width / 2), enemy.top, direction);
-    }
+        //Make sure enemy is still alive
+        if(enemies.includes(enemy)){
 
-    enemy_fires.push(newFire);
+            if(enemy.numShots > 1){
+                for(var i = 0; i < enemy.numShots / 2; i++){
+                    var newFire = new Fireball(enemy.left + (enemy.width / 2) - ((i + 1) * 10), enemy.top + (enemy.height / 2), direction);
+                    var newFire2 = new Fireball(enemy.left + (enemy.width / 2) + ((i + 1) * 10), enemy.top + (enemy.height / 2), direction);
+                    enemy_fires.push(newFire);
+                    enemy_fires.push(newFire2);
+                }
+            }
+
+            else if(enemy.numShots == 1){
+                var newFire = new Fireball(enemy.left + (enemy.width / 2), enemy.top + (enemy.height / 2), direction);
+                enemy_fires.push(newFire);
+            }
+
+        }
+    }
     drawFires();
+    if(enemy.keepFiring == true){
+        enemyFireDelay(enemy, direction);
+    }
 }
 
 function enemyFireDelay(enemy, direction){
@@ -871,10 +915,22 @@ function missileVolley(){
     document.getElementById("missileVolleySound").play();
 }
 
+function torpedo(){
+    var newFire = new Torpedo(player.left + (player.width / 2), player.top + 5, "up");
+    friendly_fires.push(newFire);
+    document.getElementById("torpedoSound").volume = 0.3;
+    document.getElementById("torpedoSound").play();
+}
+
 function abilityCooldown(ability){
     if(ability == "missileVolley"){
         setTimeout(clearCooldown,player.ability1CooldownTime,1);
     }
+    if(ability == "torpedo"){
+        setTimeout(clearCooldown,player.ability2CooldownTime,2);
+    }
+
+
 }
 
 function clearCooldown(abilityNum){
@@ -938,7 +994,7 @@ function mouseMove(e) {
 
 //Keyboard Controls
 document.onkeydown = document.onkeyup = function(e) {
-    console.log(e.keyCode);
+    // console.log(e.keyCode);
 
 
     
@@ -996,7 +1052,8 @@ document.onkeydown = document.onkeyup = function(e) {
 
         if(player.numFired >= ChaingunRound.magazineSize - 1){
             $('#messages').text('Reload Chaingun');
-            // setTimeout(playerFires, Missile.reloadSpeed);
+            document.getElementById("chaingunEmptySound").volume = 0.3;
+            document.getElementById("chaingunEmptySound").play();
         }
         else{
             setTimeout(playerFires, ChaingunRound.fireDelay);
@@ -1021,12 +1078,28 @@ document.onkeydown = document.onkeyup = function(e) {
             abilityCooldown("missileVolley");
         }
     }
+    // '2' ability-2 Torpedo
+    if(keymap[50]){
+        if(player.ability2OnCooldown){
+            $('#abilityMessages').text('Ability Not Ready...');
+            setTimeout(clearAbilityMessages,2500);
+        }
+        else {
+            torpedo();
+            player.ability2OnCooldown = true;
+            $('.abilityTwo').css('background-color','red');
+            abilityCooldown("torpedo");
+        }
+    }
+
+
+
 
     drawPlayer();
 }
 
 
-//Play Game
+//Start Spawn Loop
 spawnEnemyWave();
 
 function gameLoop(){
@@ -1042,7 +1115,7 @@ function gameLoop(){
     setTimeout(gameLoop, gameSpeed);
 }
 
-
+//Play Game Loop
 gameLoop();
 
 

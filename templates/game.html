@@ -103,8 +103,11 @@
                 <h1 class="display-5 unselectable" id="messages"></h1>
 
 
-                <div id="abilityOne" class="ml-1 abilityBox abilityOne">
+                <div id="abilityOne" class="d-block ml-1 abilityBox abilityOne">
                     <i class="fas fa-4x fa-rocket"></i>
+                </div>
+                <div id="abilityTwo" class="d-block ml-1 abilityBox abilityTwo">
+                    <i class="fas fa-4x fa-bullseye"></i>
                 </div>
 
 
@@ -127,6 +130,9 @@
     <div class="audio">
         <audio id="missileVolleySound" class="ml-5 mt-5">
             <source src="../static/sounds/abilities/missileVolley.wav" type="audio/wav">
+        </audio>
+        <audio id="torpedoSound">
+            <source src="../static/sounds/abilities/torpedo.wav" type="audio/wav">
         </audio>
         <audio id="slowDownTimeSound">
             <source src="../static/sounds/abilities/slowDownTime.wav" type="audio/wav">
@@ -158,11 +164,15 @@
         <audio id="playerDeathSound">
             <source src="../static/sounds/explosions/playerDeath.ogg" type="audio/ogg">
         </audio>
+        <audio id="playerWinSound">
+            <source src="../static/sounds/other/playerwin.mp3" type="audio/mpeg">
+        </audio>
         <audio id="chaingunEmptySound">
             <source src="../static/sounds/weapons/chaingunEmpty.wav" type="audio/wav">
         </audio>
-
-
+        <audio id="chaingunSound">
+            <source src="../static/sounds/weapons/chaingun.mp3" type="audio/mpeg">
+        </audio>
 
     </div>
 
