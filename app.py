@@ -26,7 +26,7 @@ def register():
     conPassword = request.form['passwordConfirm']
     form = request.form['formType']
     isValid = True
-    
+
 
     users = Users.query.all()
 
@@ -215,13 +215,70 @@ def game():
 def getjson(jsondata):
     return jsondata
 
+@app.route('/output', methods=['POST'])
+def output():
+
+    # add to database
+    # if request.is_json():
+    # print("*&********************************REQUEST.IS_JSON*****************************************")
+    data = request.get_json()
+    print('data*******************************', data)
+    thisUser = Users.query.get(session['id'])
+    thisUser.current_score += data['score']
+    thisUser.current_kills += data['kills']
+    thisUser.current_xp += data['xp']
+    thisUser.current_money += data['money']
+    db.session.commit()
+
+    session['endScore'] = data['score']
+    session['endKills'] = data['kills']
+    session['endXp'] = data['xp']
+    session['endMoney'] = data['money']
+
+    thisUser = Users.query.get(session['id'])
+    print('This User Score, Kills, XP, Money:', thisUser.current_score, thisUser.current_kills, thisUser.current_xp, thisUser.current_money)
+    return redirect('/overview')
 
 
 
+@app.route('/outputPassives', methods=["POST"])
+def outputPassives():
+    data = request.get_json()
+    thisUser = Users.query.get(session['id'])
 
+    thisUser.passive1 = data['p1']
+    thisUser.passive2 = data['p2']
+    thisUser.passive3 = data['p3']
+    thisUser.passive4 = data['p4']
+    thisUser.passive5 = data['p5']
+    thisUser.passive6 = data['p6']
+    thisUser.passive7 = data['p7']
+    thisUser.passive8 = data['p8']
+    thisUser.passive9 = data['p9']
+    thisUser.passive10 = data['p10']
+    thisUser.passive11 = data['p11']
+    thisUser.passive12 = data['p12']
+    thisUser.passive13 = data['p13']
+    thisUser.passive14 = data['p14']
+    thisUser.passive15 = data['p15']
+    thisUser.passive16 = data['p16']
+    thisUser.passive17 = data['p17']
+    thisUser.passive18 = data['p18']
+    thisUser.passive19 = data['p19']
+    thisUser.passive20 = data['p20']
+    db.session.commit()
 
+    return redirect('/dashboard')
 
+@app.route('/overview')
+def overview():
+    thisUser = Users.query.get(session['id'])
+    score = session['endScore']
+    kills = session['endKills']
+    xp = session['endXp']
+    money = session['endMoney']
 
+    return render_template('overview.html', thisUser = thisUser, score = score, xp = xp, kills = kills, money = money)
 
 
 

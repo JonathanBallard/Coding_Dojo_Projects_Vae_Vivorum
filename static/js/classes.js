@@ -21,6 +21,7 @@ class Player {
         this.score = 0;
         this.kills = 0;
         this.xp = 0;
+        this.money = 0;
         this.level = 0;
         this.currentWeapon = "chaingun";
         this.numFired = 0;
@@ -58,7 +59,7 @@ class Enemy_1 {
         this.top = top;
         this.height = 70;
         this.width = 60;
-        this.hp = 100;
+        this.hp = 120 * enemyHealthMultiplier;
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
@@ -73,6 +74,7 @@ class Enemy_1 {
         this.type = "enemy";
         this.scoreValue = 50;
         this.xpValue = 10;
+        this.moneyValue = 20;
         this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
@@ -93,7 +95,7 @@ class Enemy_2 {
         this.top = top;
         this.height = 70;
         this.width = 93;
-        this.hp = 200;
+        this.hp = 280 * enemyHealthMultiplier;
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
@@ -106,8 +108,9 @@ class Enemy_2 {
         this.rammingDamage = rammingDamage * 1.2;
         this.name = "Enemy Two";
         this.type = "enemy2";
-        this.scoreValue = 50;
+        this.scoreValue = 110;
         this.xpValue = 25;
+        this.moneyValue = 40;
         this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
@@ -127,7 +130,7 @@ class Enemy_3 {
         this.top = top;
         this.height = 70;
         this.width = 76;
-        this.hp = 100;
+        this.hp = 70 * enemyHealthMultiplier;
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
@@ -135,13 +138,14 @@ class Enemy_3 {
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
         this.fireDelay = 4000;
-        this.numShots = 1;
+        this.numShots = 3;
         this.keepFiring = true;
         this.rammingDamage = rammingDamage * 0.8;
         this.name = "Enemy Three"; //bomber?
         this.type = "enemy3";
-        this.scoreValue = 50;
+        this.scoreValue = 30;
         this.xpValue = 12;
+        this.moneyValue = 5;
         this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
@@ -161,7 +165,7 @@ class Enemy_4 {
         this.top = top;
         this.height = 70;
         this.width = 107;
-        this.hp = 100;
+        this.hp = 225 * enemyHealthMultiplier;
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
@@ -176,6 +180,7 @@ class Enemy_4 {
         this.type = "enemy4";
         this.scoreValue = 50;
         this.xpValue = 10;
+        this.moneyValue = 20;
         this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
@@ -195,7 +200,7 @@ class Enemy_5 {
         this.top = top;
         this.height = 50;
         this.width = 44;
-        this.hp = 100;
+        this.hp = 100 * enemyHealthMultiplier;
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
@@ -208,8 +213,9 @@ class Enemy_5 {
         this.rammingDamage = rammingDamage * 0.5;
         this.name = "Enemy Five";
         this.type = "enemy5";
-        this.scoreValue = 50;
+        this.scoreValue = 30;
         this.xpValue = 6;
+        this.moneyValue = 3;
         this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
@@ -229,7 +235,7 @@ class Enemy_6 {
         this.top = top;
         this.height = 70;
         this.width = 88;
-        this.hp = 350;
+        this.hp = 350 * enemyHealthMultiplier;
         this.shields = 0;
         this.shieldsMax = 0;
         this.shieldsRecharging = false;
@@ -244,6 +250,7 @@ class Enemy_6 {
         this.type = "enemy6";
         this.scoreValue = 90;
         this.xpValue = 40;
+        this.moneyValue = 50;
         this.spawning = true;
         // this.formation = "line";
         // this.numFormation = 4; //number of ships to spawn at one time
@@ -308,7 +315,7 @@ class Fireball {
         this.top = top;
         this.height = 8;
         this.width = 7;
-        this.damage = 25;
+        this.damage = 25 * enemyDamageMultiplier;
         this.name = "Fireball";
         this.type = "fireball";
         this.weaponId = 2;

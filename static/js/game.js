@@ -269,20 +269,16 @@ function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
     enemy.shieldsRecharging = false;
     if(enemy.shields > fire.damage){
         enemy.shields -= fire.damage;
-        document.getElementById("explosion7").volume = 0.3;
         document.getElementById("explosion7").play();
     }
     else if(enemy.shields > 0 && enemy.shields < fire.damage){
-        document.getElementById("explosion7").volume = 0.3;
         document.getElementById("explosion7").play();
         enemy.shields -= fire.damage;
         enemy.hp += enemy.shields;
         enemy.shields = 0;
-        document.getElementById("explosion6").volume = 0.3;
         document.getElementById("explosion6").play();
     }
     else {
-        document.getElementById("explosion6").volume = 0.3;
         document.getElementById("explosion6").play();
         enemy.hp -= fire.damage;
     }
@@ -293,13 +289,16 @@ function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
 
     //If out of hp and shields, delete
     if(enemy.hp <= 0){
-        document.getElementById("explosion2").volume = 0.3;
         document.getElementById("explosion2").play();
         enemies.splice(enemyIndex, 1);
         enemiesKilled++;
-        player.xp += enemy.xpValue * rammingModifier;
+        player.xp += enemy.xpValue;
         player.kills++;
-        player.score += enemy.scoreValue * rammingModifier;
+        player.money += enemy.moneyValue;
+        player.score += enemy.scoreValue;
+        if(player.score >= gameWinScore){
+            victory();
+        }
     }
 }
 
@@ -308,21 +307,17 @@ function playerDamagedByFire(fire, fireIndex){
     if(player.shields >= fire.damage){
         player.shields -= fire.damage;
         //shield damage sound
-        document.getElementById("explosion7").volume = 0.3;
         document.getElementById("explosion7").play();
     }
     else if(player.shields > 0 && player.shields < fire.damage){
-        document.getElementById("explosion7").volume = 0.3;
         document.getElementById("explosion7").play();
         player.shields -= fire.damage;
         player.hp += player.shields;
-        document.getElementById("explosion6").volume = 0.3;
         document.getElementById("explosion6").play();
         player.shields = 0;
     }
     else {
         //hull damage sound
-        document.getElementById("explosion6").volume = 0.3;
         document.getElementById("explosion6").play();
         player.hp -= fire.damage;
     }
@@ -361,14 +356,16 @@ function rammedPlayer(enemy, enemyIndex){
     }
 
     player.kills++;
-    player.score += enemy.scoreValue;
-    player.xp += enemy.xpValue;
+    player.money += enemy.moneyValue  * rammingModifier;
+    player.score += enemy.scoreValue  * rammingModifier;
+    player.xp += enemy.xpValue  * rammingModifier;
     enemies.splice(enemyIndex,1);
 
     //play enemy destroyed sound
-    document.getElementById("explosion2").volume = 0.3;
     document.getElementById("explosion2").play();
-
+    if(player.score >= gameWinScore){
+        victory();
+    }
     //If out of hp, delete
     if(player.hp <= 0){
         gameOver();
@@ -687,38 +684,50 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
 
 function endGame(){
     var data = {
-        "Score":player.score,
-        "Kills":player.kills,
-        "XP":player.xp,
-        "Level":player.level,
+        score : player.score,
+        kills : player.kills,
+        xp : player.xp,
+        money : player.money
     }
 
-    jsondata = JSON.stringify(data);
+    // jsondata = JSON.stringify(data);
 
     //pass javascript_data to Python
-    $.get( "/getjson/<jsondata>" );
+    // $.get( "/getjson/<jsondata>" );
 
-    // Soon Replace With window.location.replace("/overview");
-    location.reload();
+
+    $.ajax({
+        url: "/output",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    window.location.replace("/overview");
+    // location.reload();
 }
 
 
 function victory(){
     // VICTORY HERE
-    document.getElementById("playerWinSound").volume = 0.3;
-    document.getElementById("playerWinSound").play();
-    console.log("You Win!")
-    alert('Victory');
-    endGame();
+    if(endOfGame == false){
+        endOfGame = true;  //prevent endGame() from running multiple times
+        document.getElementById("playerWinSound").play();
+        console.log("You Win!")
+        alert('Victory');
+        endGame();
+    }
 }
 
 function gameOver(){
+    if(endOfGame == false){
+        endOfGame = true; //prevent endGame() from running multiple times
+        document.getElementById("playerDeathSound").play();
+        console.log("You Lose!")
+        alert('You Lose!');
+        endGame();
+    }
     // END GAME HERE
-    document.getElementById("playerDeathSound").volume = 0.3;
-    document.getElementById("playerDeathSound").play();
-    console.log("You Lose!")
-    alert('You Lose!');
-    endGame();
 }
 
 function collisionDetection(obj1, obj2){
@@ -823,14 +832,12 @@ function writeStats(){
 function playerFires(){
     if(player.currentWeapon == "missile"){
         var newFire = new Missile(player.left + (player.width / 2), player.top, "up");
-        document.getElementById("missileVolleySound").volume = 0.3;
         document.getElementById("missileVolleySound").play();
     }
     else if(player.currentWeapon == "chaingun"){
         var inaccuracy = Math.floor(Math.random() * 20) - 10;
         var newFire = new ChaingunRound(player.left + inaccuracy + (player.width / 2), player.top, "up");
         ammoPercent -= 100 / ChaingunRound.magazineSize;
-        document.getElementById("chaingunSound").volume = 0.05;
         document.getElementById("chaingunSound").play();
 
 
@@ -911,14 +918,12 @@ function missileVolley(){
         friendly_fires.push(newFire);
     }
     // Play Volley Sound
-    document.getElementById("missileVolleySound").volume = 0.3;
     document.getElementById("missileVolleySound").play();
 }
 
 function torpedo(){
     var newFire = new Torpedo(player.left + (player.width / 2), player.top + 5, "up");
     friendly_fires.push(newFire);
-    document.getElementById("torpedoSound").volume = 0.3;
     document.getElementById("torpedoSound").play();
 }
 
@@ -1052,7 +1057,6 @@ document.onkeydown = document.onkeyup = function(e) {
 
         if(player.numFired >= ChaingunRound.magazineSize - 1){
             $('#messages').text('Reload Chaingun');
-            document.getElementById("chaingunEmptySound").volume = 0.3;
             document.getElementById("chaingunEmptySound").play();
         }
         else{
@@ -1097,6 +1101,58 @@ document.onkeydown = document.onkeyup = function(e) {
 
     drawPlayer();
 }
+
+//mute sound and change icon based on toggle
+$('#muteToggle').click(function(){
+    var content = "";
+
+    //turn off volume, icon is fa-volume-off
+    //     <i class="fas fa-4x fa-volume-off"></i>
+    if(muteToggle == false){
+        muteToggle = true;
+        content = '<i class="fas fa-4x fa-volume-off"></i>';
+        $('#muteToggle').html(content);
+
+        //now volume goes off
+        document.getElementById("backgroundMusic").volume = 0;
+        document.getElementById("explosion7").volume = 0;
+        document.getElementById("explosion6").volume = 0;
+        document.getElementById("explosion2").volume = 0;
+        document.getElementById("playerWinSound").volume = 0;
+        document.getElementById("playerDeathSound").volume = 0;
+        document.getElementById("missileVolleySound").volume = 0;
+        document.getElementById("chaingunSound").volume = 0;
+        document.getElementById("torpedoSound").volume = 0;
+        document.getElementById("chaingunEmptySound").volume = 0;
+    }
+
+    //otherwise volume normal, icon is fa-volume-up
+    //     <i class="fas fa-4x fa-volume-up"></i>
+    else {
+        muteToggle = false;
+        content = '<i class="fas fa-4x fa-volume-up"></i>';
+        $('#muteToggle').html(content);
+
+        //now volume goes on
+        document.getElementById("backgroundMusic").volume = 0.4;
+        document.getElementById("explosion7").volume = 0.3;
+        document.getElementById("explosion6").volume = 0.3;
+        document.getElementById("explosion2").volume = 0.3;
+        document.getElementById("playerWinSound").volume = 0.3;
+        document.getElementById("playerDeathSound").volume = 0.3;
+        document.getElementById("missileVolleySound").volume = 0.3;
+        document.getElementById("chaingunSound").volume = 0.05;
+        document.getElementById("torpedoSound").volume = 0.3;
+        document.getElementById("chaingunEmptySound").volume = 0.3;
+    }
+})
+
+
+
+
+
+
+
 
 
 //Start Spawn Loop

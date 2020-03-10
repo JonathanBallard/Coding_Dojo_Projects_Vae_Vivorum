@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>Dashboard</title>
+    <title>Space Dock</title>
 </head>
 <body>
     <div class="container bg-dark mt-5 text-warning col-xl-10">
@@ -33,8 +33,8 @@
         <div class="container col-xl-4 bg-dark align-top d-inline-block">
             
             <hr>
-            <h3>Score: {{ thisUser.current_score }}</h3>
-            <h3>Money: {{ thisUser.current_money }}</h3>
+            <h3>Total Score: {{ thisUser.current_score }}</h3>
+            <h3>Total Money: {{ thisUser.current_money }}</h3>
             <h3>Level: {{ thisUser.current_level }}</h3>
             <h3>XP: {{ thisUser.current_xp }}</h3>
         </div>
@@ -77,8 +77,6 @@
                 <p class="lead">Game</p>
             </div>
         </div>
-
-
     </div>
 
 

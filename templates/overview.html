@@ -12,13 +12,51 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer type="text/javascript" src="{{ url_for('static', filename='js/overview.js') }}"></script>
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
     <title>Overview</title>
 </head>
 <body>
 
+    <div class="container bg-dark mt-5 text-warning col-xl-10">
+
+        <div id="topbar"  class="d-flex flex-row mb-5">
+            <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
+            <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
+            <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
+        </div>
+
+
+
+        <h1 class="display-3 text-center text-warning">Mission Overview</h1>
+
+        <div class="stats mt-5 ml-5 d-inline-block">
+            <h4>Statistics:</h4>
+            <h6 id="score">Score: {{ score }}</h6>
+            <h6 id="kills">Kills: {{ kills }}</h6>
+            <h6 id="xp">XP Gained: {{ xp }}</h6>
+            <h6 id="money">Money Earned: {{ money }}</h6>
+        </div>
+
+
+        <div class="bg-dark text-light d-inline-block col-xl-4 align-bottom mt-4 mb-2 ml-5 vertical-align-top">
+            <div class="d-inline-block">
+                <a href="/dashboard"><i class="ml-5 fas fa-2x fa-anchor"></i></a>
+                <p class="lead">Return To Space Dock</p>
+            </div>
+        </div>
+    
+        <div id="bottombar" class="container bg-dark col-xl-10 mt-5 text-light">
+            <h3>Vae Vivorum by Jonathan Ballard</h3>
+            <p class="lead">asgardschosen@gmail.com</p>
+        </div>
+
+
+    </div>
 
 
 </body>

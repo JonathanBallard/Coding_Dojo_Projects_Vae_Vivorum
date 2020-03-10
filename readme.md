@@ -78,13 +78,10 @@ Based on the pre-bootcamp fighter jet game*
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
 - Need Victory screen  
-- Need ENDGAME screen  
-- Finish gameOver() function  
 - Finish victory() function  
 - Look at better hitboxes  
 - Make all ships smaller (??)  
-- Create .py script to add a bunch of entries to the database  
-- Pass database info using JSON but first need to enter everything into DB  
+- Create .py script to add a bunch of entries to the database    
 - Reduce the height of the screen  
 - Ensure it works on all screen sizes  
 - Resize player ship for dashboard/index  
@@ -96,8 +93,20 @@ Based on the pre-bootcamp fighter jet game*
 - Fix line formation Spawning  
 - Missiles hitbox too small  
 - Change Background Image Randomly (??)  
-- Pass info from JavaScript to Python using JSON  
 - Create overview.html  
+- Ensure all instances of the word 'dashboard' are replaced with 'Space Dock' and all use correct anchor image  
+- Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
+- More enemies shoot down  
+- Implement player levels and abilities  
+- Implement player victory  
+- Need ENDGAME screen **DONE**  
+- Finish gameOver() function **DONE**  
+- Pass database info using JSON but first need to enter everything into DB **CANCELLED**
+- /overview statistics aren't loading in until a page reload **DONE FOUND A WORKAROUND**  
+- Add sound mute function **DONE**  
+- Add in money gain **DONE**  
+- Pass info from JavaScript to Python using JSON **DONE**  
+- Fix AJAX/JSON **DONE**  
 - Pass info from JavaScript to Python using a hidden form **CANCELLED**  
 - Background Image **DONE**  
 - Change img for torpedo **DONE**  
@@ -245,7 +254,8 @@ Based on the pre-bootcamp fighter jet game*
 2) /post_results/<json_data> will pass json_data, which is a JSON dictionary, to python  
 3) update the database  
 4) Redirect back to /overview  
-5) Button on /overview takes you back to /dashboard  
+5) Pick your passives  
+6) Button on /overview takes you back to /dashboard  
 
 ### To JavaScript  
 

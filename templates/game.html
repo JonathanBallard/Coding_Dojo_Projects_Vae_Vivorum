@@ -27,7 +27,7 @@
     <div class="container bg-dark col-xl-10">
         <div id="topbar"  class="d-flex flex-row">
             <h1 class="unselectable display-2 d-inline-flex text-success">Vae Vivorum</h1>
-            <audio id="backgroundMusic" class="ml-5 mt-5" controls autoplay loop>
+            <audio id="backgroundMusic" class="ml-5 mt-5" autoplay loop>
                 <source src="../static/sounds/background-music.mp3" type="audio/mpeg">
                 Your Browser does not support the background music
             </audio>
@@ -36,7 +36,7 @@
         </div>
 
 
-    
+
         <div id="gameArea">
             <div id="background">
                 <div id="players"></div>
@@ -107,14 +107,16 @@
                     <i class="fas fa-4x fa-rocket"></i>
                 </div>
                 <div id="abilityTwo" class="d-block ml-1 abilityBox abilityTwo">
-                    <i class="fas fa-4x fa-bullseye"></i>
+                    <i class="fas fa-4x fa-crosshairs"></i>
                 </div>
 
 
 
             </div>
         </div>
-
+        <div id="muteToggle" class="d-block ml-1 muteBox">
+            <i class="fas fa-4x fa-volume-up"></i>
+        </div>
 
 
     </div>

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 483160b92506
+Revision ID: 2c98c038ca13
 Revises: 
-Create Date: 2020-03-03 12:57:25.091751
+Create Date: 2020-03-10 09:22:31.089471
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '483160b92506'
+revision = '2c98c038ca13'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -82,11 +82,32 @@ def upgrade():
     sa.Column('password', sa.String(length=255), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('current_kills', sa.Integer(), nullable=True),
     sa.Column('current_score', sa.Integer(), nullable=True),
     sa.Column('current_money', sa.Integer(), nullable=True),
     sa.Column('current_xp', sa.Integer(), nullable=True),
     sa.Column('current_level', sa.Integer(), nullable=True),
     sa.Column('active_ship', sa.Integer(), nullable=True),
+    sa.Column('passive1', sa.Integer(), nullable=True),
+    sa.Column('passive2', sa.Integer(), nullable=True),
+    sa.Column('passive3', sa.Integer(), nullable=True),
+    sa.Column('passive4', sa.Integer(), nullable=True),
+    sa.Column('passive5', sa.Integer(), nullable=True),
+    sa.Column('passive6', sa.Integer(), nullable=True),
+    sa.Column('passive7', sa.Integer(), nullable=True),
+    sa.Column('passive8', sa.Integer(), nullable=True),
+    sa.Column('passive9', sa.Integer(), nullable=True),
+    sa.Column('passive10', sa.Integer(), nullable=True),
+    sa.Column('passive11', sa.Integer(), nullable=True),
+    sa.Column('passive12', sa.Integer(), nullable=True),
+    sa.Column('passive13', sa.Integer(), nullable=True),
+    sa.Column('passive14', sa.Integer(), nullable=True),
+    sa.Column('passive15', sa.Integer(), nullable=True),
+    sa.Column('passive16', sa.Integer(), nullable=True),
+    sa.Column('passive17', sa.Integer(), nullable=True),
+    sa.Column('passive18', sa.Integer(), nullable=True),
+    sa.Column('passive19', sa.Integer(), nullable=True),
+    sa.Column('passive20', sa.Integer(), nullable=True),
     sa.Column('character_active_ability_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['character_active_ability_id'], ['Active_Abilities.id'], ondelete='cascade'),
     sa.PrimaryKeyConstraint('id')
