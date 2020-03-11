@@ -92,6 +92,17 @@ function updatePlayer(){
     player.ability4CooldownTime -= Player.passive6 * 200;
     player.ability5CooldownTime -= Player.passive6 * 200;
     player.ability6CooldownTime -= Player.passive6 * 200;
+
+
+    console.log('Player Armor: ' + player.armor);
+    console.log('ChaingunRound Damage: ' + ChaingunRound.damage);
+
+
+
+
+
+
+
 }
 
 
@@ -742,7 +753,7 @@ function endGame(gameStatus){
         data: JSON.stringify(data)
     });
 
-    setTimeout(locationReplace,2000);
+    setTimeout(locationReplace,3000);
     // location.reload();
 }
 

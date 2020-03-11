@@ -1,4 +1,34 @@
 
+    // determine player level
+var levelChart = [
+    0,       //Level 0
+    300,
+    600,
+    1000,
+    1400,
+    1900,
+    2400,
+    2900,
+    3500,
+    4100,
+    4700,       //Level 10
+    5300,
+    6000,
+    6700,
+    7500,
+    8300,
+    9100,
+    10000,
+    11000,
+    12000,
+    13100,      //Level 20
+    16300,
+    20000,
+    25800,
+    31600,
+    38800       //Level 25, Max
+]
+
 
 
 var abil1 = $('#abil1').text();
@@ -59,14 +89,14 @@ function increaseAbil(abilNum, abilMax){
 function postPassives(){
 
     var data = {
-        passive1 : abil1,
-        passive2 : abil2,
-        passive3 : abil3,
-        passive4 : abil4,
-        passive5 : abil5,
-        passive6 : abil6,
-        passive7 : abil7,
-        passive8 : abil8,
+        p1 : abil1,
+        p2 : abil2,
+        p3 : abil3,
+        p4 : abil4,
+        p5 : abil5,
+        p6 : abil6,
+        p7 : abil7,
+        p8 : abil8,
         // passive9 : $('#abil9').text(),
         // passive10 : $('#abil10').text(),
         // passive11 : $('#abil11').text(),
@@ -94,29 +124,63 @@ function postPassives(){
 
 
 
+//get xp, check levelChart, write percent of xp to next level
+var newXp = $('#xp').text();
+var prevXp = $('#totalXp').text();
+var totalXp = Math.floor(parseInt(newXp) + parseInt(prevXp));
+var newLevel = 0;
+var nextLevel = 1;
+var xpMissing = 0;
+var xpBetween = 0;
+var xpPercent = 0;
+for(var i = 0; i < levelChart.length; i++){
+    if(totalXp >= levelChart[i]){
+        newLevel = i;
+        nextLevel = i+1;
+    }
+}
+xpBetween = levelChart[nextLevel] - levelChart[newLevel];
+xpMissing = levelChart[nextLevel] - totalXp;
+xpPercent = Math.floor((xpMissing / xpBetween) * 100);
+
+
+$('.xpProgressBar').text(xpBetween-xpMissing);
+$('.xpProgressBar').attr('aria-valuenow', xpPercent);
+$('.xpProgressBar').css('width',xpPercent + '%');
+
+
+
 $('#passive1Buy').click(function(){
     increaseAbil(1,abil1Max);
+    abil1 = $('#abil1').text();
 });
 $('#passive2Buy').click(function(){
     increaseAbil(2,abil2Max);
+    abil2 = $('#abil2').text();
 });
 $('#passive3Buy').click(function(){
     increaseAbil(3,abil3Max);
+    abil3 = $('#abil3').text();
 });
 $('#passive4Buy').click(function(){
     increaseAbil(4,abil4Max);
+    abil4 = $('#abil4').text();
 });
 $('#passive5Buy').click(function(){
     increaseAbil(5,abil5Max);
+    abil5 = $('#abil5').text();
 });
 $('#passive6Buy').click(function(){
     increaseAbil(6,abil6Max);
+    abil6 = $('#abil6').text();
 });
 $('#passive7Buy').click(function(){
     increaseAbil(7,abil7Max);
+    abil7 = $('#abil7').text();
 });
 $('#passive8Buy').click(function(){
     increaseAbil(8,abil8Max);
+    abil8 = $('#abil8').text();
 });
 
 
@@ -132,6 +196,26 @@ $('#outputPassivesButton').click(function(){
     postPassives();
 
 })
+
+
+
+
+
+// LAST THING, Update Total Stats
+
+var totalScore = parseInt($('#totalScore').text()) + parseInt($('#score').text());
+$('#totalScore').text(totalScore);
+var totalMoney = parseInt($('#totalMoney').text()) + parseInt($('#money').text());
+$('#totalMoney').text(totalMoney);
+var totalXp = parseInt($('#totalXp').text()) + parseInt($('#xp').text());
+$('#totalXp').text(totalXp);
+$('#level').text(newLevel);
+
+
+
+
+
+
 
 
 

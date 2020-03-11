@@ -157,6 +157,12 @@
     left: 2px;
 }
 
+.xpProgressDiv {
+    width: 100%;
+    height: 20px;
+    position: relative;
+}
+
 .shieldProgressBar {
     color: white;
     width: 100%;
@@ -172,6 +178,10 @@
 #shieldProgressBar {
     color: white;
     /* background-color: blue; */
+}
+
+#xpProgressBar {
+    color: white;
 }
 
 .abilityBox{

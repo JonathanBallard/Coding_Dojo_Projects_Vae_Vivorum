@@ -271,10 +271,16 @@ def output():
     db.session.commit()
 
 
+    print("data['score']", data['score'])
+
     session['endScore'] = data['score']
     session['endKills'] = data['kills']
     session['endXp'] = data['xp']
     session['endMoney'] = data['money']
+
+
+    print('**********************************************************************************')
+    print("session['endScore']", session['endScore'])
 
     thisUser = Users.query.get(session['id'])
     print('This User Score, Kills, XP, Money:', thisUser.current_score, thisUser.current_kills, thisUser.current_xp, thisUser.current_money)
@@ -286,35 +292,41 @@ def output():
 def outputPassives():
     data = request.get_json()
     thisUser = Users.query.get(session['id'])
-
-    thisUser.passive1 = data['p1']
-    thisUser.passive2 = data['p2']
-    thisUser.passive3 = data['p3']
-    thisUser.passive4 = data['p4']
-    thisUser.passive5 = data['p5']
-    thisUser.passive6 = data['p6']
-    thisUser.passive7 = data['p7']
-    thisUser.passive8 = data['p8']
-    thisUser.abilityPointsSpent = thisUser.passive1 + thisUser.passive2 + thisUser.passive3 + thisUser.passive4 + thisUser.passive5 + thisUser.passive6 + thisUser.passive7 + thisUser.passive8
-    # thisUser.passive9 = data['p9']
-    # thisUser.passive10 = data['p10']
-    # thisUser.passive11 = data['p11']
-    # thisUser.passive12 = data['p12']
-    # thisUser.passive13 = data['p13']
-    # thisUser.passive14 = data['p14']
-    # thisUser.passive15 = data['p15']
-    # thisUser.passive16 = data['p16']
-    # thisUser.passive17 = data['p17']
-    # thisUser.passive18 = data['p18']
-    # thisUser.passive19 = data['p19']
-    # thisUser.passive20 = data['p20']
-    db.session.commit()
-
+    print(data)
+    if data:
+        thisUser.passive1 = data['p1']
+        thisUser.passive2 = data['p2']
+        thisUser.passive3 = data['p3']
+        thisUser.passive4 = data['p4']
+        thisUser.passive5 = data['p5']
+        thisUser.passive6 = data['p6']
+        thisUser.passive7 = data['p7']
+        thisUser.passive8 = data['p8']
+        thisUser.abilityPointsSpent = thisUser.passive1 + thisUser.passive2 + thisUser.passive3 + thisUser.passive4 + thisUser.passive5 + thisUser.passive6 + thisUser.passive7 + thisUser.passive8
+        # thisUser.passive9 = data['p9']
+        # thisUser.passive10 = data['p10']
+        # thisUser.passive11 = data['p11']
+        # thisUser.passive12 = data['p12']
+        # thisUser.passive13 = data['p13']
+        # thisUser.passive14 = data['p14']
+        # thisUser.passive15 = data['p15']
+        # thisUser.passive16 = data['p16']
+        # thisUser.passive17 = data['p17']
+        # thisUser.passive18 = data['p18']
+        # thisUser.passive19 = data['p19']
+        # thisUser.passive20 = data['p20']
+        db.session.commit()
+        print('passives:', thisUser.passive1, thisUser.passive2, thisUser.passive3, thisUser.passive4, thisUser.passive5, thisUser.passive6, thisUser.passive7, thisUser.passive8)
+    else:
+        print('failing to receive data')
     return redirect('/dashboard')
 
 @app.route('/overview')
 def overview():
     thisUser = Users.query.get(session['id'])
+
+    print('**********************************************************************************')
+    print("session['endScore']", session['endScore'])
 
     if 'endscore' in session:
         score = session['endScore']
