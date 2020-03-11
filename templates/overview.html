@@ -37,7 +37,7 @@
         <div class="container col-xl-8 passiveArea bg-light d-inline-block p-4 vertical-align-top">
             <h1 class="display-5 text-danger d-inline-block">Purchase Passives</h1>
             <!-- Set up points later -->
-            <h2>Points Left: <span class="abilPoints"> {{ thisUser.abilityPointsEarned - thisUser.abilityPointsSpent }} </span></h2>
+            <h2>Points Left: <span id="abilPoints">{{ thisUser.abilityPointsEarned - thisUser.abilityPointsSpent }}</span></h2>
 
 
 
@@ -45,9 +45,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 1 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil1">{{ thisUser.passive1 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability</p>
+                        <h5 class="card-title">Better Chaingun Ammunition</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil1">{{ thisUser.passive1 }}</span>/<span id="abil1Max"></span></h6>
+                        <p class="card-text text-dark">Increases Chaingun Damage</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive1Buy">Buy</div>
@@ -57,9 +57,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 2 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil2">{{ thisUser.passive2 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability</p>
+                        <h5 class="card-title">Strengthen Hull</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil2">{{ thisUser.passive2 }}</span>/<span id="abil2Max"></span></h6>
+                        <p class="card-text text-dark">Increases Hit Points and Armor</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive2Buy">Buy</div>
@@ -68,9 +68,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 3 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil3">{{ thisUser.passive3 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, fuga?</p>
+                        <h5 class="card-title">Improved Shields</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil3">{{ thisUser.passive3 }}</span>/<span id="abil3Max"></span></h6>
+                        <p class="card-text text-dark">Increases Shield Hit Points</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive3Buy">Buy</div>
@@ -80,9 +80,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 4 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil4">{{ thisUser.passive4 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability</p>
+                        <h5 class="card-title">Thermobaric Warheads</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil4">{{ thisUser.passive4 }}</span>/<span id="abil4Max"></span></h6>
+                        <p class="card-text text-dark">Increases Missile Volley and Torpedo Damage</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive4Buy">Buy</div>
@@ -97,9 +97,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 5 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil5">{{ thisUser.passive5 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability</p>
+                        <h5 class="card-title">Sub-Light Thrusters</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil5">{{ thisUser.passive5 }}</span>/<span id="abil5Max"></span></h6>
+                        <p class="card-text text-dark">Increases Torpedo Movement Speed</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive5Buy">Buy</div>
@@ -109,9 +109,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 6 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil6">{{ thisUser.passive6 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability</p>
+                        <h5 class="card-title">Improved Hydro-Cooling</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil6">{{ thisUser.passive6 }}</span>/<span id="abil6Max"></span></h6>
+                        <p class="card-text text-dark">Reduces Cooldown of Abilities</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive6Buy">Buy</div>
@@ -120,9 +120,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 7 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil7">{{ thisUser.passive7 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability Lorem ipsum dolor sit amet.</p>
+                        <h5 class="card-title">Ammunition Storage</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil7">{{ thisUser.passive7 }}</span>/<span id="abil7Max"></span></h6>
+                        <p class="card-text text-dark">Increases the Number of Chaingun Rounds You Can Fire Before Reloading.</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive7Buy">Buy</div>
@@ -132,9 +132,9 @@
 
                 <div class="card abilCard">
                     <div class="card-body">
-                        <h5 class="card-title">Ability 8 Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Current Ability Level: <span id="abil8">{{ thisUser.passive8 }}</span></h6>
-                        <p class="card-text text-dark">Description of ability</p>
+                        <h5 class="card-title">Servos Automated</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Level: <span id="abil8">{{ thisUser.passive8 }}</span>/<span id="abil8Max"></span></h6>
+                        <p class="card-text text-dark">Increased Chaingun Reload Speed</p>
                     </div>
                     <div class="card-footer">
                         <div class="passiveButton btn d-block btn-outline-primary p-3" id="passive8Buy">Buy</div>
@@ -150,24 +150,31 @@
 
 
         <!-- Stats -->
-        <div class="stats mt-5 ml-5 d-inline-block  col-xl-3">
+        <div class="stats mt-5 ml-5 d-inline-block col-xl-3">
             <div id="getStats" class="btn btn-success mb-2">Update Statistics</div>
             <h4>Statistics:</h4>
             <h6 id="score">Score: {{ score }}</h6>
             <h6 id="kills">Kills: {{ kills }}</h6>
             <h6 id="xp">XP Gained: {{ xp }}</h6>
             <h6 id="money">Money Earned: {{ money }}</h6>
+            <hr>
+            <h3>Total Score: {{ thisUser.current_score }}</h3>
+            <h3>Total Money: {{ thisUser.current_money }}</h3>
+            <h3>Level: {{ thisUser.current_level }}</h3>
+            <h3>XP: {{ thisUser.current_xp }}</h3>
         </div>
+
+
 
 
         <div class="bg-dark text-light d-inline-block col-xl-4 align-bottom mt-4 mb-2 ml-5 vertical-align-top">
             <div class="d-inline-block">
-                <a href="/outputPassives"><i class="ml-5 fas fa-2x fa-anchor"></i></a>
+                <a id="outputPassivesButton" href="/outputPassives"><i class="ml-5 fas fa-2x fa-anchor"></i></a>
                 <p class="lead">Return To Space Dock</p>
             </div>
         </div>
     
-        <div id="bottombar" class="container bg-dark col-xl-10 mt-5 text-light">
+        <div id="bottombar" class="container bg-dark col-xl-10 mt-5 pb-3 text-light">
             <h3>Vae Vivorum by Jonathan Ballard</h3>
             <p class="lead">asgardschosen@gmail.com</p>
         </div>

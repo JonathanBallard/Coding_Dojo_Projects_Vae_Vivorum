@@ -15,14 +15,11 @@ console.log('GAME.JS LOADED');
 
 
 
-$(document).ready(function(){
+// $(document).ready(function(){
+//     console.log($(document).width());
+//     console.log($(document).height());
 
-
-    console.log($(document).width());
-    console.log($(document).height());
-})
-
-
+// })
 
 
 
@@ -42,28 +39,37 @@ $('#background').height(gameHeight);
 var player = new Player((gameWidth / 2), (gameHeight * 0.95))
 
 
-startingEnemy1 = new Enemy_1(350, 20, "down");
-startingEnemy2 = new Enemy_1(450, 50, "down");
-startingEnemy3 = new Enemy_1(550, 50, "down");
-startingEnemy4 = new Enemy_1(650, 50, "down");
+// Passive Abilities from Jinja
+$(document).ready(function(){
+    Player.passive1 = $('#passive1').attr('data-passive');
+    Player.passive2 = $('#passive2').attr('data-passive');
+    Player.passive3 = $('#passive3').attr('data-passive');
+    Player.passive4 = $('#passive4').attr('data-passive');
+    Player.passive5 = $('#passive5').attr('data-passive');
+    Player.passive6 = $('#passive6').attr('data-passive');
+    Player.passive7 = $('#passive7').attr('data-passive');
+    Player.passive8 = $('#passive8').attr('data-passive');
+    updatePlayer();
+})
+
+startingEnemy1 = new Enemy_1(350, gameHeight + 80, "down");
+startingEnemy2 = new Enemy_1(450, gameHeight + 80, "down");
+startingEnemy3 = new Enemy_1(550, gameHeight + 80, "down");
+startingEnemy4 = new Enemy_1(650, gameHeight + 80, "down");
 spawnDelay(startingEnemy1);
 spawnDelay(startingEnemy2);
 spawnDelay(startingEnemy3);
 spawnDelay(startingEnemy4);
-
-
-// startingEnemy1 = new Enemy_1(350, 200, "downright");
-// startingEnemy2 = new Enemy_1(450, 250, "downleft");
-// startingEnemy3 = new Enemy_1(550, 450, "upright");
-// startingEnemy4 = new Enemy_1(650, 350, "upleft");
-
+enemyFireDelay(startingEnemy1, "down");
+enemyFireDelay(startingEnemy2, "down");
+enemyFireDelay(startingEnemy3, "down");
+enemyFireDelay(startingEnemy4, "down");
 
 var enemies = [
     startingEnemy1,
     startingEnemy2,
     startingEnemy3,
     startingEnemy4,
-
 ]
 
 
@@ -72,6 +78,21 @@ var enemy_fires = []
 var friendly_fires = []
 var ammoPercent = 100;
 
+
+function updatePlayer(){
+
+    player.hp += Player.passive2 * 12;
+    player.hpMax += Player.passive2 * 12;
+    player.armor += Math.floor(Player.passive2 / 2);
+    player.shields += Player.passive3 * 5;
+    player.shieldsMax += Player.passive3 * 5;
+    player.ability1CooldownTime -= Player.passive6 * 200;
+    player.ability2CooldownTime -= Player.passive6 * 200;
+    player.ability3CooldownTime -= Player.passive6 * 200;
+    player.ability4CooldownTime -= Player.passive6 * 200;
+    player.ability5CooldownTime -= Player.passive6 * 200;
+    player.ability6CooldownTime -= Player.passive6 * 200;
+}
 
 
 
@@ -682,18 +703,36 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
 
 }
 
-function endGame(){
+function endGame(gameStatus){
+    var modifier = 1;
+    if(gameStatus == 'win'){
+        modifier += winLossModifier;
+    }
+    else if(gameStatus == 'lose'){
+        modifier -= winLossModifier;
+    }
+
     var data = {
-        score : player.score,
-        kills : player.kills,
-        xp : player.xp,
-        money : player.money
+        score : (player.score * modifier),
+        kills : (player.kills),
+        xp : (player.xp * modifier),
+        money : (player.money * modifier)
     }
 
     // jsondata = JSON.stringify(data);
 
     //pass javascript_data to Python
     // $.get( "/getjson/<jsondata>" );
+
+    if(gameStatus == 'win'){
+        alert('Victory');
+    }
+    else if(gameStatus == 'lose'){
+        alert('Defeat');
+    }
+    else if(gameStatus == 'bug'){
+        alert("We've encountered a bug, please reload from the beginning, thank you");
+    }
 
 
     $.ajax({
@@ -703,8 +742,13 @@ function endGame(){
         data: JSON.stringify(data)
     });
 
-    window.location.replace("/overview");
+    setTimeout(locationReplace,2000);
     // location.reload();
+}
+
+function locationReplace(){
+
+    window.location.replace("/overview");
 }
 
 
@@ -714,8 +758,7 @@ function victory(){
         endOfGame = true;  //prevent endGame() from running multiple times
         document.getElementById("playerWinSound").play();
         console.log("You Win!")
-        alert('Victory');
-        endGame();
+        endGame('win');
     }
 }
 
@@ -724,8 +767,7 @@ function gameOver(){
         endOfGame = true; //prevent endGame() from running multiple times
         document.getElementById("playerDeathSound").play();
         console.log("You Lose!")
-        alert('You Lose!');
-        endGame();
+        endGame('lose');
     }
     // END GAME HERE
 }
@@ -834,7 +876,7 @@ function playerFires(){
         var newFire = new Missile(player.left + (player.width / 2), player.top, "up");
         document.getElementById("missileVolleySound").play();
     }
-    else if(player.currentWeapon == "chaingun"){
+    else if(player.currentWeapon == "chaingun" && player.reloading == false){
         var inaccuracy = Math.floor(Math.random() * 20) - 10;
         var newFire = new ChaingunRound(player.left + inaccuracy + (player.width / 2), player.top, "up");
         ammoPercent -= 100 / ChaingunRound.magazineSize;
@@ -895,11 +937,13 @@ function missileReload(){
 function chaingunReload(){
     //print to the screen "reloading"
     $('#messages').text('Reloading Chaingun...');
+    player.reloading = true;
     setTimeout(finishReload, ChaingunRound.reloadSpeed);
 }
 
 function finishReload(){
     player.numFired = 0;
+    player.reloading = false;
     ammoPercent = 100;
     clearMessages();
 }
@@ -1009,7 +1053,7 @@ document.onkeydown = document.onkeyup = function(e) {
     // console.log(e.keyCode);
 
 
-    
+
     keymap[e.keyCode] = e.type == 'keydown';
 
     //MOVE AND FIRE

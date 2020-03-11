@@ -26,13 +26,6 @@ user_ships = db.Table('user_ships',
 
 
 
-
-
-
-
-
-
-
 class Users(db.Model):
     __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True)
@@ -75,7 +68,6 @@ class Users(db.Model):
     passive_abilities_this_user_has = db.relationship('User_Character', backref="characters_that_have_this_passive")
     # character_passive_abilities_id = db.Column(db.Integer, db.ForeignKey("Passive_Abilities.id", ondelete="cascade"))
     
-
 
 
 

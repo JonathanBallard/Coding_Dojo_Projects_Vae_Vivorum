@@ -70,7 +70,7 @@ Based on the pre-bootcamp fighter jet game*
 
 ---
 
-# MVP TODO
+# MVP TODO  
 
 - TEST MODELS  
 - Bcrypt everything important in session  
@@ -92,8 +92,15 @@ Based on the pre-bootcamp fighter jet game*
 - Create overview.html  
 - Ensure all instances of the word 'dashboard' are replaced with 'Space Dock' and all use correct anchor image  
 - Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
-- Implement player levels and passive abilities  
+- Implement player levels **DONE NEEDS TESTING**    
+- Implement passive abilities **DONE NEEDS TESTING**  
 - Add in 2 more enemy weapon types  
+- Enemies spawn in more random edges  
+- Add XP til next level progress bar  
+- Lock Passives Based on Level (??)  
+- Shouldnt be able to keep firing while reloading chaingun  
+- /outputPassives button is sending GET requests not POST  
+- Fix ability purchase buttons on overview.html **DONE**  
 - Change stats for each enemy type **DONE**  
 - Enemies gain health based on level & difficulty **DONE**  
 - More enemies shoot down **DONE**  

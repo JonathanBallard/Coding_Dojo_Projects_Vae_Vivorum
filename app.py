@@ -188,7 +188,6 @@ def store():
 
 
 
-
 # Ships
 @app.route('/ships')
 def ships():
@@ -197,7 +196,6 @@ def ships():
 
 
     return render_template("ships.html", thisUser = loggedInUser)
-
 
 # Game
 @app.route('/game')
@@ -229,6 +227,47 @@ def output():
     thisUser.current_kills += data['kills']
     thisUser.current_xp += data['xp']
     thisUser.current_money += data['money']
+
+    # determine player level
+    levelChart = [
+        0,       #Level 0
+        300,
+        600,
+        1000,
+        1400,
+        1900,
+        2400,
+        2900,
+        3500,
+        4100,
+        4700,       #Level 10
+        5300,
+        6000,
+        6700,
+        7500,
+        8300,
+        9100,
+        10000,
+        11000,
+        12000,
+        13100,      #Level 20
+        16300,
+        20000,
+        25800,
+        31600,
+        38800       #Level 25, Max
+    ]
+
+    playerLevel = 0
+    for i in range(len(levelChart)):
+        if thisUser.current_xp >= levelChart[i]:
+            playerLevel = i
+
+
+
+    thisUser.current_level = playerLevel
+    thisUser.abilityPointsEarned = thisUser.current_level * 4
+    thisUser.abilityPointsSpent = thisUser.passive1 + thisUser.passive2 + thisUser.passive3 + thisUser.passive4 + thisUser.passive5 + thisUser.passive6 + thisUser.passive7 + thisUser.passive8
     db.session.commit()
 
 
@@ -256,6 +295,7 @@ def outputPassives():
     thisUser.passive6 = data['p6']
     thisUser.passive7 = data['p7']
     thisUser.passive8 = data['p8']
+    thisUser.abilityPointsSpent = thisUser.passive1 + thisUser.passive2 + thisUser.passive3 + thisUser.passive4 + thisUser.passive5 + thisUser.passive6 + thisUser.passive7 + thisUser.passive8
     # thisUser.passive9 = data['p9']
     # thisUser.passive10 = data['p10']
     # thisUser.passive11 = data['p11']
@@ -275,10 +315,26 @@ def outputPassives():
 @app.route('/overview')
 def overview():
     thisUser = Users.query.get(session['id'])
-    score = session['endScore']
-    kills = session['endKills']
-    xp = session['endXp']
-    money = session['endMoney']
+
+    if 'endscore' in session:
+        score = session['endScore']
+    else:
+        score = 0
+
+    if 'endKills' in session:
+        kills = session['endKills']
+    else:
+        kills = 0
+
+    if 'endXp' in session:
+        xp = session['endXp']
+    else:
+        xp = 0
+
+    if 'endMoney' in session:
+        money = session['endMoney']
+    else:
+        money = 0
 
     return render_template('overview.html', thisUser = thisUser, score = score, xp = xp, kills = kills, money = money)
 

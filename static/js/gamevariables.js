@@ -18,12 +18,14 @@ var loopCounter = 0;
 var keymap = {};
 var endOfGame = false;
 var muteToggle = false;
-var gameWinScore = 2000 * difficultyRate;
+// var gameWinScore = 2000 * (difficultyRate + 0.5);  //standard
+var gameWinScore = 1000;  //testing
+var winLossModifier = 0.25;
 
 // SPEEDS
 var gameSpeed = 100;
 var playerMoveSpeed = 10;
-var enemyMoveSpeed = 10;
+var enemyMoveSpeed = 10 * difficultyRate;
 var weaponFireMoveSpeed = 25;
 
 //ENEMIES
@@ -31,10 +33,9 @@ var enemiesKilled = 0;
 var numEscapedEnemies = 0;
 
 //RATES
-
 var enemyHealthMultiplier = difficultyRate + 0.5;
 var enemyDamageMultiplier = difficultyRate + 0.5;
-var enemySpawnRate = 4000;
+var enemySpawnRate = 8000;
 var enemySpawnTimer = enemySpawnRate / difficultyRate; //how often waves spawn
 var shieldRechargeRate = 0.25 / (difficultyRate / 2); //How much shields recharge per tick
 var shieldRechargeDelay = 3000;
@@ -47,7 +48,6 @@ var shieldRechargeDelay = 3000;
 //DAMAGE
 var rammingDamage = 25;  //Base ramming damage, actual formula: rammingDamage + (enemy.speed / 2)
 var rammingModifier = 0.5; //modifies xp and score gained for enemies killed with ramming
-// var missileDamage = 1000000; //should 1shot everything for the moment, change to do partial damage later
 
 
 
