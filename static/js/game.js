@@ -114,9 +114,6 @@ function drawPlayer(){
     content = "";
     content = "<div class = 'player' style='left:" + player.left + "px; top:" + player.top + "px;'></div>";
 
-
-
-
     if(player.shields < player.shieldsMax && player.shieldsInterrupt == false){
         player.shieldsRecharging = true;
     }
@@ -281,8 +278,6 @@ function moveFires(){
 
     //Move enemy fires
     for(var i = 0; i < enemy_fires.length; i++){
-        // console.log('271: Current Index in moveFires() enemy_fires is: ' + i);
-        //enemy_fires[i].top = enemy_fires[i].top + weaponFireMoveSpeed;
         
         if(enemy_fires[i].direction == "down"){
             //console.log("MOVE DOWN");
@@ -406,7 +401,6 @@ function playerDamagedByFire(fire, fireIndex){
 
     //If out of hp and shields, delete
     if(player.hp <= 0){
-        //play player destroyed sound
         gameOver();
     }
 }
@@ -809,7 +803,7 @@ function victory(){
 function gameOver(){
     if(endOfGame == false){
         endOfGame = true; //prevent endGame() from running multiple times
-        document.getElementById("playerDeathSound").play();
+        document.getElementById("playerDeathSound").play();  //play player destroyed sound
         console.log("You Lose!")
         endGame('lose');
     }
@@ -818,11 +812,7 @@ function gameOver(){
 
 function collisionDetection(obj1, obj2){
     var collision = false;
-    // console.log("COLLISION ERROR REPORT")
-    // console.log("obj1.name: " + obj1.name)
-    // console.log("obj1.left: " + obj1.left)
-    // console.log("obj2.name: " + obj2.name)
-    // console.log("obj2.left: " + obj2.left)
+
 
 
     if(obj1 && obj2){
@@ -891,7 +881,6 @@ function escapedEnemies(){
                     numEscapedEnemies++;
                 }
         }
-        
     }
 
     //cleanup enemy weapons fire
@@ -912,11 +901,9 @@ function writeStats(){
     $('.healthProgressBar').attr('aria-valuenow', 100 * (player.hp / player.hpMax));
     $('.healthProgressBar').css('width',(100 * (player.hp / player.hpMax)) + '%');
 
-
     $('.shieldProgressBar').text(player.shields);
     $('.shieldProgressBar').attr('aria-valuenow', 100 * (player.shields / player.shieldsMax));
     $('.shieldProgressBar').css('width',(100 * (player.shields / player.shieldsMax)) + '%');
-
 
     $('#playerKills').text(player.kills);
     $('#playerScore').text(player.score);

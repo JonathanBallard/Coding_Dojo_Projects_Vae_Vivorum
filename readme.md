@@ -90,7 +90,8 @@ Based on the pre-bootcamp fighter jet game*
 - Add in 2 more enemy weapon types  
 - extend for classes  
 - Create difficulty slider OR set up map.html  
-- Find out what's causing .00000000000001 damage **DONE, problem with shieldRechargeAmount**  
+- Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only
+- Find out what's causing .00000000000001 damage **DONE, problem was with shieldRechargeAmount**  
 - Performance loss around 100 kills **DONE**  
 - Implement Story **DONE**  
 - Change endGame() to be called in GameLoop(), and logic checking for victory/loss conditions **DONE**  

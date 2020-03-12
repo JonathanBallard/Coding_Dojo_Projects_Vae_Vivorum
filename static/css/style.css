@@ -199,6 +199,10 @@
     color: white;
 }
 
+.unFeatured{
+    font-size: 40px;
+}
+
 .mapInfoBox{
     border-radius: 5%;
 }
