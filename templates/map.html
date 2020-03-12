@@ -24,45 +24,32 @@
     <title>Map</title>
 </head>
 <body>
-<h1>Map</h1>
 
-<div class="container bg-dark col-xl-10">
+<div class="container bg-dark mt-5 text-warning col-xl-10">
     <div id="topbar"  class="d-flex flex-row">
         <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
         <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
         <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
     </div>
+    <h1 class="display-1 text-center text-danger">Map Select</h1>
+    <div class="d-inline-block col-xl-8">
+        <!-- MAP SELECT HERE -->
 
-        <div class="d-inline-block col-xl-8">
-            <!-- MAP SELECT HERE -->
+        
+    </div>
+    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 p-3">
 
-            
-        </div>
-        <div class="d-inline-block col-xl-4">
-            <!-- MAP INFO HERE -->
-            <h4>Map Name: </h4>
-            <h6>Difficulty: </h6>
-            <ul>
-                <li>Modifier:</li>
-                <li>Modifier:</li>
-                <li>Modifier:</li>
-            </ul>
-        </div>
-
-
-
-        <div class="container bg-dark text-light d-inline-block col-xl-4 align-bottom mb-2 ml-5">
-            <div class="ml-5 d-inline-block">
-                <a href="/equipment"><i class="fas fa-2x fa-archive"></i></a>
-                <p class="lead">Equipment</p>
+        <div class="card mapCard bg-dark">
+            <div class="card-body">
+                <h5 class="card-title">Map Name: <span id="mapNameText">thisMap.mapName</span></h5>
+                <h6 class="card-subtitle mb-2 text-muted text-light">Difficulty: <span id="difficultyText">thisMap.difficulty</span></h6>
             </div>
-            <div class="ml-5 d-inline-block">
-                <a href="/store"><i class="fas fa-2x fa-coins"></i></a>
-                <p class="lead">Store</p>
-            </div>
-            <div class="ml-5 d-inline-block">
-                <a href="/game"><i class="fas fa-2x fa-angle-double-right"></i></a>
-                <p class="lead">Start Mission</p>
+            <div class="card-footer">
+                <ul>
+                    <li>Modifier: <span id="modifier1">thisMap.modifier1</span></li>
+                    <li>Modifier: <span id="modifier2">thisMap.modifier2</span></li>
+                    <li>Modifier: <span id="modifier3">thisMap.modifier3</span></li>
+                </ul>
             </div>
         </div>
 
@@ -70,10 +57,61 @@
     </div>
 
 
-    <div id="bottombar" class="container bg-dark col-xl-10 mt-3 pb-3 text-light">
-        <h3>Vae Vivorum by Jonathan Ballard</h3>
-        <p class="lead">asgardschosen@gmail.com</p>
+
+
+    <div class="card-deck iconDiv mt-5 p-3 mb-5">
+
+        <div class="card iconCard bg-dark">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/dock"><i class="ml-4 fas fa-4x fa-anchor"></i></a>
+            </div>
+        </div>
+
+        <div class="card iconCard bg-dark">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Equipment</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/equipment"><i class="ml-4 fas fa-4x fa-archive"></i></a>
+            </div>
+        </div>
+
+        <div class="card iconCard bg-dark">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Store</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/store"><i class="fas fa-4x fa-coins"></i></a>
+            </div>
+        </div>
+
+        <div class="card iconCard bg-dark">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Start Mission</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/game"><i class="fas fa-4x fa-angle-double-right"></i></a>
+            </div>
+        </div>
+
+
+
+
+
     </div>
+
+
+
+</div>
+
+
+<div id="bottombar" class="container bg-dark col-xl-10 mt-3 pb-3 text-light">
+    <h3>Vae Vivorum by Jonathan Ballard</h3>
+    <p class="lead">asgardschosen@gmail.com</p>
+</div>
 
 </body>
 </html>

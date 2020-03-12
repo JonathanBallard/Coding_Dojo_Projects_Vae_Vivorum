@@ -85,6 +85,27 @@ function increaseAbil(abilNum, abilMax){
     $('#abilPoints').text(availablePoints);
 }
 
+function writeRandomMessage(){
+
+    var message = "";
+
+    var msgArr = [
+        "You have survived this round, Stay Toasty young space hero.",
+        "You blocked a major shipment of space toast. Alien stomachs are grumbling.",
+        "I love the smell of space toast in the morning!",
+        "You remember flying toasters from way back when? That's how space toast is made!",
+        "Baby Bleeborb did not get space toast this week due to your efforts.",
+        "Your family is (probably) waiting for you, redouble your efforts!",
+        "When the Aliens invaded Earth, they attempted to target the brightest minds first to prevent any resistance. They invaded the libraries first, but were forced to rethink their plans when they discovered that no-one read hard-copy books anymore."
+    ];
+
+    var random = Math.floor(Math.random() * msgArr.length);
+    message = msgArr[random];
+
+
+    $('#randomMsg').text(message);
+}
+
 
 function postPassives(){
 
@@ -144,7 +165,7 @@ xpMissing = levelChart[nextLevel] - totalXp;
 xpPercent = Math.floor((xpMissing / xpBetween) * 100);
 
 
-$('.xpProgressBar').text(xpBetween-xpMissing);
+$('#xpBarText').text(totalXp);
 $('.xpProgressBar').attr('aria-valuenow', xpPercent);
 $('.xpProgressBar').css('width',xpPercent + '%');
 
@@ -199,7 +220,7 @@ $('#outputPassivesButton').click(function(){
 
 
 
-
+writeRandomMessage();
 
 // LAST THING, Update Total Stats
 var curScore = parseInt($('#score').text());

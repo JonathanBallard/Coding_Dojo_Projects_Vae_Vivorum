@@ -8,7 +8,7 @@ var viewportHeight = $(document).height() * 0.8;
 var viewportWidth = $(document).width() * 0.7;
 var map = $('#background');
 var mapOffsetLeft = ($(document).width() - gameWidth) / 2;
-var mapOffsetTop = (($(document).height() - gameHeight) / 2);
+var mapOffsetTop = ($(document).height() - gameHeight) / 2;
 
 //COUNTER
 var loopCounter = 0;
@@ -19,13 +19,13 @@ var keymap = {};
 var endOfGame = false;
 var muteToggle = false;
 // var gameWinScore = 2000 * (difficultyRate + 0.5);  //standard
-var gameWinScore = 10000;  //testing
+var gameWinScore = 1000;  //testing
 var winLossModifier = 0.25;
 
 // SPEEDS
 var gameSpeed = 100;
 var playerMoveSpeed = 10;
-var enemyMoveSpeed = 10 * difficultyRate;
+var enemyMoveSpeed = Math.floor(10 * difficultyRate);
 var weaponFireMoveSpeed = 25;
 
 //ENEMIES

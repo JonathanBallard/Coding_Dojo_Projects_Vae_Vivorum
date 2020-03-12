@@ -140,7 +140,17 @@ class Equipment(db.Model):
     active_1_id = db.Column(db.Integer, db.ForeignKey('Active_Abilities.id', ondelete="cascade"))
 
 
-
+class Map(db.Model):
+    __tablename__ = "Map"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    difficulty = db.Column(db.Integer)
+    modifier1Name = db.Column(db.String(255))
+    modifier1Amount = db.Column(db.Integer)
+    modifier2Name = db.Column(db.String(255))
+    modifier2Amount = db.Column(db.Integer)
+    modifier3Name = db.Column(db.String(255))
+    modifier3Amount = db.Column(db.Integer)
 
 
 

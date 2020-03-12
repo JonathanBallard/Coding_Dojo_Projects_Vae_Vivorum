@@ -83,22 +83,17 @@ Based on the pre-bootcamp fighter jet game*
 - Reduce the height of the screen  
 - Resize player ship for dashboard/index  
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
-- Performance loss around 100 kills  
 - Fix line formation Spawning  
 - Missiles hitbox too small  
 - Change Background Image Randomly (??)  
 - Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
 - Add in 2 more enemy weapon types  
 - extend for classes  
-- decrease number of projectiles  
-- canvas??  
-- play with chrome debugger  
-- trim audio file length  
-- play with game speed  
-- play w/ removing sound for optimization, limit num of active voices  
-- Implement Story  
-- Change endGame() to be called in GameLoop(), and logic checking for victory/loss conditions  
-- Find out what's causing .00000000000001 damage  
+- Create difficulty slider OR set up map.html  
+- Find out what's causing .00000000000001 damage **DONE, problem with shieldRechargeAmount**  
+- Performance loss around 100 kills **DONE**  
+- Implement Story **DONE**  
+- Change endGame() to be called in GameLoop(), and logic checking for victory/loss conditions **DONE**  
 - Shields recharging way too high **DONE**  
 - Shields should stop recharging when you take damage **DONE**  
 - Shields no longer recharging **DONE**  
@@ -216,6 +211,15 @@ Based on the pre-bootcamp fighter jet game*
 - Center "equipment" under icon on dashboard.html **DONE**  
 - Make sure spawning enemies don't get destroyed by border (escapedEnemies()) **DONE, NEEDS TESTING**  
 
+# Optimizations  
+
+- decrease number of projectiles  
+- canvas??  
+- play with chrome debugger  
+- trim audio file length  
+- play with game speed  
+- play w/ removing sound for optimization, limit num of active voices  
+
 ### Sandbox
 
 - offsetX and offsetY for targeting fire with mouse  
@@ -318,7 +322,7 @@ Based on the pre-bootcamp fighter jet game*
 
 
 # Story
-While exploring space, an Alien Race has come and conquered Earth, and killed off 90% of the population, starting with the politicians. You understand your family is still alive, so you made the decision that rather than return to Earth to rescue your family, you're going to kill off all the Alien supply ships to deprive the Aliens of their critical supply of space toast. You don't know which Aliens are the ones who populated Earth so you just have to kill them all, and you don't know which ships are the supply ships either, so Good Luck. Once you have annihilated all invaders you'll be able to return home safely to Earth.
+While exploring space, an Alien Race has come and conquered Earth, and killed off 90% of the population, starting with the politicians. You are certain your family is still alive. So you made the decision that rather than return to Earth to rescue your family, you're going to kill off all the Alien supply ships to deprive the Aliens of their critical supply of space toast. You don't know which Aliens are the ones who attacked Earth so you just have to kill them all. You don't know which ships are the supply ships either, so Good Luck. Once you have annihilated all invaders you'll be able to return home safely to Earth into the arms of your loving family.
 
 ### Messages for overview.html  
 
@@ -332,7 +336,9 @@ You remember flying toasters from way back when? That's how space toast is made.
 
 Baby Bleeborb did not get space toast this week due to your efforts.
 
+Your family is (probably) waiting for you, redouble your efforts!
 
+When the Aliens invaded Earth, they attempted to target the brightest minds first to prevent any resistance. They invaded the libraries first, but were forced to rethink their plans when they discovered that no-one read hard-copy books anymore.
 
 
 

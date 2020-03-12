@@ -95,10 +95,10 @@ function updatePlayer(){
     ChaingunRound.reloadSpeed -= (Player.passive8 * 80);
     ChaingunRound.magazineSize += (Player.passive7 * 10);
 
-    console.log('Player.passive3: ' + Player.passive3);
-    console.log('Player.passive3 * 5: ' + Player.passive3 * 5);
-    console.log('Player.shields: ' + Player.shields);
-    console.log('Player.shieldsMax: ' + Player.shieldsMax);
+    // console.log('Player.passive3: ' + Player.passive3);
+    // console.log('Player.passive3 * 5: ' + Player.passive3 * 5);
+    // console.log('player.shields: ' + player.shields);
+    // console.log('player.shieldsMax: ' + player.shieldsMax);
 
 
 
@@ -375,9 +375,6 @@ function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
         player.kills++;
         player.money += enemy.moneyValue;
         player.score += enemy.scoreValue;
-        if(player.score >= gameWinScore){
-            victory();
-        }
     }
 }
 
@@ -444,13 +441,7 @@ function rammedPlayer(enemy, enemyIndex){
 
     //play enemy destroyed sound
     document.getElementById("explosion2").play();
-    if(player.score >= gameWinScore){
-        victory();
-    }
-    //If out of hp, delete
-    if(player.hp <= 0){
-        gameOver();
-    }
+
 }
 
 function spawnEnemyWave(){
@@ -777,11 +768,6 @@ function endGame(gameStatus){
         money : Math.floor((player.money * modifier))
     }
 
-    // jsondata = JSON.stringify(data);
-
-    //pass javascript_data to Python
-    // $.get( "/getjson/<jsondata>" );
-
 
     $.ajax({
         url: "/output",
@@ -867,7 +853,8 @@ function shieldDelay(obj1){
     setTimeout(shieldRecharge, shieldRechargeDelay, obj1);
 }
 function shieldRecharge(obj1){
-    var shieldRechargeAmount = obj1.shieldsMax / 200;   //half a percent of max shields
+    // var shieldRechargeAmount = obj1.shieldsMax / 200;   //half a percent of max shields
+    var shieldRechargeAmount = 1; //testing
     if(obj1.shields < obj1.shieldsMax && obj1.shieldsInterrupt == false){
         obj1.shields += shieldRechargeAmount;
         // setTimeout(shieldRecharge,200,obj1);
@@ -1280,6 +1267,14 @@ $('#muteToggle').click(function(){
 spawnEnemyWave();
 
 function gameLoop(){
+
+    if(player.score >= gameWinScore){
+        victory();
+    }
+    //If out of hp, delete
+    if(player.hp <= 0){
+        gameOver();
+    }
 
     drawPlayer();
     drawEnemies();
