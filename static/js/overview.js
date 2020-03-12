@@ -64,7 +64,6 @@ $('#abil8Max').text(abil8Max);
 
 
 function increaseAbil(abilNum, abilMax){
-    console.log("Increase Abil: " + abilNum + '/' + abilMax)
     var ele = "";
     var abilBtn = "";
     var current = 0;
@@ -82,6 +81,7 @@ function increaseAbil(abilNum, abilMax){
         $(abilBtn).attr('class', 'd-none');
     }
 
+    console.log("Increase Abil #" + abilNum + " To: " + increase + "/" + abilMax)
     $('#abilPoints').text(availablePoints);
 }
 
@@ -119,7 +119,7 @@ function postPassives(){
         contentType: "application/json",
         data: JSON.stringify(data)
     });
-    window.location.replace("/dashboard");
+    window.location.replace("/dock");
 }
 
 
@@ -202,8 +202,10 @@ $('#outputPassivesButton').click(function(){
 
 
 // LAST THING, Update Total Stats
-
-var totalScore = parseInt($('#totalScore').text()) + parseInt($('#score').text());
+var curScore = parseInt($('#score').text());
+var totScore = parseInt($('#totalScore').text());
+var totalScore = totScore + curScore;
+$('#score').text(curScore);
 $('#totalScore').text(totalScore);
 var totalMoney = parseInt($('#totalMoney').text()) + parseInt($('#money').text());
 $('#totalMoney').text(totalMoney);

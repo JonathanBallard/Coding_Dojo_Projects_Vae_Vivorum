@@ -52,10 +52,10 @@ $(document).ready(function(){
     updatePlayer();
 })
 
-startingEnemy1 = new Enemy_1(350, gameHeight + 80, "down");
-startingEnemy2 = new Enemy_1(450, gameHeight + 80, "down");
-startingEnemy3 = new Enemy_1(550, gameHeight + 80, "down");
-startingEnemy4 = new Enemy_1(650, gameHeight + 80, "down");
+startingEnemy1 = new Enemy_1(350, 80, "down");
+startingEnemy2 = new Enemy_1(450, 80, "down");
+startingEnemy3 = new Enemy_1(550, 80, "down");
+startingEnemy4 = new Enemy_1(650, 80, "down");
 spawnDelay(startingEnemy1);
 spawnDelay(startingEnemy2);
 spawnDelay(startingEnemy3);
@@ -92,10 +92,13 @@ function updatePlayer(){
     player.ability4CooldownTime -= Player.passive6 * 200;
     player.ability5CooldownTime -= Player.passive6 * 200;
     player.ability6CooldownTime -= Player.passive6 * 200;
+    ChaingunRound.reloadSpeed -= (Player.passive8 * 80);
+    ChaingunRound.magazineSize += (Player.passive7 * 10);
 
-
-    console.log('Player Armor: ' + player.armor);
-    console.log('ChaingunRound Damage: ' + ChaingunRound.damage);
+    console.log('Player.passive3: ' + Player.passive3);
+    console.log('Player.passive3 * 5: ' + Player.passive3 * 5);
+    console.log('Player.shields: ' + Player.shields);
+    console.log('Player.shieldsMax: ' + Player.shieldsMax);
 
 
 
@@ -111,10 +114,20 @@ function drawPlayer(){
     content = "";
     content = "<div class = 'player' style='left:" + player.left + "px; top:" + player.top + "px;'></div>";
 
-    if(player.shields < player.shieldsMax){
-        shieldDelay(player); //starts the delay before recharge begins
-        // player.shields += shieldRechargeRate;
+
+
+
+    if(player.shields < player.shieldsMax && player.shieldsInterrupt == false){
+        player.shieldsRecharging = true;
     }
+
+    if(player.shieldsRecharging == true && player.shieldsInterrupt == true){
+        player.shieldsRecharging = false;
+    }
+    else if(player.shieldsRecharging == true){ //start recharge
+        shieldDelay(player); //starts the delay before recharge begins
+    }
+    
 
     document.getElementById("players").innerHTML = content;
 }
@@ -141,7 +154,6 @@ function drawFires(){
 
     content = "";
     for(var i = 0; i < enemy_fires.length; i++){
-        // console.log('enemy_fires[i] ' + enemy_fires[i])
         content += "<div class = '" + enemy_fires[i].type + "' style = 'left: " + enemy_fires[i].left + "px; top: " + enemy_fires[i].top + "px;'></div>";
     }
     document.getElementById("enemy_fires").innerHTML = content;
@@ -212,6 +224,13 @@ function moveEnemies(){
 function moveFires(){
     //Move friendly fires
     for(var i = 0; i < friendly_fires.length; i++){
+        // console.log('226: Current Index in moveFires() friendly_fires is: ' + i);
+        // console.log('227: friendly_fires.length in moveFires() is: ' + friendly_fires.length);
+
+        if(friendly_fires[i].type == "torpedo"){
+            friendly_fires[i].speed += Player.passive5 * 1.25;
+        }
+
         // friendly_fires[i].top = friendly_fires[i].top - weaponFireMoveSpeed;
 
 
@@ -248,12 +267,21 @@ function moveFires(){
             if(friendlyHitCheck == true){
                 // console.log('FRIENDLYHITCHECK IS TRUE')
                 enemyDamagedByFire(enemies[j], friendly_fires[i], j, i);
+                // break;
+            }
+        }
+
+        if(friendly_fires[i]){
+            if(friendly_fires[i].left < -200 || friendly_fires[i].left > (gameWidth + 200) || friendly_fires[i].top < -200 || friendly_fires.top > (gameHeight + 200)){
+                friendly_fires.splice(i,1);
+                i--;
             }
         }
     }
 
     //Move enemy fires
     for(var i = 0; i < enemy_fires.length; i++){
+        // console.log('271: Current Index in moveFires() enemy_fires is: ' + i);
         //enemy_fires[i].top = enemy_fires[i].top + weaponFireMoveSpeed;
         
         if(enemy_fires[i].direction == "down"){
@@ -294,11 +322,30 @@ function moveFires(){
         if(enemyHitCheck == true){
             playerDamagedByFire(enemy_fires[i], i);
         }
+
+        if(enemy_fires[i]){
+            if(enemy_fires[i].left < -200 || enemy_fires[i].left > (gameWidth + 200) || enemy_fires[i].top < -200 || enemy_fires.top > (gameHeight + 200)){
+                enemy_fires.splice(i,1);
+                i--;
+            }
+        }
+
     }
 }
 
 function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
     enemy.shieldsRecharging = false;
+
+    if(fire.type == "torpedo"){
+        fire.damage += Player.passive4 * 30;
+    }
+    else if(fire.type == "chaingunRound"){
+        fire.damage += Player.passive1 * 5;
+    }
+    else if(fire.type == "missile"){
+        fire.damage += Player.passive4 * 10;
+    }
+
     if(enemy.shields > fire.damage){
         enemy.shields -= fire.damage;
         document.getElementById("explosion7").play();
@@ -335,7 +382,8 @@ function enemyDamagedByFire(enemy, fire, enemyIndex, fireIndex){
 }
 
 function playerDamagedByFire(fire, fireIndex){
-    player.shieldsRecharging = false;
+    player.shieldsInterrupt = true;
+    interruptDelay();
     if(player.shields >= fire.damage){
         player.shields -= fire.damage;
         //shield damage sound
@@ -369,7 +417,8 @@ function playerDamagedByFire(fire, fireIndex){
 function rammedPlayer(enemy, enemyIndex){
     var rammingDamageFormula = (rammingDamage + (enemy.speed / 2));
     enemy.shieldsRecharging = false;
-    player.shieldsRecharging = false;
+    player.shieldsInterrupt = true;
+    interruptDelay();
     if(player.shields >= rammingDamageFormula){
         player.shields -= rammingDamageFormula;
     }
@@ -426,18 +475,20 @@ function spawnEnemyWave(){
     // }
     leftOffset = 15;
     topOffset = 15;
+    var randomizer = 0;
+    randomizer = Math.floor(Math.random() * 300) - 150;
 
     //Start from Top
     if(edgeOfMap == 1){
         edgeToTravel = 1;
         direction = "down";
-        left = gameWidth / 4;
+        left = (gameWidth / 4) + randomizer;
         top = 160;
     }
     else if(edgeOfMap == 0){
         edgeToTravel = 1;
         direction = "down";
-        left = gameWidth / 4;
+        left = (gameWidth / 1.2) + randomizer;
         top = 160;
     }
 
@@ -446,7 +497,7 @@ function spawnEnemyWave(){
         edgeToTravel = 3;
         direction = "right";
         left = 160;
-        top = gameHeight / 2;
+        top = (gameHeight / 2) + randomizer;
     }
 
     //Start from Right
@@ -454,31 +505,31 @@ function spawnEnemyWave(){
         edgeToTravel = 2;
         direction = "left";
         left = gameWidth - 160;
-        top = gameHeight / 2;
+        top = (gameHeight / 2) + randomizer;
     }
 
     else if(edgeOfMap == 4){
         edgeToTravel = 1;
         direction = "down";
-        left = gameWidth * 0.75;
+        left = (gameWidth * 0.25) + randomizer;
         top = 160;
     }
     else if(edgeOfMap == 5){
         edgeToTravel = 1;
         direction = "down";
-        left = gameWidth * 0.75;
+        left = (gameWidth * 0.75) + randomizer;
         top = 160;
     }
     else if(edgeOfMap == 6){
         edgeToTravel = 1;
         direction = "downright";
-        left = gameWidth * 0.05;
+        left = (gameWidth * 0.15) + randomizer;
         top = 120;
     }
     else if(edgeOfMap == 7){
         edgeToTravel = 1;
         direction = "downleft";
-        left = gameWidth * 0.95;
+        left = (gameWidth * 0.85) + randomizer;
         top = 130;
     }
 
@@ -504,7 +555,7 @@ function spawnEnemyWave(){
     else if(enemySpawner == 13){
         typeOfEnemy = "Enemy_6";
     }
-    
+
 
 
     if(typeOfEnemy == "Enemy_1"){
@@ -539,10 +590,6 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
         for(var i = 0; i < enemyType.numFormation; i++){
             var lineLeftOffset = "";
             lineLeftOffset = leftOffset + (enemyType.width * i);
-            // console.log('lineLeftOffset ' + lineLeftOffset);
-            // console.log('LEFTOFFSET ' + leftOffset);
-            // console.log('enemyType.width ' + enemyType.width);
-            // console.log('i ' + i);
             if(left < 250){
                 enemy = new enemyType(left + lineLeftOffset, top, direction)
             }
@@ -724,16 +771,24 @@ function endGame(gameStatus){
     }
 
     var data = {
-        score : (player.score * modifier),
+        score : Math.floor((player.score * modifier)),
         kills : (player.kills),
-        xp : (player.xp * modifier),
-        money : (player.money * modifier)
+        xp : Math.floor((player.xp * modifier)),
+        money : Math.floor((player.money * modifier))
     }
 
     // jsondata = JSON.stringify(data);
 
     //pass javascript_data to Python
     // $.get( "/getjson/<jsondata>" );
+
+
+    $.ajax({
+        url: "/output",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
 
     if(gameStatus == 'win'){
         alert('Victory');
@@ -744,14 +799,6 @@ function endGame(gameStatus){
     else if(gameStatus == 'bug'){
         alert("We've encountered a bug, please reload from the beginning, thank you");
     }
-
-
-    $.ajax({
-        url: "/output",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data)
-    });
 
     setTimeout(locationReplace,3000);
     // location.reload();
@@ -806,13 +853,22 @@ function collisionDetection(obj1, obj2){
     return collision;
 }
 
+function interruptDelay(){
+    setTimeout(interruptOff,shieldRechargeDelay);
+}
+
+function interruptOff(){
+    player.shieldsInterrupt = false;
+    shieldDelay(player);
+}
+
+
 function shieldDelay(obj1){
     setTimeout(shieldRecharge, shieldRechargeDelay, obj1);
 }
 function shieldRecharge(obj1){
-    var shieldRechargeAmount = obj1.shieldsMax / 200;  //half a percent of max shields
-    obj1.shieldsRecharging = true;
-    if(obj1.shields < obj1.shieldsMax && obj1.shieldsRecharging == true){
+    var shieldRechargeAmount = obj1.shieldsMax / 200;   //half a percent of max shields
+    if(obj1.shields < obj1.shieldsMax && obj1.shieldsInterrupt == false){
         obj1.shields += shieldRechargeAmount;
         // setTimeout(shieldRecharge,200,obj1);
     }
@@ -823,7 +879,7 @@ function shieldRecharge(obj1){
 }
 
 function spawnDelay(enemy){
-    setTimeout(spawnVuln,550,enemy);
+    setTimeout(spawnVuln,450,enemy);
 }
 
 function spawnVuln(enemy){
@@ -844,6 +900,7 @@ function escapedEnemies(){
                 enemies[i].left < -70 || 
                 enemies[i].left > gameWidth + 70){  //if out of bounds
                     enemies.splice(i,1)  // Remove only the enemy in question
+                    i--;
                     numEscapedEnemies++;
                 }
         }
@@ -857,6 +914,7 @@ function escapedEnemies(){
             enemy_fires[i].left < -70 || 
             enemy_fires[i].left > gameWidth + 70){ 
                 enemy_fires.splice(i,1);
+                i--;
             }
     }
 }
@@ -886,19 +944,19 @@ function playerFires(){
     if(player.currentWeapon == "missile"){
         var newFire = new Missile(player.left + (player.width / 2), player.top, "up");
         document.getElementById("missileVolleySound").play();
+        friendly_fires.push(newFire);
+        player.numFired++;
+        drawFires();
     }
     else if(player.currentWeapon == "chaingun" && player.reloading == false){
         var inaccuracy = Math.floor(Math.random() * 20) - 10;
         var newFire = new ChaingunRound(player.left + inaccuracy + (player.width / 2), player.top, "up");
         ammoPercent -= 100 / ChaingunRound.magazineSize;
         document.getElementById("chaingunSound").play();
-
-
+        friendly_fires.push(newFire);
+        player.numFired++;
+        drawFires();
     }
-
-    friendly_fires.push(newFire);
-    player.numFired++;
-    drawFires();
 }
 
 function enemyFires(enemy, direction){
@@ -929,10 +987,11 @@ function enemyFires(enemy, direction){
 
         }
     }
-    drawFires();
+    
     if(enemy.keepFiring == true){
         enemyFireDelay(enemy, direction);
     }
+    drawFires();
 }
 
 function enemyFireDelay(enemy, direction){
@@ -1222,12 +1281,12 @@ spawnEnemyWave();
 
 function gameLoop(){
 
-    moveFires();
-    moveEnemies();
     drawPlayer();
     drawEnemies();
     drawFires();
     escapedEnemies();
+    moveFires();
+    moveEnemies();
     writeStats();
     loopCounter++;
     setTimeout(gameLoop, gameSpeed);

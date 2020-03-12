@@ -79,7 +79,7 @@ def register():
         if thisUser:
             session['id'] = thisUser.id
 
-        return redirect('/dashboard')
+        return redirect('/dock')
     else:
         return redirect('/')
 
@@ -136,13 +136,13 @@ def login():
             if not 'username' in session:
                 session['username'] = userId[0].username
                 print('Session[username] *******---------------+***********', session['username'])
-            return redirect('/dashboard')
+            return redirect('/dock')
 
 
 
-# DASHBOARD
-@app.route('/dashboard')
-def dashboard():
+# Space Dock
+@app.route('/dock')
+def dock():
     
 
     if 'id' in session:
@@ -152,7 +152,7 @@ def dashboard():
 
     print('CURRENT SESSION USER: ', session['id'])
 
-    return render_template("dashboard.html", thisUser = loggedInUser)
+    return render_template("dock.html", thisUser = loggedInUser)
 
 
 
@@ -280,7 +280,7 @@ def output():
 
 
     print('**********************************************************************************')
-    print("session['endScore']", session['endScore'])
+    print("inner - session['endScore']", session['endScore'])
 
     thisUser = Users.query.get(session['id'])
     print('This User Score, Kills, XP, Money:', thisUser.current_score, thisUser.current_kills, thisUser.current_xp, thisUser.current_money)
@@ -319,16 +319,18 @@ def outputPassives():
         print('passives:', thisUser.passive1, thisUser.passive2, thisUser.passive3, thisUser.passive4, thisUser.passive5, thisUser.passive6, thisUser.passive7, thisUser.passive8)
     else:
         print('failing to receive data')
-    return redirect('/dashboard')
+    return redirect('/dock')
 
 @app.route('/overview')
 def overview():
     thisUser = Users.query.get(session['id'])
 
     print('**********************************************************************************')
-    print("session['endScore']", session['endScore'])
+    print("outer - session['endScore']", session['endScore'])
 
-    if 'endscore' in session:
+    if 'endScore' in session:
+        print('**********************************************************************************')
+        print('endScore in session')
         score = session['endScore']
     else:
         score = 0

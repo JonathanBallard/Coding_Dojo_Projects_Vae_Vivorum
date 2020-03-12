@@ -79,24 +79,40 @@ Based on the pre-bootcamp fighter jet game*
 - Fix mouse movement top of screen  
 - Look at better hitboxes  
 - Make all ships smaller (??)  
-- Create .py script to add a bunch of entries to the database    
+- Create .py script to add a bunch of entries to the database  
 - Reduce the height of the screen  
-- Ensure it works on all screen sizes  
 - Resize player ship for dashboard/index  
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
-- Shields should stop recharging when you take damage  
 - Performance loss around 100 kills  
 - Fix line formation Spawning  
 - Missiles hitbox too small  
 - Change Background Image Randomly (??)  
-- Ensure all instances of the word 'dashboard' are replaced with 'Space Dock' and all use correct anchor image  
 - Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
 - Add in 2 more enemy weapon types  
-- Enemies spawn in more random edges  
-- Lock Passives Based on Level (??)  
-- Shouldnt be able to keep firing while reloading chaingun  
-- Score not showing up properly on overview  
-- Shields recharging unevenly  
+- extend for classes  
+- decrease number of projectiles  
+- canvas??  
+- play with chrome debugger  
+- trim audio file length  
+- play with game speed  
+- play w/ removing sound for optimization, limit num of active voices  
+- Implement Story  
+- Change endGame() to be called in GameLoop(), and logic checking for victory/loss conditions  
+- Find out what's causing .00000000000001 damage  
+- Shields recharging way too high **DONE**  
+- Shields should stop recharging when you take damage **DONE**  
+- Shields no longer recharging **DONE**  
+- Overview problems **DONE**  
+- Score not showing up properly on overview **DONE**  
+- Game Still Crashing **DONE I THINK**  
+- Ensure it works on all screen sizes **DONE - DESKTOP SCREEN SIZES**  
+- Shouldnt be able to keep firing while reloading chaingun **DONE**  
+- cleanup projectiles outside of viewport **DONE**  
+- Ensure all instances of the word 'dashboard' are replaced with 'Space Dock' and all use correct anchor image **DONE**  
+- torpedo/chaingunROund impact crashes game **DONE**  
+- Must test ALL modifier variables in classes.js (such as this.damage = 25 * enemyDamageMultiplier)  
+- Enemies spawn in more random edges **DONE**  
+- Lock Passives Based on Level (??) **CANCELLED**  
 - Implement player levels **DONE**    
 - Implement passive abilities **DONE**  
 - Create overview.html **DONE**  
@@ -301,8 +317,20 @@ Based on the pre-bootcamp fighter jet game*
 
 
 
+# Story
+While exploring space, an Alien Race has come and conquered Earth, and killed off 90% of the population, starting with the politicians. You understand your family is still alive, so you made the decision that rather than return to Earth to rescue your family, you're going to kill off all the Alien supply ships to deprive the Aliens of their critical supply of space toast. You don't know which Aliens are the ones who populated Earth so you just have to kill them all, and you don't know which ships are the supply ships either, so Good Luck. Once you have annihilated all invaders you'll be able to return home safely to Earth.
 
+### Messages for overview.html  
 
+You have won this round, Stay Toasty young space hero.
+
+You blocked a major shipment of space toast. Alien stomachs are grumbling.
+
+I love the smell of space toast in the morning.
+
+You remember flying toasters from way back when? That's how space toast is made.
+
+Baby Bleeborb did not get space toast this week due to your efforts.
 
 
 

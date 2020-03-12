@@ -19,7 +19,7 @@ var keymap = {};
 var endOfGame = false;
 var muteToggle = false;
 // var gameWinScore = 2000 * (difficultyRate + 0.5);  //standard
-var gameWinScore = 1000;  //testing
+var gameWinScore = 10000;  //testing
 var winLossModifier = 0.25;
 
 // SPEEDS
@@ -35,7 +35,7 @@ var numEscapedEnemies = 0;
 //RATES
 var enemyHealthMultiplier = difficultyRate + 0.5;
 var enemyDamageMultiplier = difficultyRate + 0.5;
-var enemySpawnRate = 8000;
+var enemySpawnRate = 4000;
 var enemySpawnTimer = enemySpawnRate / difficultyRate; //how often waves spawn
 var shieldRechargeRate = 0.25 / (difficultyRate / 2); //How much shields recharge per tick
 var shieldRechargeDelay = 3000;

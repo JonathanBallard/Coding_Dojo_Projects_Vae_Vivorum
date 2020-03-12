@@ -46,6 +46,7 @@ class Player {
         this.shieldsMax = 50;
         this.shields = 50;
         this.shieldsRecharging = false;
+        this.shieldsInterrupt = false;
         this.armor = 5;
         this.speed = playerMoveSpeed;
         this.name = "Player";
@@ -307,7 +308,7 @@ class Missile {
         this.top = top;
         this.height = 13;
         this.width = 7;
-        this.damage = 125 + (Player.passive4 * 10);
+        this.damage = 125;
         this.name = "Missile";
         this.type = "missile";
         this.weaponId = 0;
@@ -322,16 +323,16 @@ class Missile {
 
 class ChaingunRound {
 
-    static magazineSize = 200 + (Player.passive7 * 10);
+    static magazineSize = 200;
     static fireDelay = 50;
-    static reloadSpeed = 2600 - (Player.passive8 * 80);
+    static reloadSpeed = 2600;
 
     constructor(left, top, direction){
         this.left = left;
         this.top = top;
         this.height = 15;
         this.width = 7;
-        this.damage = 25 + (Player.passive1 * 5);
+        this.damage = 25;
         this.name = "Chaingun";
         this.type = "chaingunRound";
         this.weaponId = 1;
@@ -368,12 +369,12 @@ class Torpedo {
         this.top = top;
         this.height = 13;
         this.width = 7;
-        this.damage = 650 + (Player.passive4 * 30);
+        this.damage = 650;
         this.name = "Torpedo";
         this.type = "torpedo";
         this.weaponId = 3;
         this.direction = direction || "up";
-        this.speed = 10 + (Player.passive5 * 1.25);
+        this.speed = 10;
         this.piercing = false;
     }
     

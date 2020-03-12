@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='icon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='icon/site.webmanifest') }}">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script src="script.js" defer></script>
@@ -156,7 +162,7 @@
 
         <!-- Stats -->
         <div class="stats mt-5 ml-5 d-inline-block col-xl-3">
-            <div id="getStats" class="btn btn-success mb-2">Update Statistics</div>
+            <!-- <div id="getStats" class="btn btn-success mb-2">Update Statistics</div> -->
             <h4>Last Round's Statistics:</h4>
             <h6>Score: <span id="score">{{ score }}</span></h6>
             <h6>Kills: <span id="kills">{{ kills }}</span></h6>
