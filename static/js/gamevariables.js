@@ -19,8 +19,9 @@ var keymap = {};
 var endOfGame = false;
 var muteToggle = false;
 // var gameWinScore = 2000 * (difficultyRate + 0.5);  //standard
-var gameWinScore = 1000;  //testing
+var gameWinScore = 15000;  //testing
 var winLossModifier = 0.25;
+var gameFinished = false;
 
 // SPEEDS
 var gameSpeed = 100;

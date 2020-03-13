@@ -25,11 +25,11 @@
 </head>
 <body>
 
-<div class="container bg-dark mt-5 text-warning col-xl-10">
-    <div id="topbar"  class="d-flex flex-row">
-        <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
-        <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
-        <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
+<div class="container bg-dark mt-5 text-warning pt-3 col-xl-10">
+    <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder">
+        <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum</h1>
+        <h4 class="ml-auto d-inline-flex mt-2 text-info welcomeText" >Welcome {{ thisUser.username }}</h4>
+        <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
     </div>
 
     <!-- Equipment Content Here -->

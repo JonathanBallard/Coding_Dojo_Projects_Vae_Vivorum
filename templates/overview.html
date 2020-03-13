@@ -28,12 +28,12 @@
 </head>
 <body>
 
-    <div class="container bg-dark mt-5 text-warning col-xl-10">
+    <div class="container bg-dark mt-5 pt-3 text-warning col-xl-10">
 
-        <div id="topbar"  class="d-flex flex-row mb-5">
-            <h1 class="display-1 d-inline-flex text-success">Vae Vivorum</h1>
-            <h4 class="ml-auto d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
-            <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
+        <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder">
+            <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum</h1>
+            <h4 class="ml-auto d-inline-flex mt-2 text-info welcomeText" >Welcome {{ thisUser.username }}</h4>
+            <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
         </div>
 
         <h1 class="display-3 text-center text-warning">Mission Overview</h1>
@@ -164,14 +164,14 @@
         <div class="stats mt-5 ml-5 p-4 d-inline-block col-xl-3 bg-secondary">
             <!-- <div id="getStats" class="btn btn-success mb-2">Update Statistics</div> -->
             <h4>Last Round's Statistics:</h4>
-            <h6>Score: <span id="score">{{ score }}</span></h6>
+            <h6>Score * Win/Loss Modifier: <span id="score">{{ score }}</span></h6>
             <h6>Kills: <span id="kills">{{ kills }}</span></h6>
             <h6>Money Earned: <span id="money">{{ money }}</span></h6>
             <h6>XP Gained: <span id="xp">{{ xp }}</span></h6>
             <hr>
             <h3>Total Score: <span id="totalScore">{{ thisUser.current_score }}</span></h3>
             <h3>Total Money: <span id="totalMoney">{{ thisUser.current_money }}</span></h3>
-            <h3>XP: <span id="totalXp">{{ thisUser.current_xp }}</span></h3>
+            <h3>Total XP: <span id="totalXp">{{ thisUser.current_xp }}</span></h3>
             <h3>Level: <span id="level">{{ thisUser.current_level }}</span></h3>
         </div>
 

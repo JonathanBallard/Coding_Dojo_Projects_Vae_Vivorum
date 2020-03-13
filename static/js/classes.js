@@ -375,7 +375,7 @@ class Torpedo {
         this.weaponId = 3;
         this.direction = direction || "up";
         this.speed = 10;
-        this.piercing = false;
+        this.piercing = true;
     }
     
     

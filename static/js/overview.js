@@ -96,7 +96,10 @@ function writeRandomMessage(){
         "You remember flying toasters from way back when? That's how space toast is made!",
         "Baby Bleeborb did not get space toast this week due to your efforts.",
         "Your family is (probably) waiting for you, redouble your efforts!",
-        "When the Aliens invaded Earth, they attempted to target the brightest minds first to prevent any resistance. They invaded the libraries first, but were forced to rethink their plans when they discovered that no-one read hard-copy books anymore."
+        "When the Aliens invaded Earth, they attempted to target the brightest minds to prevent any resistance. They invaded the libraries first, but were forced to rethink their plans when they discovered that no-one read hard-copy books anymore.",
+        "The Aliens swept through our defenses like they weren't even there. Our technology was no match for this vicious toaster-based assault.",
+        "Post-Invasion many of the surviving humans sought shelter underground, forming small communities founded on the ideas of equality of man, peace, and kindness to all living things. These communities quickly collapsed due to infighting about who was more equal, peaceful, and kind.",
+        "No-one knows what first drew the Aliens to Earth, but we suspect it was our jam technology."
     ];
 
     var random = Math.floor(Math.random() * msgArr.length);

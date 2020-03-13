@@ -29,20 +29,20 @@
     <title>Vae Vivorum</title>
 </head>
 <body>
+    <audio id="backgroundMusic" class="ml-5 mt-5" autoplay loop>
+        <source src="../static/sounds/background-music.mp3" type="audio/mpeg">
+        Your Browser does not support the background music
+    </audio>
 
 
     <div class="container bg-dark col-xl-10">
+
+
         <div id="topbar"  class="d-flex flex-row">
             <h1 class="unselectable display-2 d-inline-flex text-success">Vae Vivorum</h1>
-            <audio id="backgroundMusic" class="ml-5 mt-5" autoplay loop>
-                <source src="../static/sounds/background-music.mp3" type="audio/mpeg">
-                Your Browser does not support the background music
-            </audio>
-            <h4 class="unselectable ml-auto align-bottom d-inline-flex mt-2 text-info" >Welcome {{ thisUser.username }}</h4>
-            <a class="ml-5 d-inline-flex mt-2" href="/logout">Logout</a>
+            <h4 class="unselectable ml-auto align-bottom d-inline-flex mt-2 text-info welcomeText" >Welcome {{ thisUser.username }}</h4>
+            <a class="ml-5 d-inline-flex mt-2 logoutLink" href="/logout">Logout</a>
         </div>
-
-
 
         <div id="gameArea">
             <div id="background">
@@ -122,7 +122,7 @@
             </div>
         </div>
         <div id="muteToggle" class="d-block ml-1 muteBox">
-            <i class="fas fa-4x fa-volume-up"></i>
+            <i class="fas fa-4x fa-volume-up muteButton"></i>
         </div>
 
 

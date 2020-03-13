@@ -2,17 +2,7 @@
 
 
 console.log('GAME.JS LOADED');
-
-
-
-
-
-
-
 //**************************************************************************************************************************************/
-
-
-
 
 
 // $(document).ready(function(){
@@ -99,12 +89,6 @@ function updatePlayer(){
     // console.log('Player.passive3 * 5: ' + Player.passive3 * 5);
     // console.log('player.shields: ' + player.shields);
     // console.log('player.shieldsMax: ' + player.shieldsMax);
-
-
-
-
-
-
 
 }
 
@@ -221,15 +205,10 @@ function moveEnemies(){
 function moveFires(){
     //Move friendly fires
     for(var i = 0; i < friendly_fires.length; i++){
-        // console.log('226: Current Index in moveFires() friendly_fires is: ' + i);
-        // console.log('227: friendly_fires.length in moveFires() is: ' + friendly_fires.length);
 
         if(friendly_fires[i].type == "torpedo"){
             friendly_fires[i].speed += Player.passive5 * 1.25;
         }
-
-        // friendly_fires[i].top = friendly_fires[i].top - weaponFireMoveSpeed;
-
 
         if(friendly_fires[i].direction == "down"){
             //console.log("MOVE DOWN");
@@ -399,10 +378,7 @@ function playerDamagedByFire(fire, fireIndex){
     }
 
 
-    //If out of hp and shields, delete
-    if(player.hp <= 0){
-        gameOver();
-    }
+
 }
 
 function rammedPlayer(enemy, enemyIndex){
@@ -748,6 +724,7 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
 
 function endGame(gameStatus){
     var modifier = 1;
+    gameFinished = true;
     if(gameStatus == 'win'){
         modifier += winLossModifier;
     }
@@ -771,10 +748,20 @@ function endGame(gameStatus){
     });
 
     if(gameStatus == 'win'){
-        alert('Victory');
+
+        clearAbilityMessages();
+        clearMessages();
+        $('#messages').text('Victory');
+
+        // alert('Victory');
     }
     else if(gameStatus == 'lose'){
-        alert('Defeat');
+        clearAbilityMessages();
+        clearMessages();
+        $('#messages').text('Defeat');
+
+
+        // alert('Defeat');
     }
     else if(gameStatus == 'bug'){
         alert("We've encountered a bug, please reload from the beginning, thank you");
@@ -1205,7 +1192,7 @@ $('#muteToggle').click(function(){
     //     <i class="fas fa-4x fa-volume-off"></i>
     if(muteToggle == false){
         muteToggle = true;
-        content = '<i class="fas fa-4x fa-volume-off"></i>';
+        content = '<i class="fas fa-4x fa-volume-off muteButton"></i>';
         $('#muteToggle').html(content);
 
         //now volume goes off
@@ -1271,7 +1258,9 @@ function gameLoop(){
     moveEnemies();
     writeStats();
     loopCounter++;
-    setTimeout(gameLoop, gameSpeed);
+    if(gameFinished == false){
+        setTimeout(gameLoop, gameSpeed);
+    }
 }
 
 //Play Game Loop

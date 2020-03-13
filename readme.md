@@ -29,13 +29,13 @@ Based on the pre-bootcamp fighter jet game*
 
 ### Maps
 
-- Background art for first map  
+- Background art for first map **DONE**  
 - Different Maps with different background art  
 - Select Maps in maps.html  
 - Add Map modifiers  
 - Add difficulties to maps  
 - Rewards for map completion  
-- Enemy spawns are randomized  
+- Enemy spawns are randomized **DONE**  
 - Enemy spawns are randomized based on difficulty slider  
 
 ### Weapons
@@ -51,8 +51,8 @@ Based on the pre-bootcamp fighter jet game*
 
 ### RPG Elements
 
-- Gain levels based on xp  
-- Gain passive ability points to spend in player.html  
+- Gain levels based on xp **DONE**  
+- Gain passive ability points to spend in player.html **DONE**  
 - Active Abilities to Select in player.html  
 - Active Abilities unlocked based on player level  
 
@@ -74,7 +74,7 @@ Based on the pre-bootcamp fighter jet game*
 
 - TEST MODELS  
 - Bcrypt everything important in session  
-- Responsive Game Screen  
+- Responsive Game Screen **DONE**  
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
 - Look at better hitboxes  
@@ -90,7 +90,10 @@ Based on the pre-bootcamp fighter jet game*
 - Add in 2 more enemy weapon types  
 - extend for classes  
 - Create difficulty slider OR set up map.html  
-- Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only
+- Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
+- Come up with more lines for the overview page  
+- Statistics incorrectly calculating (score/money/xp all exactly doubled, no levels gained)  
+- remove all alert()'s **DONE**  
 - Find out what's causing .00000000000001 damage **DONE, problem was with shieldRechargeAmount**  
 - Performance loss around 100 kills **DONE**  
 - Implement Story **DONE**  
@@ -123,7 +126,7 @@ Based on the pre-bootcamp fighter jet game*
 - Finish victory() function **DONE**  
 - Need ENDGAME screen **DONE**  
 - Finish gameOver() function **DONE**  
-- Pass database info using JSON but first need to enter everything into DB **CANCELLED**
+- Pass database info using JSON but first need to enter everything into DB **CANCELLED**  
 - /overview statistics aren't loading in until a page reload **DONE FOUND A WORKAROUND**  
 - Add sound mute function **DONE**  
 - Add in money gain **DONE**  
@@ -138,7 +141,7 @@ Based on the pre-bootcamp fighter jet game*
 - Dead enemies are still shooting **DONE**  
 - Make enemies fire at you **DONE**  
 - Take Armor into account in damage calculations **DONE**  
-- Break apart munitions images **DONE**
+- Break apart munitions images **DONE**  
 - new img for missile **DONE**  
 - current missile img to be used as enemy fire **DONE**  
 - Illusion of map motion **CANCELLED**  
@@ -152,10 +155,10 @@ Based on the pre-bootcamp fighter jet game*
 - Enemy ship images **DONE**  
 - Player gains XP **DONE**  
 - Add XP component **DONE**  
-- Upgrades based on xp **BACKLOG**  
+- Upgrades based on xp **DONE**  
 - Find out why spaceship.png isn't showing up on game.html **DONE**  
 - Create game.html **DONE**  
-- Create game.js  **DONE**
+- Create game.js  **DONE**  
 - Create Weapon Types **CANCELLED**  
 - Power-ups to swap weapons (???) **CANCELLED**  
 - Differentiate between enemy and friendly fires **DONE**  
@@ -181,7 +184,7 @@ Based on the pre-bootcamp fighter jet game*
 - Figure out classes vs database for storing information **DONE**  
 - Redo Movement **DONE**  
 - Fix undefined object.left in collision detection (ITS A MISSILE, SPAWNED BY MOUSE) **DONE**  
-- Move statistics text off of game area **CANCELLED**
+- Move statistics text off of game area **CANCELLED**  
 - Make statistics unselectable **DONE**    
 - Make spawnEnemyWave() take parameter of enemy to spawn & spawn NumFormation number of enemies in the correct formation **DONE**  
 - Create SpawnEnemy(enemyType) which is passed to spawnEnemyWave **DONE**
@@ -231,7 +234,6 @@ Based on the pre-bootcamp fighter jet game*
 
 - CREATE Page & Form to create abilities, ships, items, etc..  
 - Aim weapons with mouse  
-- SOUNDS  
 - player.html to level-up  
 - Alt ship images  
 - Create function to quickly add basic equipment & abilities & users to game for testing  
@@ -242,7 +244,6 @@ Based on the pre-bootcamp fighter jet game*
 - Create Manual  
 - Tutorial Page  
 - Show equipped gear on dashboard.html  
-- Implement AJAX on necessary pages  
 - Eventually Set up Bootstrap "cards" system for each map  
 - Change to fire and aim with mouse  
 - Add Pause Functionality  
@@ -251,7 +252,9 @@ Based on the pre-bootcamp fighter jet game*
 - Add movement patterns to enemies  
 - Add damaged enemy images  
 - Missiles do area damage  
-- Upgrades based on xp  
+- SOUNDS **DONE**  
+- Implement AJAX on necessary pages **DONE**  
+- Upgrades based on xp **DONE**  
 - Control with mouse and keyboard **DONE**  
 - Have to reload or pause if firing too often **DONE**  
 - When enemies hit, they take damage instead **DONE**  
@@ -323,23 +326,57 @@ Based on the pre-bootcamp fighter jet game*
 
 
 # Story
-While exploring space, an Alien Race has come and conquered Earth, and killed off 90% of the population, starting with the politicians. You are certain your family is still alive. So you made the decision that rather than return to Earth to rescue your family, you're going to kill off all the Alien supply ships to deprive the Aliens of their critical supply of space toast. You don't know which Aliens are the ones who attacked Earth so you just have to kill them all. You don't know which ships are the supply ships either, so Good Luck. Once you have annihilated all invaders you'll be able to return home safely to Earth into the arms of your loving family.
+
+While you were off exploring space, an Alien Race has come and conquered Earth. They've killed off 90% of the population. You are certain your family is still alive. So you made the decision that rather than return to Earth to rescue your family, you're going to kill off all the Alien supply ships to deprive the Aliens of their critical supply of space toast. You don't know which Aliens are the ones who attacked Earth so you just have to kill them all. You don't know which ships are the supply ships either, so Good Luck. Once you have annihilated all invaders you'll be able to return home safely to Earth into the arms of your loving family.  
 
 ### Messages for overview.html  
 
-You have won this round, Stay Toasty young space hero.
+You have won this round, Stay Toasty young space hero.  
 
-You blocked a major shipment of space toast. Alien stomachs are grumbling.
+You blocked a major shipment of space toast. Alien stomachs are grumbling.  
 
-I love the smell of space toast in the morning.
+I love the smell of space toast in the morning.  
 
-You remember flying toasters from way back when? That's how space toast is made.
+You remember flying toasters from way back when? That's how space toast is made.  
 
-Baby Bleeborb did not get space toast this week due to your efforts.
+Baby Bleeborb did not get space toast this week due to your efforts.  
 
-Your family is (probably) waiting for you, redouble your efforts!
+Your family is (probably) waiting for you, redouble your efforts!  
 
-When the Aliens invaded Earth, they attempted to target the brightest minds first to prevent any resistance. They invaded the libraries first, but were forced to rethink their plans when they discovered that no-one read hard-copy books anymore.
+When the Aliens invaded Earth, they attempted to target the brightest minds to prevent any resistance. They invaded the libraries first, but were forced to rethink their plans when they discovered that no-one read hard-copy books anymore.  
+
+The Aliens swept through our defenses like they weren't even there. Our technology was no match for this vicious toaster-based assault.
+
+Post-Invasion many of the surviving humans sought shelter underground, forming small communities founded on the ideas of equality of man, peace, and kindness to all living things. These communities quickly collapsed due to infighting about who was more equal, peaceful, and kind.
+
+No-one knows what first drew the Aliens to Earth, but we suspect it was our raspberry jam technology.  
+
+### Not Included  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
