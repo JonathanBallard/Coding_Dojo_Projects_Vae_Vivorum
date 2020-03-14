@@ -220,13 +220,15 @@ def output():
     # if request.is_json():
     # print("*&********************************REQUEST.IS_JSON*****************************************")
     data = request.get_json()
-    print('data*******************************', data)
     thisUser = Users.query.get(session['id'])
+    print('data*******************************', data)
+    print('UserData****************************************** score:', thisUser.current_score, 'xp:', thisUser.current_xp, 'money:', thisUser.current_money)
     previousXp = thisUser.current_xp
     thisUser.current_score += data['score']
     thisUser.current_kills += data['kills']
     thisUser.current_xp += data['xp']
     thisUser.current_money += data['money']
+    print('after addition:', thisUser.current_score, 'xp:', thisUser.current_xp, 'money:', thisUser.current_money)
 
     # determine player level
     levelChart = [
@@ -333,22 +335,22 @@ def overview():
         print('endScore in session')
         score = session['endScore']
     else:
-        score = 0
+        score = -1
 
     if 'endKills' in session:
         kills = session['endKills']
     else:
-        kills = 0
+        kills = -1
 
     if 'endXp' in session:
         xp = session['endXp']
     else:
-        xp = 0
+        xp = -1
 
     if 'endMoney' in session:
         money = session['endMoney']
     else:
-        money = 0
+        money = -1
 
     return render_template('overview.html', thisUser = thisUser, score = score, xp = xp, kills = kills, money = money)
 

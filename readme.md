@@ -73,14 +73,10 @@ Based on the pre-bootcamp fighter jet game*
 # MVP TODO  
 
 - TEST MODELS  
-- Bcrypt everything important in session  
-- Responsive Game Screen **DONE**  
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
 - Look at better hitboxes  
-- Make all ships smaller (??)  
 - Create .py script to add a bunch of entries to the database  
-- Reduce the height of the screen  
 - Resize player ship for dashboard/index  
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
 - Fix line formation Spawning  
@@ -88,11 +84,15 @@ Based on the pre-bootcamp fighter jet game*
 - Change Background Image Randomly (??)  
 - Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
 - Add in 2 more enemy weapon types  
-- extend for classes  
+- 'extend' for classes  
 - Create difficulty slider OR set up map.html  
 - Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
-- Come up with more lines for the overview page  
-- Statistics incorrectly calculating (score/money/xp all exactly doubled, no levels gained)  
+- Statistics incorrectly calculating (score/money/xp all exactly doubled, no levels gained) **DONE**  
+- Make all ships smaller (??) **CANCELLED**  
+- Reduce the height of the screen **DONE**  
+- Bcrypt everything important in session **DONE, NOTHING NEEDED**  
+- Responsive Game Screen **DONE**  
+- Come up with more lines for the overview page **DONE**  
 - remove all alert()'s **DONE**  
 - Find out what's causing .00000000000001 damage **DONE, problem was with shieldRechargeAmount**  
 - Performance loss around 100 kills **DONE**  
@@ -291,16 +291,10 @@ Based on the pre-bootcamp fighter jet game*
 5) Pick your passives  
 6) Button on /overview takes you back to /dashboard  
 
-### To JavaScript  
-
-1)   
-
+### To JavaScript   
 
 - Player/User stats (current_score, current_money, current_xp, current_level)  
 - Player passives  
-
-
-
 
 # Player Levels and Passive Abilities
 
@@ -319,11 +313,6 @@ Based on the pre-bootcamp fighter jet game*
 
 1) Python templates through Jinja current level of each ability, d-none  
 2) JavaScript reads in and uses  
-
-
-
-
-
 
 # Story
 
@@ -349,14 +338,15 @@ The Aliens swept through our defenses like they weren't even there. Our technolo
 
 Post-Invasion many of the surviving humans sought shelter underground, forming small communities founded on the ideas of equality of man, peace, and kindness to all living things. These communities quickly collapsed due to infighting about who was more equal, peaceful, and kind.
 
-No-one knows what first drew the Aliens to Earth, but we suspect it was our raspberry jam technology.  
+No-one knows what first drew the Aliens to Earth, but we suspect it was our raspberry jam.  
 
 ### Not Included  
 
+# Abil Ideas  
 
-
-
-
+- Nuclear Blast, unlocks after certain amount of score  
+- bouncing weapon, does friendly damage too  
+- 
 
 
 

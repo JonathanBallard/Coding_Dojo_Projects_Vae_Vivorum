@@ -203,6 +203,10 @@
     color: black;
 }
 
+.storyText {
+    font-size: 30px;
+}
+
 .vaeBorder{
     border: 4px outset white;
 }

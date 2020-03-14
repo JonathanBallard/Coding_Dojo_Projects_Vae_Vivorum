@@ -723,6 +723,7 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
 }
 
 function endGame(gameStatus){
+    console.log('endGame() called');
     var modifier = 1;
     gameFinished = true;
     if(gameStatus == 'win'){
