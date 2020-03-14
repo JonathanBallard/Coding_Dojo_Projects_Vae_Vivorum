@@ -17,6 +17,8 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -36,6 +38,52 @@
     <h1 class="display-1 text-center text-danger">Equipment</h1>
     <p class="lead p-3 unFeatured">This Feature will be added at a later time. Here is where you'll be able to equip different equipment. Equipment will be randomly generated and drop from enemies or be bought from the store. Some equipment pieces will have active skills. From here you can also go to the <a href="/ships">Shipyard</a>.</p>
 
+
+
+
+    <div class="card-deck iconDiv mt-5 p-3 mb-5">
+
+        <div class="card iconCard bg-info">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Shipyard</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/ships"><i class="ml-4 fas fa-4x fa-fighter-jet"></i></a>
+            </div>
+        </div>
+
+        <div class="card iconCard bg-danger">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Store</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/store"><i class="fas fa-4x fa-coins"></i></a>
+            </div>
+        </div>
+
+        <div class="card iconCard bg-secondary">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/dock"><i class="ml-4 fas fa-4x fa-anchor"></i></a>
+            </div>
+        </div>
+
+        <div class="card iconCard bg-primary">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Start Mission</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/game"><i class="fas fa-4x fa-angle-double-right"></i></a>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
 
 
 
