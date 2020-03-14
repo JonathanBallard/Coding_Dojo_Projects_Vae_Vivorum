@@ -1,3 +1,8 @@
+import dotenv from dotenv
+
+dotenv.config();
+
+
 
 // ----------GAME VARIABLES----------
 var difficultyRate = 1; //Later turn this into a slider on dashboard, pass it through JSON to here
