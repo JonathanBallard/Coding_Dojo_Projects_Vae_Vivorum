@@ -103,6 +103,11 @@ function applyModifier(mod,amt){
             enemySpawnRate += enemySpawnRate * amt;
             enemySpawnTimer = enemySpawnRate / difficultyRate;
             break;
+
+        case "enemySpawnRate":
+            enemySpawnRate += enemySpawnRate * amt;
+            enemySpawnTimer = enemySpawnRate / difficultyRate;
+            break;
     
         case "Enemy Move Speed":
             enemyMoveSpeed += enemyMoveSpeed * amt;
@@ -131,6 +136,10 @@ function applyModifier(mod,amt){
         case "Player Health Multiplier":
             playerHealthMult = amt;
             break;
+        
+        case "enemyHealthMultiplier":
+            playerHealthMult = amt;
+            break;
 
         case "Player Shields Multiplier":
             playerShieldsMult = amt;
@@ -139,7 +148,10 @@ function applyModifier(mod,amt){
         case "Player Shields Recharge Delay":
             shieldRechargeDelay += shieldRechargeDelay * amt;
             break;
-    
+        
+        case "playerShieldsRechargeDelayMultiplier":
+            shieldRechargeDelay += shieldRechargeDelay * amt;
+            break;
     
         default:
             console.log("Unrecognized Modifier:", mod, '=', amt);
