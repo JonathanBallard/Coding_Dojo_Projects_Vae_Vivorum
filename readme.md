@@ -84,6 +84,8 @@ Based on the pre-bootcamp fighter jet game*
 - Add in 2 more enemy weapon types  
 - 'extend' for classes  
 - Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
+- Create Admin Panel, include user query/editing
+- Figure out why font-awesome icons have blue bits in the background **DONE**  
 - Create .py script to add a bunch of entries to the database **DONE**  
 - Change Background Image Randomly (??) **CANCELLED**  
 - Create difficulty slider OR set up map.html **DONE**  

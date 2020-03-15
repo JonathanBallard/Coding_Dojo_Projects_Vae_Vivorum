@@ -203,13 +203,27 @@ def ships():
 # Game
 @app.route('/game')
 def game():
+
+    # Create Temp Map for Standard Game
+    thisMap = Map(
+        name = "Temp", 
+        background = "space1.png", 
+        difficulty = 1, 
+        modifier1Name = "", 
+        modifier1Amount = 0, 
+        modifier2Name = "", 
+        modifier2Amount = 0, 
+        modifier3Name = "", 
+        modifier3Amount = 0
+    )
+
     if 'id' in session:
         loggedInUser = Users.query.get(session['id'])
     else:
         print('NO LOGGED IN USER -- GAME ROUTE')
         loggedInUser = False
 
-    return render_template("game.html", thisUser = loggedInUser)
+    return render_template("game.html", thisUser = loggedInUser, thisMap = thisMap)
 
 # Game With Map ID
 @app.route('/game/<mapID>')
@@ -306,11 +320,11 @@ def output():
     session['endMoney'] = data['money']
 
 
-    print('**********************************************************************************')
-    print("inner - session['endScore']", session['endScore'])
+    # print('**********************************************************************************')
+    # print("inner - session['endScore']", session['endScore'])
 
     thisUser = Users.query.get(session['id'])
-    print('This User Score, Kills, XP, Money:', thisUser.current_score, thisUser.current_kills, thisUser.current_xp, thisUser.current_money)
+    # print('This User Score, Kills, XP, Money:', thisUser.current_score, thisUser.current_kills, thisUser.current_xp, thisUser.current_money)
     return redirect('/overview')
 
 
@@ -352,12 +366,12 @@ def outputPassives():
 def overview():
     thisUser = Users.query.get(session['id'])
 
-    print('**********************************************************************************')
-    print("outer - session['endScore']", session['endScore'])
+    # print('**********************************************************************************')
+    # print("outer - session['endScore']", session['endScore'])
 
     if 'endScore' in session:
-        print('**********************************************************************************')
-        print('endScore in session')
+        # print('**********************************************************************************')
+        # print('endScore in session')
         score = session['endScore']
     else:
         score = -1
@@ -380,6 +394,20 @@ def overview():
     return render_template('overview.html', thisUser = thisUser, score = score, xp = xp, kills = kills, money = money)
 
 
+@app.route('/admin')
+def admin():
+    thisUser = Users.query.get(session['id'])
+    allUsers = Users.query.all()
+    allMaps = Map.query.all()
+
+
+    #admin access only
+    if session['id'] != 1 and thisUser.username != "Tax":
+        return redirect('/')
+    else:
+        return render_template('admin.html', thisUser = thisUser, allUsers = allUsers, allMaps = allMaps )
+
+
 @app.route('/populateDatabase')
 def populateDatabase():
 
@@ -391,6 +419,9 @@ def populateDatabase():
         return render_template('populateDatabase.html', thisUser = thisUser)
     else:
         return redirect('/')
+
+    # If we want to let anyone create maps
+    return render_template('populateDatabase.html', thisUser = thisUser)
 
 @app.route('/addMap', methods=["POST"])
 def addMap():

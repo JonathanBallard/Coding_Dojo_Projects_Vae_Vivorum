@@ -36,6 +36,16 @@
 
 }
 
+.modAmt{
+    font-size: 20px;
+
+}
+
+.linkIcon {
+    display: block;
+    text-align: center;
+}
+
 .populateDirections{
     vertical-align: top;
 }

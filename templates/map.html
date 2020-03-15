@@ -12,7 +12,6 @@
     <link rel="manifest" href="{{ url_for('static', filename='icon/site.webmanifest') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -32,9 +31,10 @@
         <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
     </div>
     <h1 class="display-1 text-center text-danger">Map Select</h1>
-    <p class="lead p-3 unFeatured">Choose a Map from below by clicking "Play This Map" or choose to play the game unaltered with no modifiers by clicking "Enter Standard Game" at the bottom.</p>
+    <p class="lead p-3 unFeatured">Choose a Map from below by clicking "Play This Map" or choose to play the game unaltered with no modifiers by clicking "Start Standard Game" at the bottom.</p>
     <div class="col-xl-8">
-        <!-- MAP SELECT HERE -->
+
+        
         <p class="lead p-3 unFeatured d-none">This Feature will be added at a later time. Maps will have different artwork and be of varying difficulty. On harder maps, enemies will have higher hit points, will drop better equipment, be worth more experience and money, and move more quickly.</p>
 
         
@@ -43,20 +43,19 @@
     
 
     {% for thisMap in allMaps %}
-    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 my-5 mx-5 p-3">
-        <div class="card mapCard bg-dark">
+    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 my-5 mx-5 p-3 border border-light">
+        <div class="card mapCard bg-dark img-thumbnail">
             <div class="card-body">
                 <h5 class="card-title h3">Map Name: <span class="text-info h3" id="mapNameText">{{ thisMap.name }}</span></h5>
                 <h6 class="card-subtitle mb-2 lead font-weight-bold text-warning">Difficulty: <span class="text-info" id="difficultyText">{{ thisMap.difficulty }}</span></h6>
                 <ul>
-                    <li><span id="modifier1Name">{{ thisMap.modifier1Name }}</span> : <span class="text-info" id="modifier1Amount">{{ thisMap.modifier1Amount }}</span></li>
-                    <li><span id="modifier2Name">{{ thisMap.modifier2Name }}</span> : <span class="text-info" id="modifier2Amount">{{ thisMap.modifier2Amount }}</span></li>
-                    <li><span id="modifier3Name">{{ thisMap.modifier3Name }}</span> : <span class="text-info" id="modifier3Amount">{{ thisMap.modifier3Amount }}</span></li>
+                    <li><span class="modAmt" id="modifier1Name">{{ thisMap.modifier1Name }}</span> : <span class="text-info modAmt" id="modifier1Amount">{{ thisMap.modifier1Amount }}</span></li>
+                    <li><span class="modAmt" id="modifier2Name">{{ thisMap.modifier2Name }}</span> : <span class="text-info modAmt" id="modifier2Amount">{{ thisMap.modifier2Amount }}</span></li>
+                    <li><span class="modAmt" id="modifier3Name">{{ thisMap.modifier3Name }}</span> : <span class="text-info modAmt" id="modifier3Amount">{{ thisMap.modifier3Amount }}</span></li>
                 </ul>
             </div>
-            {% set route = "/game/{{thisMap.id}}" %}
             <div class="card-footer">
-                <a id="mapSelect" href="{{ url_for('gameId', mapID = thisMap.id) }}" class="d-block btn btn-primary mx-5">Play This Map</a>
+                <a id="mapSelect" href="{{ url_for('gameId', mapID = thisMap.id) }}" class="d-block btn btn-primary mx-5">Play This Map<i class="mx-3 fas fa-angle-double-right"></i></a>
             </div>
         </div>
     </div>
@@ -74,7 +73,7 @@
                 <h3 class="card-subtitle mb-2 text-light">Equipment</h3>
             </div>
             <div class="card-footer">
-                <a href="/equipment"><i class="btn ml-4 fas fa-4x fa-archive"></i></a>
+                <a href="/equipment"><div class="linkIcon"><i class="btn mx-4 fas fa-10x fa-archive"></i></div></a>
             </div>
         </div>
 
@@ -83,7 +82,7 @@
                 <h3 class="card-subtitle mb-2 text-light">Store</h3>
             </div>
             <div class="card-footer">
-                <a href="/store"><i class="btn fas fa-4x fa-coins"></i></a>
+                <a href="/store"><div class="linkIcon"><i class="btn mx-4 fas fa-10x fa-coins"></i></div></a>
             </div>
         </div>
 
@@ -92,16 +91,16 @@
                 <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
             </div>
             <div class="card-footer">
-                <a href="/dock"><i class="btn ml-4 fas fa-4x fa-anchor"></i></a>
+                <a href="/dock"><div class="linkIcon"><i class=" img-fluid btn mx-4 fas fa-10x fa-anchor"></i></div></a>
             </div>
         </div>
 
         <div class="card iconCard bg-primary">
             <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Enter Standard Game</h3>
+                <h3 class="card-subtitle mb-2 text-light">Start Standard Game</h3>
             </div>
             <div class="card-footer">
-                <a href="/game"><i class="btn fas fa-4x fa-angle-double-right"></i></a>
+                <a href="/game"><div class="linkIcon"><i class="img-fluid btn mx-4 fas fa-10x fa-angle-double-right"></i></div></a>
             </div>
         </div>
 

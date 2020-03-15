@@ -17,6 +17,8 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -28,12 +30,12 @@
 <div class="container bg-dark mt-5 text-warning col-xl-10">
 
 
-    <h1 class="ml-5 mt-5 display-1">Login & Registration</h1>
-
+    <h1 class="ml-5 mt-5 mb-5 display-1">Login & Registration</h1>
 
     <div class="d-inline-block container bg-dark text-light col-xl-4 align-top">
 
 
+        
         <h3>Registration</h3>
         <form class="form-group" action="/register" method="POST">
             <label for="username">Username:</label>
@@ -64,6 +66,7 @@
             <hr>
             <input type="hidden" name="formType" value="register">
             <input type="submit" class="btn btn-success mb-5" value="Register!">
+            
         </form>
 
 

@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>Equipment</title>
+    <title>Admin</title>
 </head>
 <body>
 
@@ -34,9 +34,41 @@
             <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
         </div>
 
-        <!-- Equipment Content Here -->
-    <h1 class="display-1 text-center text-danger">Equipment</h1>
-    <p class="lead p-3 unFeatured">This Feature will be added at a later time. Here is where you'll be able to equip different equipment. Equipment will be randomly generated and drop from enemies or be bought from the store. Some equipment pieces will have active skills.</p>
+    
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Num</th>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">current_kills</th>
+                <th scope="col">current_score</th>
+                <th scope="col">current_money</th>
+                <th scope="col">current_xp</th>
+                <th scope="col">current_level</th>
+                <th scope="col">created_at</th>
+                <th scope="col">updated_at</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for user in allUsers %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.current_kills }}</td>
+                    <td>{{ user.current_score }}</td>
+                    <td>{{ user.current_money }}</td>
+                    <td>{{ user.current_xp }}</td>
+                    <td>{{ user.current_level }}</td>
+                    <td>{{ user.created_at }}</td>
+                    <td>{{ user.updated_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
 
 
 
@@ -52,6 +84,15 @@
             </div>
         </div>
 
+        <div class="card iconCard bg-success">
+            <div class="card-body">
+                <h3 class="card-subtitle mb-2 text-light">Equipment</h3>
+            </div>
+            <div class="card-footer">
+                <a href="/equipment"><div class="linkIcon"><i class="img-fluid btn ml-4 fas fa-10x fa-archive"></i></div></a>
+            </div>
+        </div>
+
         <div class="card iconCard bg-danger">
             <div class="card-body">
                 <h3 class="card-subtitle mb-2 text-light">Store</h3>
@@ -63,7 +104,7 @@
 
         <div class="card iconCard bg-secondary">
             <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
+                <h3 class="card-subtitle mb-2 text-light">Dock</h3>
             </div>
             <div class="card-footer">
                 <a href="/dock"><div class="linkIcon"><i class="img-fluid btn ml-4 fas fa-10x fa-anchor"></i></div></a>
