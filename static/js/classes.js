@@ -1,4 +1,53 @@
 //----------CLASSES----------
+
+
+
+/*
+class Enemy {
+
+    static numFormation = 4;
+    static formation = "cluster";
+    static width = 60;
+
+    constructor(left, top, direction, facing){
+        this.left = left;
+        this.top = top;
+        this.height = 70;
+        this.width = 60;
+        this.hp = 120 * enemyHealthMultiplier;
+        this.shields = 0;
+        this.shieldsMax = 0;
+        this.shieldsRecharging = false;
+        this.armor = 0;
+        this.speed = enemyMoveSpeed;
+        this.weapon = "fireball";
+        this.fireDelay = 2500 / (difficultyRate / 1.5);
+        this.numShots = Math.floor(1 * (difficultyRate));
+        this.keepFiring = true;
+        this.rammingDamage = rammingDamage;
+        this.name = "Enemy One";
+        this.type = "enemy";
+        this.scoreValue = 50;
+        this.xpValue = 10;
+        this.moneyValue = 20;
+        this.spawning = true;
+        // this.formation = "line";
+        // this.numFormation = 4; //number of ships to spawn at one time
+        this.direction = direction;
+        this.facing = facing || "enemyDownFace";  //options are:  enemy, enemyLeftFace, enemyRightFace, enemyUpFace
+    }
+
+}
+
+*/
+
+
+
+
+
+
+
+
 class Player {
 
     /*
@@ -10,10 +59,6 @@ class Player {
         Passive 6 is Ability Cooldown Reduction
         Passive 7 is Chaingun Ammunition Increase
         Passive 8 is Chaingun Reload Speed
-
-
-
-
     */
 
    static passive1 = 0;
@@ -41,10 +86,10 @@ class Player {
         this.top = top;
         this.height = 70;
         this.width = 75;
-        this.hp = 100;
-        this.hpMax = 100;
-        this.shieldsMax = 50;
-        this.shields = 50;
+        this.hp = 100 + (100 * playerHealthMult);
+        this.hpMax = 100 + (100 * playerHealthMult);
+        this.shieldsMax = 50 + (50 * playerShieldsMult);
+        this.shields = 50 + (50 * playerShieldsMult);
         this.shieldsRecharging = false;
         this.shieldsInterrupt = false;
         this.armor = 5;
@@ -67,12 +112,12 @@ class Player {
         this.ability4OnCooldown = false;
         this.ability5OnCooldown = false;
         this.ability6OnCooldown = false;
-        this.ability1CooldownTime = 10000;
-        this.ability2CooldownTime = 5000;
-        this.ability3CooldownTime = 10000;
-        this.ability4CooldownTime = 10000;
-        this.ability5CooldownTime = 10000;
-        this.ability6CooldownTime = 10000;
+        this.ability1CooldownTime = 10000 + (10000 * abilityCooldownMult);  //abilityCooldownMult from gamevariables, is a map modifier
+        this.ability2CooldownTime = 5000 + (5000 * abilityCooldownMult);
+        this.ability3CooldownTime = 10000 + (10000 * abilityCooldownMult);
+        this.ability4CooldownTime = 10000 + (10000 * abilityCooldownMult);
+        this.ability5CooldownTime = 10000 + (10000 * abilityCooldownMult);
+        this.ability6CooldownTime = 10000 + (10000 * abilityCooldownMult);
     }
 
 

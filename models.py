@@ -144,6 +144,7 @@ class Map(db.Model):
     __tablename__ = "Map"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
+    background = db.Column(db.String(255))
     difficulty = db.Column(db.Integer)
     modifier1Name = db.Column(db.String(255))
     modifier1Amount = db.Column(db.Integer)

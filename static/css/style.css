@@ -24,7 +24,7 @@
 
 /* Game Stuff */
 #background {
-    background-image: url("../img/backgrounds/space1.png");
+    background-image: url("../img/backgrounds/space2.png");
     background-attachment: scroll;
     background-repeat: no-repeat;
     background-size: cover;
@@ -35,6 +35,11 @@
     z-index: -1;
 
 }
+
+.populateDirections{
+    vertical-align: top;
+}
+
 
 .missile {
     position: absolute;

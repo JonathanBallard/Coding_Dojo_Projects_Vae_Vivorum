@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>Populate Database</title>
+</head>
+<body>
+    <div class="container bg-dark mt-5 text-warning pt-3 col-xl-10">
+        <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder">
+            <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum</h1>
+            <h4 class="ml-auto d-inline-flex mt-2 text-info welcomeText" >Welcome {{ thisUser.username }}</h4>
+            <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
+        </div>
+        <h1 class="display-1 text-center text-danger">Populate Database</h1>
+
+
+
+    <form action="/addMap" method="post" class="d-inline-block col-xl-3">
+        <div class="form-group form-row">
+            <label for="mapName" class="col-form-label">Map Name:</label>
+            <input class="form-control my-2" type="text" name="mapName" id="mapName">
+        </div>
+        <div class="form-group form-row">
+            <label for="mapBackground" class="col-form-label">Map Background:</label>
+            <input class="form-control my-2" type="text" name="mapBackground" id="mapBackground" placeholder="filename.png">
+        </div>
+        <div class="form-group form-row">
+            <label for="mapDifficulty" class="col-form-label">Map Difficulty:</label>
+            <input class="form-control my-2" type="number" step="0.01" name="mapDifficulty" id="mapDifficulty">
+        </div>
+        <div class="form-group form-row">
+            <label for="modifier1Name" class="col-form-label">Modifier1 Name:</label>
+            <select class="form-control my-2" name="modifier1Name" id="modifier1Name">
+                <option value="Enemy Spawn Rate">Enemy Spawn Rate</option>
+                <option value="Enemy Move Speed">Enemy Move Speed</option>
+                <option value="Enemy Health Multiplier">Enemy Health Multiplier</option>
+                <option value="Enemy Damage Multiplier">Enemy Damage Multiplier</option>
+                <option value="Ramming Damage">Ramming Damage</option>
+                <option value="Victory Score">Score Required To Win Multiplier</option>
+                <option value="Ability Cooldown">Ability Cooldown Multiplier</option>
+                <option value="Player Health Multiplier">Player Health Multiplier</option>
+                <option value="Player Shields Multiplier">Player Shields Multiplier</option>
+                <option value="Player Shields Recharge Delay">Player Shields Recharge Delay Multiplier</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="modifier1Amount">Modifier1 Amount:</label>
+            <input class="form-control my-2" type="number" step="0.01" min="-2" max="2" name="modifier1Amount" id="modifier1Amount">
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="modifier2Name">Modifier2 Name:</label>
+            <select class="form-control my-2" name="modifier2Name" id="modifier2Name">
+                <option value="Enemy Spawn Rate">Enemy Spawn Rate</option>
+                <option value="Enemy Move Speed">Enemy Move Speed</option>
+                <option value="Enemy Health Multiplier">Enemy Health Multiplier</option>
+                <option value="Enemy Damage Multiplier">Enemy Damage Multiplier</option>
+                <option value="Ramming Damage">Ramming Damage</option>
+                <option value="Victory Score">Score Required To Win Multiplier</option>
+                <option value="Ability Cooldown">Ability Cooldown Multiplier</option>
+                <option value="Player Health Multiplier">Player Health Multiplier</option>
+                <option value="Player Shields Multiplier">Player Shields Multiplier</option>
+                <option value="Player Shields Recharge Delay">Player Shields Recharge Delay Multiplier</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="modifier2Amount">Modifier2 Amount:</label>
+            <input class="form-control my-2" type="number" step="0.01" min="-2" max="2" name="modifier2Amount" id="modifier2Amount">
+        </div>
+
+        <div class="form-group">
+            <label for="modifier3Name">Modifier3 Name:</label>
+            <select class="form-control my-2" name="modifier3Name" id="modifier3Name">
+                <option value="Enemy Spawn Rate">Enemy Spawn Rate</option>
+                <option value="Enemy Move Speed">Enemy Move Speed</option>
+                <option value="Enemy Health Multiplier">Enemy Health Multiplier</option>
+                <option value="Enemy Damage Multiplier">Enemy Damage Multiplier</option>
+                <option value="Ramming Damage">Ramming Damage</option>
+                <option value="Victory Score">Score Required To Win Multiplier</option>
+                <option value="Ability Cooldown">Ability Cooldown Multiplier</option>
+                <option value="Player Health Multiplier">Player Health Multiplier</option>
+                <option value="Player Shields Multiplier">Player Shields Multiplier</option>
+                <option value="Player Shields Recharge Delay">Player Shields Recharge Delay Multiplier</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="modifier3Amount">Modifier3 Amount:</label>
+            <input class="form-control my-2" type="number" step="0.01" min="-2" max="2" name="modifier3Amount" id="modifier3Amount">
+        </div>
+        
+        <button type="submit" class="btn btn-block btn-success mt-4">Create Map</button>
+    
+    </form>
+    
+    <div class="d-inline-block col-xl-6 populateDirections">
+        <h3 class="display-3">Directions:</h3>
+        <ul>
+            
+            <li class="lead">filename for Background should NOT include path, currently all named space1.png, space2.png... Except for space5.jpg (which is .jpg)</li>
+            <li class="lead">Difficulty affects win score, enemy move speed, enemy hp and shields, enemy spawn timer, and shield recharge rate (not in use atm)</li>
+            <li class="lead">Enemy Spawn Rate = lower is harder -> EnemySpawnTimer formula: enemySpawnRate / difficultyRate</li>
+            <li class="lead">Enemy Move Speed = lower is slower</li>
+            <li class="lead">Score Required To Win = lower is less score/easier</li>
+            <li class="lead">Ability Cooldown multiplier should not be less than -0.5 (half the cooldown)</li>
+            <li class="lead">Player Shields Recharge Delay Multiplier: Lower is easier, higher is harder</li>
+            <li class="lead">Modifier Amounts have a minimum of -2 and a maximum of 2</li>
+
+        </ul>
+
+
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+        <div class="card-deck iconDiv mt-5  pb-3 px-0 ml-1 mb-5 col-xl-3">
+    
+            <div class="card iconCard bg-secondary">
+                <div class="card-body">
+                    <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
+                </div>
+                <div class="card-footer">
+                    <a href="/dock"><i class="ml-4 fas fa-4x fa-anchor"></i></a>
+                </div>
+            </div>
+    
+        </div>
+    
+    
+    
+    </div>
+    
+    
+    <div id="bottombar" class="container bg-dark col-xl-10 mt-3 pb-3 text-light">
+        <h3>Vae Vivorum by Jonathan Ballard</h3>
+        <p class="lead">asgardschosen@gmail.com</p>
+    </div>
+
+
+</body>
+</html>

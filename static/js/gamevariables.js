@@ -1,6 +1,4 @@
-import dotenv from dotenv
 
-dotenv.config();
 
 
 
@@ -23,8 +21,8 @@ var loopCounter = 0;
 var keymap = {};
 var endOfGame = false;
 var muteToggle = false;
-// var gameWinScore = 2000 * (difficultyRate + 0.5);  //standard
-var gameWinScore = 15000;  //testing
+var gameWinScore = 4000 * (difficultyRate + 0.5);  //standard
+// var gameWinScore = 15000;  //testing
 var winLossModifier = 0.25;
 var gameFinished = false;
 
@@ -68,6 +66,95 @@ document.getElementById("missileVolleySound").volume = 0.3;
 document.getElementById("chaingunSound").volume = 0.05;
 document.getElementById("torpedoSound").volume = 0.3;
 document.getElementById("chaingunEmptySound").volume = 0.3;
+
+
+// Class Modifiers from Map
+var abilityCooldownMult = 0;
+var playerHealthMult = 0;
+var playerShieldsMult = 0;
+
+
+
+
+
+
+
+
+
+// Read Map Data and apply
+var mapName = $('#mapName').attr('data-val');
+var mapBackground = $('#mapBackground').attr('data-val');
+var mapDifficulty = $('#mapDifficulty').attr('data-val');
+var modifier1Name = $('#modifier1Name').attr('data-val');
+var modifier1Amount = $('#modifier1Amount').attr('data-val');
+var modifier2Name = $('#modifier2Name').attr('data-val');
+var modifier2Amount = $('#modifier2Amount').attr('data-val');
+var modifier3Name = $('#modifier3Name').attr('data-val');
+var modifier3Amount = $('#modifier3Amount').attr('data-val');
+
+
+difficultyRate = mapDifficulty;
+$('#background').style.backgroundImage = mapBackground;
+
+
+function applyModifier(mod,amt){
+    switch (mod) {
+        case "Enemy Spawn Rate":
+            enemySpawnRate += enemySpawnRate * amt;
+            enemySpawnTimer = enemySpawnRate / difficultyRate;
+            break;
+    
+        case "Enemy Move Speed":
+            enemyMoveSpeed += enemyMoveSpeed * amt;
+            break;
+
+        case "Enemy Health Multiplier":
+            enemyHealthMultiplier += enemyHealthMultiplier * amt;
+            break;
+
+        case "Enemy Damage Multiplier":
+            enemyDamageMultiplier += enemyDamageMultiplier * amt;
+            break;
+
+        case "Ramming Damage":
+            rammingDamage += rammingDamage * amt;
+            break;
+
+        case "Victory Score":
+            gameWinScore += gameWinScore * amt;
+            break;
+
+        case "Ability Cooldown":
+            abilityCooldownMult = amt;
+            break;
+
+        case "Player Health Multiplier":
+            playerHealthMult = amt;
+            break;
+
+        case "Player Shields Multiplier":
+            playerShieldsMult = amt;
+            break;
+
+        case "Player Shields Recharge Delay":
+            shieldRechargeDelay += shieldRechargeDelay * amt;
+            break;
+    
+    
+        default:
+            console.log("Unrecognized Modifier:", mod, '=', amt);
+            break;
+    }
+}
+
+
+applyModifier(modifier1Name,modifier1Amount);
+applyModifier(modifier2Name,modifier2Amount);
+applyModifier(modifier3Name,modifier3Amount);
+
+
+
+
 
 
 

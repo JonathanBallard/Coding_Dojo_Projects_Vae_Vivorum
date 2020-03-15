@@ -350,16 +350,23 @@ No-one knows what first drew the Aliens to Earth, but we suspect it was our rasp
 
 
 
+# Map
 
-
-
-
-
-
-
-
-
-
+- create route /game/<map_id> which leads to game but passes correct map with all the variables as well **DONE**
+- map.js set "#startMissionMapId" href to /game/MAPIDHERE **CANCELLED**
+- if map.id % 5 then background = "blahblah", else background = "blah2" **CANCELLED**
+	- OR add background column to Map **DONE**
+- fix CreateMap() error in route /addMap **DONE**
+- read map attributs in game and use them **DONE**
+- Download more backgrounds 
+- Add a couple maps 
+- Add map randomizer 
+- Add instructions on populateDatabase 
+- implement shieldRechargeRate 
+- Other map modifiers: enemy.fireDelay, player.armor, enemy.shields, enemy.numShots, enemy.xpValue/moneyValue/scoreValue 
+- Special modifier for enemy.numFormation (??) 
+- Some maps enemies only come from 1 end (??) 
+- Fix Map Play **DONE** 
 
 
 

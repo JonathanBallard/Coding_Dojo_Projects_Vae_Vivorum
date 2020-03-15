@@ -4,8 +4,10 @@ import re
 import json
 from config import app, bcrypt, db
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
-from models import User_Character, Users, Equipment, Loadouts, Active_Abilities, Passive_Abilities, Ships, user_ships
+from models import User_Character, Users, Equipment, Loadouts, Active_Abilities, Passive_Abilities, Ships, user_ships, Map
 from sqlalchemy.sql import func
+from createRows import createMap
+
 
 ##### ******************** ROUTES ******************** #####
 
@@ -160,10 +162,11 @@ def dock():
 @app.route('/map')
 def map():
     loggedInUser = Users.query.get(session['id'])
+    allMaps = Map.query.all()
+    print('allMaps***************************************************',allMaps)
 
 
-
-    return render_template("map.html", thisUser = loggedInUser)
+    return render_template("map.html", thisUser = loggedInUser, allMaps = allMaps)
 
 
 
@@ -200,7 +203,6 @@ def ships():
 # Game
 @app.route('/game')
 def game():
-
     if 'id' in session:
         loggedInUser = Users.query.get(session['id'])
     else:
@@ -208,6 +210,29 @@ def game():
         loggedInUser = False
 
     return render_template("game.html", thisUser = loggedInUser)
+
+# Game With Map ID
+@app.route('/game/<mapID>')
+def gameId(mapID):
+
+    if(mapID):
+        thisMap = Map.query.get(mapID)
+    else:
+        return redirect('/game')
+
+    if 'id' in session:
+        loggedInUser = Users.query.get(session['id'])
+    else:
+        print('NO LOGGED IN USER -- GAME ROUTE')
+        loggedInUser = False
+
+    return render_template("game.html", thisUser = loggedInUser, thisMap = thisMap)
+
+
+
+
+
+
 
 @app.route('/getjson/<jsondata>')
 def getjson(jsondata):
@@ -353,6 +378,48 @@ def overview():
         money = -1
 
     return render_template('overview.html', thisUser = thisUser, score = score, xp = xp, kills = kills, money = money)
+
+
+@app.route('/populateDatabase')
+def populateDatabase():
+
+    thisUser = Users.query.get(session['id'])
+
+    #admin access only
+    if session['id'] == 1 or thisUser.username == "Tax":
+        return render_template('populateDatabase.html', thisUser = thisUser)
+    else:
+        return redirect('/')
+
+@app.route('/addMap', methods=["POST"])
+def addMap():
+
+    print('TEST ADDMAP*************************************************')
+    print(
+        request.form['mapName'], 
+        request.form['mapBackground'], 
+        request.form['mapDifficulty'], 
+        request.form['modifier1Name'], 
+        request.form['modifier1Amount'], 
+        request.form['modifier2Name'], 
+        request.form['modifier2Amount'], 
+        request.form['modifier3Name'], 
+        request.form['modifier3Amount']
+    )
+
+    createMap(
+        request.form['mapName'], 
+        request.form['mapBackground'], 
+        request.form['mapDifficulty'], 
+        request.form['modifier1Name'], 
+        request.form['modifier1Amount'], 
+        request.form['modifier2Name'], 
+        request.form['modifier2Amount'], 
+        request.form['modifier3Name'], 
+        request.form['modifier3Amount']
+    )
+
+    return redirect('/populateDatabase')
 
 
 

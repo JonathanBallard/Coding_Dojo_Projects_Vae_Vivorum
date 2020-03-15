@@ -17,7 +17,6 @@ console.log('GAME.JS LOADED');
 
 
 
-
 //Create Game World Size
 $('#background').width(gameWidth);
 $('#background').height(gameHeight);
@@ -382,7 +381,7 @@ function playerDamagedByFire(fire, fireIndex){
 }
 
 function rammedPlayer(enemy, enemyIndex){
-    var rammingDamageFormula = (rammingDamage + (enemy.speed / 2));
+    var rammingDamageFormula = (enemy.rammingDamage + (enemy.speed / 2));
     enemy.shieldsRecharging = false;
     player.shieldsInterrupt = true;
     interruptDelay();
@@ -736,8 +735,8 @@ function endGame(gameStatus){
     var data = {
         score : Math.floor((player.score * modifier)),
         kills : (player.kills),
-        xp : Math.floor((player.xp * modifier)),
-        money : Math.floor((player.money * modifier))
+        xp : Math.floor((player.xp * modifier) * difficultyRate),
+        money : Math.floor((player.money * modifier) * difficultyRate)
     }
 
 
@@ -773,7 +772,6 @@ function endGame(gameStatus){
 }
 
 function locationReplace(){
-
     window.location.replace("/overview");
 }
 
@@ -949,7 +947,7 @@ function enemyFires(enemy, direction){
 
         }
     }
-    
+
     if(enemy.keepFiring == true){
         enemyFireDelay(enemy, direction);
     }
@@ -1046,7 +1044,6 @@ function clearCooldown(abilityNum){
         $('.abilitySix').css('background-color','green');
         player.ability6OnCooldown = false;
     }
-
     clearAbilityMessages();
 }
 
