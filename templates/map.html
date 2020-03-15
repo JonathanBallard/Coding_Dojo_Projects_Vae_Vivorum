@@ -25,13 +25,13 @@
 <body>
 
 <div class="container bg-dark mt-5 text-warning pt-3 col-xl-10">
-    <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder">
+    <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder shadow-lg">
         <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum</h1>
         <h4 class="ml-auto d-inline-flex mt-2 text-info welcomeText" >Welcome {{ thisUser.username }}</h4>
         <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
     </div>
     <h1 class="display-1 text-center text-danger">Map Select</h1>
-    <p class="lead p-3 unFeatured">Choose a Map from below by clicking "Play This Map" or choose to play the game unaltered with no modifiers by clicking "Start Standard Game" at the bottom.</p>
+    <p class="lead p-3 unFeatured">Choose a Map from below by clicking "Play This Map" or choose to play the game unaltered with no modifiers by clicking "Standard Game" at the bottom.</p>
     <div class="col-xl-8">
 
         
@@ -43,10 +43,11 @@
     
 
     {% for thisMap in allMaps %}
-    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 my-5 mx-5 p-3 border border-light">
-        <div class="card mapCard bg-dark img-thumbnail">
+    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 my-5 mx-5 p-3 border border-light shadow-lg">
+        <div class="card mapCard bg-dark">
+            <img src="../static/img/backgrounds/{{thisMap.background}}" alt="map" class="align-center mt-3 mapCardImg mx-auto card-img-top img-thumbnail">
             <div class="card-body">
-                <h5 class="card-title h3">Map Name: <span class="text-info h3" id="mapNameText">{{ thisMap.name }}</span></h5>
+                <h3 class="card-title h3">Map Name: <span class="text-info h3" id="mapNameText">{{ thisMap.name }}</span></h3>
                 <h6 class="card-subtitle mb-2 lead font-weight-bold text-warning">Difficulty: <span class="text-info" id="difficultyText">{{ thisMap.difficulty }}</span></h6>
                 <ul>
                     <li><span class="modAmt" id="modifier1Name">{{ thisMap.modifier1Name }}</span> : <span class="text-info modAmt" id="modifier1Amount">{{ thisMap.modifier1Amount }}</span></li>
@@ -69,8 +70,8 @@
     <div class="card-deck iconDiv mt-5 p-3 mb-5">
 
         <div class="card iconCard bg-success">
-            <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Equipment</h3>
+            <div class="card-body shadow-lg">
+                <h1 class="card-title mb-2 text-light text-center">Equipment</h1>
             </div>
             <div class="card-footer">
                 <a href="/equipment"><div class="linkIcon"><i class="btn mx-4 fas fa-10x fa-archive"></i></div></a>
@@ -78,8 +79,8 @@
         </div>
 
         <div class="card iconCard bg-danger">
-            <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Store</h3>
+            <div class="card-body shadow-lg">
+                <h1 class="card-title mb-2 text-light text-center">Store</h1>
             </div>
             <div class="card-footer">
                 <a href="/store"><div class="linkIcon"><i class="btn mx-4 fas fa-10x fa-coins"></i></div></a>
@@ -87,8 +88,8 @@
         </div>
 
         <div class="card iconCard bg-secondary">
-            <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
+            <div class="card-body shadow-lg">
+                <h1 class="card-title mb-2 text-light text-center">Back To Dock</h1>
             </div>
             <div class="card-footer">
                 <a href="/dock"><div class="linkIcon"><i class=" img-fluid btn mx-4 fas fa-10x fa-anchor"></i></div></a>
@@ -96,8 +97,8 @@
         </div>
 
         <div class="card iconCard bg-primary">
-            <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Start Standard Game</h3>
+            <div class="card-body shadow-lg">
+                <h1 class="card-title mb-2 text-light text-center">Standard Game</h1>
             </div>
             <div class="card-footer">
                 <a href="/game"><div class="linkIcon"><i class="img-fluid btn mx-4 fas fa-10x fa-angle-double-right"></i></div></a>

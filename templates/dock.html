@@ -26,7 +26,7 @@
 <body>
     <div class="container bg-dark mt-5 text-warning pt-3 col-xl-10">
 
-        <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder">
+        <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder shadow-lg">
             <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum</h1>
             <h4 class="ml-auto d-inline-flex mt-2 text-info welcomeText" >Welcome {{ thisUser.username }}</h4>
             <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
@@ -68,8 +68,8 @@
         <div class="card-deck iconDiv mt-5 p-3">
 
             <div class="card iconCard bg-info">
-                <div class="card-body">
-                    <h3 class="card-subtitle mb-2 text-light">Shipyard</h3>
+                <div class="card-body shadow-lg">
+                    <h1 class="card-title mb-2 text-light text-center">Shipyard</h1>
                 </div>
                 <div class="card-footer">
                     <a href="/ships"><div class="linkIcon"><i class="img-fluid btn fas fa-10x fa-fighter-jet"></i></div></a>
@@ -77,17 +77,17 @@
             </div>
 
             <div class="card iconCard bg-success">
-                <div class="card-body">
-                    <h3 class="card-subtitle mb-2 text-light">Equipment</h3>
+                <div class="card-body shadow-lg">
+                    <h1 class="card-title mb-2 text-light text-center">Equipment</h1>
                 </div>
                 <div class="card-footer">
-                    <a href="/equipment"><div class="linkIcon"><i class="img-fluid btn ml-4 fas fa-10x fa-archive"></i></div></a>
+                    <a href="/equipment"><div class="linkIcon"><i class="img-fluid btn fas fa-10x fa-archive"></i></div></a>
                 </div>
             </div>
 
             <div class="card iconCard bg-danger">
-                <div class="card-body">
-                    <h3 class="card-subtitle mb-2 text-light">Store</h3>
+                <div class="card-body shadow-lg">
+                    <h1 class="card-title mb-2 text-light text-center">Store</h1>
                 </div>
                 <div class="card-footer">
                     <a href="/store"><div class="linkIcon"><i class="img-fluid btn fas fa-10x fa-coins"></i></div></a>
@@ -95,8 +95,8 @@
             </div>
 
             <div class="card iconCard bg-warning">
-                <div class="card-body">
-                    <h3 class="card-subtitle mb-2 text-light">Map</h3>
+                <div class="card-body shadow-lg">
+                    <h1 class="card-title mb-2 text-light text-center">Map</h1>
                 </div>
                 <div class="card-footer">
                     <a href="/map"><div class="linkIcon"><i class="img-fluid btn fas fa-10x fa-map"></i></div></a>
@@ -104,14 +104,14 @@
             </div>
 
             {% if thisUser.username == "Tax" or thisUser.id == 1 %}
-            <div class="card iconCard bg-primary">
-                <div class="card-body">
-                    <h3 class="card-subtitle mb-2 text-light">Admin</h3>
+                <div class="card iconCard bg-primary">
+                    <div class="card-body shadow-lg">
+                        <h1 class="card-title mb-2 text-light text-center">Admin</h1>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/admin"><div class="linkIcon"><i class="img-fluid btn fas fa-10x fa-user-secret"></i></div></a>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="/admin"><div class="linkIcon"><i class="img-fluid btn fas fa-10x fa-user-secret"></i></div></a>
-                </div>
-            </div>
             {% endif %}
 
 

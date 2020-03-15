@@ -53,6 +53,31 @@ var abil6Max = 10;
 var abil7Max = 10;
 var abil8Max = 20;
 
+if(abil1 == abil1Max){
+    $('#passive1Buy').attr('class', 'd-none');
+}
+if(abil2 == abil2Max){
+    $('#passive2Buy').attr('class', 'd-none');
+}
+if(abil3 == abil3Max){
+    $('#passive3Buy').attr('class', 'd-none');
+}
+if(abil4 == abil4Max){
+    $('#passive4Buy').attr('class', 'd-none');
+}
+if(abil5 == abil5Max){
+    $('#passive5Buy').attr('class', 'd-none');
+}
+if(abil6 == abil6Max){
+    $('#passive6Buy').attr('class', 'd-none');
+}
+if(abil7 == abil7Max){
+    $('#passive7Buy').attr('class', 'd-none');
+}
+if(abil8 == abil8Max){
+    $('#passive8Buy').attr('class', 'd-none');
+}
+
 $('#abil1Max').text(abil1Max);
 $('#abil2Max').text(abil2Max);
 $('#abil3Max').text(abil3Max);
@@ -171,6 +196,7 @@ xpPercent = Math.floor((xpMissing / xpBetween) * 100);
 $('#xpBarText').text(totalXp);
 $('.xpProgressBar').attr('aria-valuenow', xpPercent);
 $('.xpProgressBar').css('width',xpPercent + '%');
+$('#xpRemainingBarText').text(xpMissing);
 
 
 

@@ -13,29 +13,29 @@ Based on the pre-bootcamp fighter jet game*
 
 ## Features - MVP
 
-- Create Player Ship  
-- Create Enemies Ships  
-- Movement  
-- Fire Weapons  
-- Enemies  
-- Destroy Enemies  
-- Take Hits from Enemies  
-- Win After certain number of enemies dead  
-- XP gain  
-- Score gain  
-- Stored player info in database  
+- Create Player Ship **DONE**  
+- Create Enemies Ships **DONE**  
+- Movement **DONE**  
+- Fire Weapons **DONE**  
+- Enemies **DONE**  
+- Destroy Enemies **DONE**  
+- Take Hits from Enemies **DONE**  
+- Win After certain number of enemies dead **CHANGED TO SCORE**  
+- XP gain **DONE**  
+- Score gain **DONE**  
+- Stored player info in database **DONE**  
 
 ## Additional Features - Product Backlog
 
 ### Maps
 
 - Background art for first map **DONE**  
-- Different Maps with different background art  
-- Select Maps in maps.html  
-- Add Map modifiers  
-- Add difficulties to maps  
-- Rewards for map completion  
+- Different Maps with different background art **DONE**  
+- Select Maps in maps.html **DONE**  
+- Add Map modifiers **DONE**  
+- Add difficulties to maps **DONE**  
 - Enemy spawns are randomized **DONE**  
+- Rewards for map completion  
 - Enemy spawns are randomized based on difficulty slider  
 
 ### Weapons
@@ -84,7 +84,11 @@ Based on the pre-bootcamp fighter jet game*
 - Add in 2 more enemy weapon types  
 - 'extend' for classes  
 - Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
-- Create Admin Panel, include user query/editing
+- Create Admin Panel, include user query/editing  
+- High Scores Board (??)  
+- in overview.js remove buy button if passive == max **DONE**  
+- Put story in jumbotron **DONE**  
+- Several enemies not firing **LOCATED - NUMSHOTS RELATED TO DIFFICULTY**  
 - Figure out why font-awesome icons have blue bits in the background **DONE**  
 - Create .py script to add a bunch of entries to the database **DONE**  
 - Change Background Image Randomly (??) **CANCELLED**  

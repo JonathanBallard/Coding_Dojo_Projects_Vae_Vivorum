@@ -509,10 +509,10 @@ function spawnEnemyWave(){
     else if(enemySpawner == 8){
         typeOfEnemy = "Enemy_4";
     }
-    else if(enemySpawner >= 9 && enemySpawner < 13){
+    else if(enemySpawner >= 9 && enemySpawner < 12){
         typeOfEnemy = "Enemy_5";
     }
-    else if(enemySpawner == 13){
+    else if(enemySpawner == 12){
         typeOfEnemy = "Enemy_6";
     }
 
@@ -587,6 +587,7 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
             spawnDelay(enemy2);
             spawnDelay(enemy3);
             spawnDelay(enemy4);
+            console.log('formation == cluster4, ENEMY:DIRECTION -->', enemy1, direction);
             enemyFireDelay(enemy1, direction);
             enemyFireDelay(enemy2, direction);
             enemyFireDelay(enemy3, direction);
@@ -680,6 +681,7 @@ function spawnEnemy(enemyType, left, leftOffset, top, topOffset, direction){
         spawnDelay(enemy6);
         spawnDelay(enemy7);
         spawnDelay(enemy8);
+        console.log('formation == hollowX, ENEMY:DIRECTION -->', enemy1, direction);
         enemyFireDelay(enemy1, direction);
         enemyFireDelay(enemy2, direction);
         enemyFireDelay(enemy3, direction);
@@ -920,6 +922,7 @@ function playerFires(){
 }
 
 function enemyFires(enemy, direction){
+    console.log('enemyFires()', enemy.name, direction)
     var random = Math.floor(Math.random() * 3) + 1;
     if(random == 1){
         randomDirection = direction; //fire the direction enemy is moving
@@ -930,7 +933,7 @@ function enemyFires(enemy, direction){
     if(enemy.weapon == "fireball"){
         //Make sure enemy is still alive
         if(enemies.includes(enemy)){
-
+            
             if(enemy.numShots > 1){
                 for(var i = 0; i < enemy.numShots / 2; i++){
                     var newFire = new Fireball(enemy.left + (enemy.width / 2) - ((i + 1) * 10), enemy.top + (enemy.height / 2), randomDirection);

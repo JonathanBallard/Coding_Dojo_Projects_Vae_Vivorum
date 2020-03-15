@@ -7,6 +7,7 @@ from flask import Flask, flash, redirect, render_template, request, session, jso
 from models import User_Character, Users, Equipment, Loadouts, Active_Abilities, Passive_Abilities, Ships, user_ships, Map
 from sqlalchemy.sql import func
 from createRows import createMap
+from better_profanity import profanity
 
 
 ##### ******************** ROUTES ******************** #####
@@ -39,6 +40,10 @@ def register():
         if user.username == username:
             isValid = False
             flash("Username already in use", 'register')
+
+    if profanity.contains_profanity(username):
+        isValid = False
+        flash('Please enter a username without profanity', 'register')
 
     if len(username) <= 0:
         isValid = False
