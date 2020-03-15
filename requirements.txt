@@ -1,6 +1,5 @@
 alembic==1.4.0
 bcrypt==3.1.7
-better-profanity==0.5.0
 cffi==1.14.0
 Click==7.0
 Flask==1.1.1
