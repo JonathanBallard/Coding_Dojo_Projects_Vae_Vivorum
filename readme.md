@@ -76,17 +76,17 @@ Based on the pre-bootcamp fighter jet game*
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
 - Look at better hitboxes  
-- Create .py script to add a bunch of entries to the database  
 - Resize player ship for dashboard/index  
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
 - Fix line formation Spawning  
 - Missiles hitbox too small  
-- Change Background Image Randomly (??)  
 - Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
 - Add in 2 more enemy weapon types  
 - 'extend' for classes  
-- Create difficulty slider OR set up map.html  
 - Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
+- Create .py script to add a bunch of entries to the database **DONE**  
+- Change Background Image Randomly (??) **CANCELLED**  
+- Create difficulty slider OR set up map.html **DONE**  
 - Statistics incorrectly calculating (score/money/xp all exactly doubled, no levels gained) **DONE**  
 - Make all ships smaller (??) **CANCELLED**  
 - Reduce the height of the screen **DONE**  
@@ -237,14 +237,14 @@ Based on the pre-bootcamp fighter jet game*
 - player.html to level-up  
 - Alt ship images  
 - Create function to quickly add basic equipment & abilities & users to game for testing  
-- Create map to choose levels, start with simple list of links  
+- Create map to choose levels, start with simple list of links **DONE**  
 - Create equipment.html  
 - create ships.html  
 - create store.html  
 - Create Manual  
 - Tutorial Page  
 - Show equipped gear on dashboard.html  
-- Eventually Set up Bootstrap "cards" system for each map  
+- Eventually Set up Bootstrap "cards" system for each map **DONE**  
 - Change to fire and aim with mouse  
 - Add Pause Functionality  
 - Create Health and Armor Bars for each enemy on screen  
@@ -358,10 +358,10 @@ No-one knows what first drew the Aliens to Earth, but we suspect it was our rasp
 	- OR add background column to Map **DONE**
 - fix CreateMap() error in route /addMap **DONE**
 - read map attributs in game and use them **DONE**
-- Download more backgrounds 
-- Add a couple maps 
+- Download more backgrounds **DONE**
+- Add a couple maps **DONE**
 - Add map randomizer 
-- Add instructions on populateDatabase 
+- Add instructions on populateDatabase **DONE**
 - implement shieldRechargeRate 
 - Other map modifiers: enemy.fireDelay, player.armor, enemy.shields, enemy.numShots, enemy.xpValue/moneyValue/scoreValue 
 - Special modifier for enemy.numFormation (??) 

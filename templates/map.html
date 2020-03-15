@@ -32,15 +32,18 @@
         <a class="ml-5 d-inline-flex mt-2 mr-3 logoutLink" href="/logout">Logout</a>
     </div>
     <h1 class="display-1 text-center text-danger">Map Select</h1>
+    <p class="lead p-3 unFeatured">Choose a Map from below by clicking "Play This Map" or choose to play the game unaltered with no modifiers by clicking "Enter Standard Game" at the bottom.</p>
     <div class="col-xl-8">
         <!-- MAP SELECT HERE -->
         <p class="lead p-3 unFeatured d-none">This Feature will be added at a later time. Maps will have different artwork and be of varying difficulty. On harder maps, enemies will have higher hit points, will drop better equipment, be worth more experience and money, and move more quickly.</p>
+
         
+
     </div>
     
 
     {% for thisMap in allMaps %}
-    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 mx-5 p-3">
+    <div class="mapInfoBox bg-secondary d-inline-block col-xl-3 my-5 mx-5 p-3">
         <div class="card mapCard bg-dark">
             <div class="card-body">
                 <h5 class="card-title h3">Map Name: <span class="text-info h3" id="mapNameText">{{ thisMap.name }}</span></h5>
@@ -71,7 +74,7 @@
                 <h3 class="card-subtitle mb-2 text-light">Equipment</h3>
             </div>
             <div class="card-footer">
-                <a href="/equipment"><i class="ml-4 fas fa-4x fa-archive"></i></a>
+                <a href="/equipment"><i class="btn ml-4 fas fa-4x fa-archive"></i></a>
             </div>
         </div>
 
@@ -80,7 +83,7 @@
                 <h3 class="card-subtitle mb-2 text-light">Store</h3>
             </div>
             <div class="card-footer">
-                <a href="/store"><i class="fas fa-4x fa-coins"></i></a>
+                <a href="/store"><i class="btn fas fa-4x fa-coins"></i></a>
             </div>
         </div>
 
@@ -89,16 +92,16 @@
                 <h3 class="card-subtitle mb-2 text-light">Back To Dock</h3>
             </div>
             <div class="card-footer">
-                <a href="/dock"><i class="ml-4 fas fa-4x fa-anchor"></i></a>
+                <a href="/dock"><i class="btn ml-4 fas fa-4x fa-anchor"></i></a>
             </div>
         </div>
 
         <div class="card iconCard bg-primary">
             <div class="card-body">
-                <h3 class="card-subtitle mb-2 text-light">Enter Game</h3>
+                <h3 class="card-subtitle mb-2 text-light">Enter Standard Game</h3>
             </div>
             <div class="card-footer">
-                <a href="/game"><i class="fas fa-4x fa-angle-double-right"></i></a>
+                <a href="/game"><i class="btn fas fa-4x fa-angle-double-right"></i></a>
             </div>
         </div>
 

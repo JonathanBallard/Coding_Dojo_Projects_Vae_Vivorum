@@ -94,8 +94,11 @@ var modifier3Amount = $('#modifier3Amount').attr('data-val');
 
 
 difficultyRate = mapDifficulty;
-$('#background').style.backgroundImage = mapBackground;
+var mapPath = "../static/img/backgrounds/" + mapBackground
 
+$('#background').css('background-image', "url(" + mapPath + ")")
+console.log($('#background').css('background-image'));
+console.log(mapPath);
 
 function applyModifier(mod,amt){
     switch (mod) {
@@ -117,6 +120,10 @@ function applyModifier(mod,amt){
             enemyHealthMultiplier += enemyHealthMultiplier * amt;
             break;
 
+        case "enemyHealthMultiplier":
+            playerHealthMult = amt;
+            break;
+
         case "Enemy Damage Multiplier":
             enemyDamageMultiplier += enemyDamageMultiplier * amt;
             break;
@@ -134,10 +141,6 @@ function applyModifier(mod,amt){
             break;
 
         case "Player Health Multiplier":
-            playerHealthMult = amt;
-            break;
-        
-        case "enemyHealthMultiplier":
             playerHealthMult = amt;
             break;
 
