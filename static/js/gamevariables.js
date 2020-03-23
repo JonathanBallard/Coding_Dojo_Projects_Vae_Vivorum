@@ -22,7 +22,7 @@ var keymap = {};
 var endOfGame = false;
 var muteToggle = false;
 var gameWinScore = 4000 * (difficultyRate + 0.5);  //standard
-// var gameWinScore = 15000;  //testing
+// var gameWinScore = 2500;  //testing
 var winLossModifier = 0.25;
 var gameFinished = false;
 

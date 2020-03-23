@@ -86,6 +86,9 @@ Based on the pre-bootcamp fighter jet game*
 - Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
 - Create Admin Panel, include user query/editing  
 - High Scores Board (??)  
+- Explosions & shrapnel  
+- xpMissing Value  
+- Fix enemy NumShots based on difficulty  
 - in overview.js remove buy button if passive == max **DONE**  
 - Put story in jumbotron **DONE**  
 - Several enemies not firing **LOCATED - NUMSHOTS RELATED TO DIFFICULTY**  
