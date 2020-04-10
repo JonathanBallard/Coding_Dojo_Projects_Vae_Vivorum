@@ -146,6 +146,23 @@ def login():
             return redirect('/dock')
 
 
+# Demo Account
+@app.route('/demoLogin')
+def demoLogin():
+    demoExists = Users.query.filter_by(email = "demo@demo.com").all()
+    pwHash = bcrypt.generate_password_hash("demopassword").decode('utf-8')
+    # create demo account if it doesnt exist
+    if len(demoExists) < 1:
+        demo_user = Users(username = "Demo", created_at = func.now(), updated_at = func.now(), email = "demo@demo.com", password=pwHash, current_score = 0, current_money = 0, current_xp = 0, current_level = 0)
+        db.session.add(demo_user)
+        db.session.commit()
+
+    # if demo account exists login with it
+    thisUser = Users.query.filter_by(email = "demo@demo.com").all()
+    print(thisUser[0].id)
+    session['id'] = thisUser[0].id
+    return redirect('/dock')
+
 
 # Space Dock
 @app.route('/dock')

@@ -29,7 +29,7 @@
 
 <div class="container bg-dark mt-5 text-warning pt-3 col-xl-10">
     <div id="topbar" class="d-flex flex-row mb-5 mx-5 mt-3 vaeBorder shadow-lg">
-        <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum</h1>
+        <h1 class="display-1 d-inline-flex text-success ml-3">Vae Vivorum v1.10</h1>
         <h4 class="ml-auto d-inline-flex mt-2 text-info welcomeText mr-4">Welcome</h4>
 
     </div>
@@ -76,10 +76,15 @@
 
             <hr>
             <input type="hidden" name="formType" value="register">
-            <input type="submit" class="btn btn-success mb-5" value="Register!">
-            
-        </form>
+            <input type="submit" class="btn btn-success" value="Register!">
 
+            <p class="mt-2 font-weight-bold">OR</p>
+        </form>
+        
+        <!-- DEMO ACCOUNT -->
+        <form action="/demoLogin">
+            <input type="submit" class="btn-warning btn btn-info mb-5" value="Login With Demo Account!">
+        </form>
 
     </div>
 
@@ -92,6 +97,7 @@
         
         <h2>How To Play</h2>
             <ul class="d-inline-block mt-2">
+                <li>Go to "Maps" to choose a level</li>
                 <li>Destroy Enemies to Reach the Target Score</li>
                 <li>Move using your Mouse or 'WASD'</li>
                 <li>Hold 'Space' to fire your primary weapon</li>
@@ -102,8 +108,8 @@
             </ul>
             <img class="d-inline-block align-top" id="playership" src="../static/img/ships/player.png" alt="spaceship">
 
-    </div>
 
+    </div>
 
 
 

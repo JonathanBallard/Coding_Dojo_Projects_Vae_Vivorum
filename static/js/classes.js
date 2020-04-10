@@ -148,7 +148,7 @@ class Enemy_1 {
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
         this.fireDelay = 2000 / (difficultyRate / 1.5);
-        this.numShots = Math.floor(1 * (difficultyRate + 0.5));
+        this.numShots = Math.floor(1 * (difficultyRate));
         this.keepFiring = true;
         this.rammingDamage = rammingDamage;
         this.name = "Enemy One";
@@ -184,7 +184,7 @@ class Enemy_2 {
         this.speed = enemyMoveSpeed * 0.8;
         this.weapon = "fireball";
         this.fireDelay = 3000 / (difficultyRate / 1.5);
-        this.numShots = Math.floor(8 * (difficultyRate));
+        this.numShots = Math.floor(4 * (difficultyRate));
         this.keepFiring = false;
         this.rammingDamage = rammingDamage * 1.2;
         this.name = "Enemy Two";
@@ -219,7 +219,7 @@ class Enemy_3 {
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
         this.fireDelay = 4000 / (difficultyRate / 1.5);
-        this.numShots = Math.floor(3 * (difficultyRate));
+        this.numShots = Math.floor(2 * (difficultyRate));
         this.keepFiring = true;
         this.rammingDamage = rammingDamage * 0.8;
         this.name = "Enemy Three"; //bomber?
@@ -323,7 +323,7 @@ class Enemy_6 {
         this.armor = 5;
         this.speed = enemyMoveSpeed / 4;
         this.weapon = "fireball";
-        this.fireDelay = 500 / (difficultyRate / 1.5);
+        this.fireDelay = 1000 / (difficultyRate / 1.5);
         this.numShots = Math.floor(4 * (difficultyRate));
         this.keepFiring = true;
         this.rammingDamage = rammingDamage * 2;

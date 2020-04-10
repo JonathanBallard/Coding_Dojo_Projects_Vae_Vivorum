@@ -1,8 +1,32 @@
 
 #### Current As Of 3/15/20
 
+[My Deployment](http://18.188.136.175/)
 [My GitHub](https://github.com/JonathanBallard/)
 [My Repo](https://github.com/JonathanBallard/Coding_Dojo_Projects_Vae_Vivorum.git)
+
+
+## Questions:  
+*Hi Guys, here's a link to my Game - it is NOT mobile friendly:*
+**Vae Vivorum**
+
+- If you all don't mind filling out this form afterward and letting me know what you think
+just shoot it to me in a message on mattermost, thanks!
+
+### Tester Questions:
+
+- How does the performance seem (Speed/Smoothness of play)?
+- Is it too easy, just right, or too difficult?
+- Are the maps too short, just right, or too long?
+- What features do you like best?
+- What features do you like least?
+- What features would you like to see?
+- Which of the upcoming features sound most interesting to you? (more ships with varying stats, randomly generated equipment drop from enemies, purchased equipment)
+- What do you think of the current abilities?
+- Would you like to see more abilities?
+- What changes would set this game apart from similar games?
+- Do you think it makes sense to make this mobile friendly?
+- Any other comments?
 
 # **Vae Vivorum**
 
@@ -72,6 +96,7 @@ Based on the pre-bootcamp fighter jet game*
 
 # MVP TODO  
 
+- Doesn't work on Safari or Mobile platforms  
 - TEST MODELS  
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
@@ -80,7 +105,6 @@ Based on the pre-bootcamp fighter jet game*
 - Game world larger than viewport so enemies can spawn little bit at a time not all at once  
 - Fix line formation Spawning  
 - Missiles hitbox too small  
-- Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
 - Add in 2 more enemy weapon types  
 - 'extend' for classes  
 - Create Boss Enemy, spawns after a certain score, or on a certain map/difficulty only  
@@ -88,7 +112,11 @@ Based on the pre-bootcamp fighter jet game*
 - High Scores Board (??)  
 - Explosions & shrapnel  
 - xpMissing Value  
-- Fix enemy NumShots based on difficulty  
+- Create pause button at start of game, user presses spacebar to start  
+- Fix spacebar to fire moving screen down
+- Test enemy NumShots based on difficulty  
+- Fix enemy NumShots based on difficulty **DONE**  
+- Create "Demo" Login info **DONE**  
 - in overview.js remove buy button if passive == max **DONE**  
 - Put story in jumbotron **DONE**  
 - Several enemies not firing **LOCATED - NUMSHOTS RELATED TO DIFFICULTY**  
@@ -311,6 +339,8 @@ Based on the pre-bootcamp fighter jet game*
 
 ### Abilities  
 
+- Icons for future abilities: bolt, bomb, biohazard, burn, chess-rook, cog, cogs, coins, crosshairs, fighter-jet, fire, fire-alt, flask, bullseye  
+
 1) JavaScript checks XP against XP required for Level to see how many points are available  
 2) Python templates through Jinja the current level of each ability to see how many points have been spent already  
 3) JavaScript gets number of ability points for that level minus the number already spent (sent from python)  
@@ -366,7 +396,7 @@ No-one knows what first drew the Aliens to Earth, but we suspect it was our rasp
 - if map.id % 5 then background = "blahblah", else background = "blah2" **CANCELLED**
 	- OR add background column to Map **DONE**
 - fix CreateMap() error in route /addMap **DONE**
-- read map attributs in game and use them **DONE**
+- read map attributes in game and use them **DONE**
 - Download more backgrounds **DONE**
 - Add a couple maps **DONE**
 - Add map randomizer 
@@ -377,7 +407,12 @@ No-one knows what first drew the Aliens to Earth, but we suspect it was our rasp
 - Some maps enemies only come from 1 end (??) 
 - Fix Map Play **DONE** 
 
+#### Changelog
 
+- 4.10.20 Added Demo Button  
+- 4.10.20 Edited enemies number of shots  
+- 4.10.20  
+- 4.10.20  
 
 
 
