@@ -253,7 +253,7 @@ class Enemy_4 {
         this.armor = 0;
         this.speed = enemyMoveSpeed;
         this.weapon = "fireball";
-        this.fireDelay = 1000 / (difficultyRate / 1.5);
+        this.fireDelay = 1400 / (difficultyRate / 1.5);
         this.numShots = Math.floor(2 * (difficultyRate));
         this.keepFiring = true;
         this.rammingDamage = rammingDamage;
@@ -289,7 +289,7 @@ class Enemy_5 {
         this.speed = enemyMoveSpeed * 1.2;
         this.weapon = "fireball";
         this.fireDelay = 2000 / (difficultyRate / 1.5);
-        this.numShots = Math.floor(1 * (difficultyRate + 0.5));
+        this.numShots = Math.floor(1 * (difficultyRate));
         this.keepFiring = false;
         this.rammingDamage = rammingDamage * 0.5;
         this.name = "Enemy Five";

@@ -25,12 +25,14 @@ var gameWinScore = 4000 * (difficultyRate + 0.5);  //standard
 // var gameWinScore = 2500;  //testing
 var winLossModifier = 0.25;
 var gameFinished = false;
+var gameReady = false;
 
 // SPEEDS
 var gameSpeed = 100;
 var playerMoveSpeed = 10;
 var enemyMoveSpeed = Math.floor(10 * difficultyRate);
 var weaponFireMoveSpeed = 25;
+var preGamePause = 5000;
 
 //ENEMIES
 var enemiesKilled = 0;

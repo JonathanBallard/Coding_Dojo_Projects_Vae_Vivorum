@@ -96,8 +96,8 @@ Based on the pre-bootcamp fighter jet game*
 
 # MVP TODO  
 
-- Doesn't work on Safari or Mobile platforms  
-- TEST MODELS  
+- Doesn't work on Safari or Mobile platforms (script blocker?)  
+- TEST Equipment/Ships/Loadouts MODELS  
 - Differentiate between Game and Viewport  
 - Fix mouse movement top of screen  
 - Look at better hitboxes  
@@ -112,9 +112,15 @@ Based on the pre-bootcamp fighter jet game*
 - High Scores Board (??)  
 - Explosions & shrapnel  
 - xpMissing Value  
-- Create pause button at start of game, user presses spacebar to start  
-- Fix spacebar to fire moving screen down
-- Test enemy NumShots based on difficulty  
+- Must test ALL modifier variables in classes.js (such as this.damage = 25 * enemyDamageMultiplier)  
+- Maybe play a sound effect when game starts?  
+- Maybe make countdownNum span actually count down to game start on game.html  
+- Create countdown before game starts **DONE**  
+- Small enemies fire too many shots **DONE**  
+- Create pause before game starts **DONE**  
+- Add alternate fire button 'q' **DONE**  
+- Fix spacebar to fire moving screen down **DONE - Added secondary Fire Button**  
+- Test enemy NumShots based on difficulty **DONE**  
 - Fix enemy NumShots based on difficulty **DONE**  
 - Create "Demo" Login info **DONE**  
 - in overview.js remove buy button if passive == max **DONE**  
@@ -146,10 +152,9 @@ Based on the pre-bootcamp fighter jet game*
 - cleanup projectiles outside of viewport **DONE**  
 - Ensure all instances of the word 'dashboard' are replaced with 'Space Dock' and all use correct anchor image **DONE**  
 - torpedo/chaingunROund impact crashes game **DONE**  
-- Must test ALL modifier variables in classes.js (such as this.damage = 25 * enemyDamageMultiplier)  
 - Enemies spawn in more random edges **DONE**  
 - Lock Passives Based on Level (??) **CANCELLED**  
-- Implement player levels **DONE**    
+- Implement player levels **DONE**  
 - Implement passive abilities **DONE**  
 - Create overview.html **DONE**  
 - /outputPassives button is sending GET requests not POST **DONE**  
@@ -410,9 +415,11 @@ No-one knows what first drew the Aliens to Earth, but we suspect it was our rasp
 #### Changelog
 
 - 4.10.20 Added Demo Button  
-- 4.10.20 Edited enemies number of shots  
-- 4.10.20  
-- 4.10.20  
+- 4.10.20 Edited enemies number of shots overall  
+- 4.10.20 Added 5 second delay before game starts  
+- 4.10.20 Added warning about Safari not working  
+- 4.10.20 Added alternate fire button 'q'  
+- 4.10.20 Fixed number of shots small enemies fired  
 
 
 
