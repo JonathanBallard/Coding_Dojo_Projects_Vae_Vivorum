@@ -3,4 +3,7 @@ static/img/enemies/lg
 static/img/enemies/sm
 static/img/OLD/
 static/img/munitions/missile_*.png
+$vae_vivorum.db
+migrations/
+__pycache__/
 

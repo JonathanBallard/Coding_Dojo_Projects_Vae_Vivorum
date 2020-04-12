@@ -115,6 +115,12 @@ Based on the pre-bootcamp fighter jet game*
 - Must test ALL modifier variables in classes.js (such as this.damage = 25 * enemyDamageMultiplier)  
 - Maybe play a sound effect when game starts?  
 - Maybe make countdownNum span actually count down to game start on game.html  
+- Pull version 1.10 from Git to Deployment!  
+- Fix scores required to win  
+- Fix play area sizing  
+- Fix XP bar in overview  
+- Move image of player ship to next to space dock for beauty  
+- Expand Column of how-to-play on space dock  
 - Create countdown before game starts **DONE**  
 - Small enemies fire too many shots **DONE**  
 - Create pause before game starts **DONE**  
@@ -420,6 +426,7 @@ No-one knows what first drew the Aliens to Earth, but we suspect it was our rasp
 - 4.10.20 Added warning about Safari not working  
 - 4.10.20 Added alternate fire button 'q'  
 - 4.10.20 Fixed number of shots small enemies fired  
+- 4.11.20 Moved mission toast to top of overview  
 
 
 
